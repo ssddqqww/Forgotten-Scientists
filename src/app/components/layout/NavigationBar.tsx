@@ -6,7 +6,7 @@ import { Menu, X, User, Search, Mic } from "lucide-react";
 export default function NavigationBar() {
     const [open, setOpen] = useState(false);
     return (
-        <nav className="border-gray-200 bg-black p-4 absolute top-0 left-0 w-full z-10">
+        <nav className="border-gray-200 bg-black p-4 absolute top-0 left-0 w-full z-50">
             <div className=" flex lg:gap-30 items-center mx-auto lg:p-2">
 
                 <form className="flex w-full items-center">
@@ -32,7 +32,7 @@ export default function NavigationBar() {
                     </button>
 
                     {open && (
-                        <div className="absolute top-12 right-0 w-56 bg-black text-white rounded shadow-lg z-50">
+                        <div className="absolute top-12 right-0 w-56 bg-black text-white rounded shadow-lg">
                             <div className="flex justify-center py-4 border-b border-gray-700">
                                 <User size={40} />
                             </div>
