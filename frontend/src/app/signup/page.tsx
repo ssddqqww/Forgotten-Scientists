@@ -23,12 +23,12 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-800">
-      <div className="bg-gray-400 rounded-2xl shadow-lg flex max-w-3xl w-full p-6">
+    <div className="flex items-center justify-center min-h-screen bg-gray-50">
+      <div className="bg-white rounded-2xl shadow-lg flex max-w-3xl w-full p-6">
         {/* Left side - Illustration */}
         <div className="w-1/2 hidden md:flex items-center justify-center">
           <img
-            src="https://cdn3d.iconscout.com/3d/premium/thumb/chemist-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--science-lab-scientist-experiment-profession-pack-illustrations-3650510.png"
+            src="/login.svg"
             alt="signup illustration"
             className="rounded-lg"
           />
