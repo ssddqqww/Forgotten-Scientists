@@ -17,13 +17,13 @@ export default function Hero() {
 
         <div className="flex flex-col sm:flex-row gap-4">
           <a
-            href="#"
+            href="/signup"
             className="px-6 py-2 text-sm sm:text-base bg-black text-white rounded-md hover:bg-gray-800 text-center"
           >
             Sign Up Now
           </a>
           <a
-            href="#"
+            href="/login"
             className="px-6 py-2 text-sm sm:text-base bg-black text-white rounded-md hover:bg-gray-800 text-center"
           >
             Log in Here
