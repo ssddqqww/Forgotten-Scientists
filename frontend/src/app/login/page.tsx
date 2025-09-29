@@ -1,6 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import AuthLayout from "../components/AuthLayout";
 
 type LoginValues = {
   email: string;
@@ -20,59 +21,45 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50">
-      <div className="bg-gray-50 rounded-2xl shadow-lg flex max-w-3xl w-full p-6">
-        {/* Left side - Illustration */}
-        <div className="w-1/2 hidden md:flex items-center justify-center">
-          <img
-            src="/login.svg"
-            alt="login illustration"
-            className="rounded-lg"
-          />
-        </div>
+    <AuthLayout
+      title="Welcome Back!"
+      subtitle="Log in to continue exploring the hidden heroes of science."
+    >
+      <h2 className="text-2xl font-bold text-gray-800 mb-4">Log in</h2>
 
-        {/* Right side - Form */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center p-6">
-          <h2 className="text-2xl font-bold mb-4">Log in</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
+        <input
+          type="email"
+          placeholder="Email"
+          {...register("email", { required: "Email is required" })}
+          className="p-2 border rounded-lg outline-none"
+        />
+        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
 
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
-            {/* Email */}
-            <input
-              type="email"
-              placeholder="Your email"
-              {...register("email", { required: "Email is required" })}
-              className="p-2 rounded-lg outline-none"
-            />
-            {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+        <input
+          type="password"
+          placeholder="Password"
+          {...register("password", { required: "Password is required" })}
+          className="p-2 border rounded-lg outline-none"
+        />
+        {errors.password && (
+          <p className="text-red-500">{errors.password.message}</p>
+        )}
 
-            {/* Password */}
-            <input
-              type="password"
-              placeholder="Password"
-              {...register("password", {
-                required: "Password is required",
-              })}
-              className="p-2 rounded-lg outline-none"
-            />
-            {errors.password && <p className="text-red-500">{errors.password.message}</p>}
+        <button
+          type="submit"
+          className="bg-indigo-600 text-white rounded-lg py-2 hover:bg-indigo-700 mt-2"
+        >
+          Log in
+        </button>
+      </form>
 
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="bg-black text-white rounded-full py-2 hover:bg-gray-900 mt-2"
-            >
-              Log in
-            </button>
-          </form>
-
-          <p className="text-sm mt-3">
-            Don’t have an account?{" "}
-            <a href="/signup" className="text-blue-700 hover:underline">
-              Sign up
-            </a>
-          </p>
-        </div>
-      </div>
-    </div>
+      <p className="text-sm mt-4 text-gray-600">
+        Don’t have an account?{" "}
+        <a href="/signup" className="text-indigo-600 hover:underline">
+          Sign up
+        </a>
+      </p>
+    </AuthLayout>
   );
 }

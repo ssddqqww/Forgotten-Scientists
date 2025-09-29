@@ -1,105 +1,94 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import AuthLayout from "../components/AuthLayout";
 
-type FormValues = {
+type SignUpValues = {
+  fullName: string;
   email: string;
-  nickname: string;
   password: string;
   confirmPassword: string;
 };
 
-export default function SignupPage() {
+export default function SignUpPage() {
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm<FormValues>();
+  } = useForm<SignUpValues>();
 
-  const onSubmit = (data: FormValues) => {
-    console.log("Form Data:", data);
-    alert("Signed up successfully!");
+  const onSubmit = (data: SignUpValues) => {
+    console.log("Sign Up Data:", data);
+    alert("Account created successfully!");
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50">
-      <div className="bg-white rounded-2xl shadow-lg flex max-w-3xl w-full p-6">
-        {/* Left side - Illustration */}
-        <div className="w-1/2 hidden md:flex items-center justify-center">
-          <img
-            src="/login.svg"
-            alt="signup illustration"
-            className="rounded-lg"
-          />
-        </div>
+    <AuthLayout
+      title="Join Us!"
+      subtitle="Create your account and start exploring the hidden heroes of science."
+    >
+      <h2 className="text-2xl font-bold text-gray-800 mb-4">Sign Up</h2>
 
-        {/* Right side - Form */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center p-6">
-          <h2 className="text-2xl font-bold mb-4">Sign up</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
+        <input
+          type="text"
+          placeholder="Full Name"
+          {...register("fullName", { required: "Full name is required" })}
+          className="p-2 border rounded-lg outline-none"
+        />
+        {errors.fullName && (
+          <p className="text-red-500">{errors.fullName.message}</p>
+        )}
 
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
-            {/* Email */}
-            <input
-              type="email"
-              placeholder="Your email"
-              {...register("email", { required: "Email is required" })}
-              className="p-2 rounded-lg outline-none"
-            />
-            {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+        <input
+          type="email"
+          placeholder="Email"
+          {...register("email", { required: "Email is required" })}
+          className="p-2 border rounded-lg outline-none"
+        />
+        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
 
-            {/* Nickname */}
-            <input
-              type="text"
-              placeholder="Choose nickname"
-              {...register("nickname", { required: "Nickname is required" })}
-              className="p-2 rounded-lg outline-none"
-            />
-            {errors.nickname && <p className="text-red-500">{errors.nickname.message}</p>}
+        <input
+          type="password"
+          placeholder="Password"
+          {...register("password", {
+            required: "Password is required",
+            minLength: { value: 6, message: "At least 6 characters" },
+          })}
+          className="p-2 border rounded-lg outline-none"
+        />
+        {errors.password && (
+          <p className="text-red-500">{errors.password.message}</p>
+        )}
 
-            {/* Password */}
-            <input
-              type="password"
-              placeholder="Password"
-              {...register("password", {
-                required: "Password is required",
-                minLength: { value: 6, message: "At least 6 characters" },
-              })}
-              className="p-2 rounded-lg outline-none"
-            />
-            {errors.password && <p className="text-red-500">{errors.password.message}</p>}
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          {...register("confirmPassword", {
+            validate: (value) =>
+              value === watch("password") || "Passwords do not match",
+          })}
+          className="p-2 border rounded-lg outline-none"
+        />
+        {errors.confirmPassword && (
+          <p className="text-red-500">{errors.confirmPassword.message}</p>
+        )}
 
-            {/* Confirm Password */}
-            <input
-              type="password"
-              placeholder="Confirm password"
-              {...register("confirmPassword", {
-                validate: (value) =>
-                  value === watch("password") || "Passwords do not match",
-              })}
-              className="p-2 rounded-lg outline-none"
-            />
-            {errors.confirmPassword && (
-              <p className="text-red-500">{errors.confirmPassword.message}</p>
-            )}
+        <button
+          type="submit"
+          className="bg-indigo-600 text-white rounded-lg py-2 hover:bg-indigo-700 mt-2"
+        >
+          Create Account
+        </button>
+      </form>
 
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="bg-black text-white rounded-full py-2 hover:bg-gray-900 mt-2"
-            >
-              Sign up
-            </button>
-          </form>
-
-          <p className="text-sm mt-3">
-            Already have an account?{" "}
-            <a href="/login" className="text-blue-700 hover:underline">
-              Log in
-            </a>
-          </p>
-        </div>
-      </div>
-    </div>
+      <p className="text-sm mt-4 text-gray-600">
+        Already have an account?{" "}
+        <a href="/login" className="text-indigo-600 hover:underline">
+          Log in
+        </a>
+      </p>
+    </AuthLayout>
   );
 }
