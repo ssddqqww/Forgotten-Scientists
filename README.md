@@ -4,21 +4,18 @@ An interactive platform highlighting overlooked scientists, featuring quizzes, t
 
 # 🌐 Frontend Setup (Next.js)
 
+(This assumes that you already have cloned the repo)
 Follow these steps to run the frontend locally:
 
 ---
 
 ## 🚀 Getting Started
 
-1. Navigate into the frontend folder:
-   ```bash
-   cd frontend
-
-2. Install dependencies:
+1. Install dependencies:
     ```bash
     npm install
 
-3. Run the development server:
+2. Run the development server:
     ```bash
     npm run dev
 

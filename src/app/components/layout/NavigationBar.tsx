@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Menu, X, User, Search, Mic } from "lucide-react";
+import Link from "next/link";
 
 export default function NavigationBar() {
     const [open, setOpen] = useState(false);
@@ -38,22 +39,17 @@ export default function NavigationBar() {
                             </div>
 
                             <nav className="flex flex-col">
-                                {["Home", "Scientists", "Timeline", "Map", "Quizzes", "News", "History"].map(
-                                    (item) => (
-                                        <a
-                                            key={item}
-                                            href={`/${item.toLowerCase()}`}
-                                            className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800"
-                                        >
-                                            {item}
-                                        </a>
-                                    )
-                                )}
+                                <Link href="/" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">Home</Link>
+                                <Link href="/scientists" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">Scientists</Link>
+                                <Link href="/timeline" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">Timeline</Link>
+                                <Link href="/map" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">Map</Link>
+                                <Link href="/quizzes" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">Quizzes</Link>
+                                <Link href="/news" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">News</Link>
+                                <Link href="/history" className="px-4 py-3 hover:bg-gray-800">History</Link>
                             </nav>
                         </div>
                     )}
                 </div>
-
             </div>
         </nav>
     )

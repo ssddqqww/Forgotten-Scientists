@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Hero() {
   return (
     <section
@@ -16,18 +18,18 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4">
-          <a
+          <Link
             href="/signup"
             className="px-6 py-2 text-sm sm:text-base bg-black text-white rounded-md hover:bg-gray-800 text-center"
           >
             Sign Up Now
-          </a>
-          <a
+          </Link>
+          <Link
             href="/login"
             className="px-6 py-2 text-sm sm:text-base bg-black text-white rounded-md hover:bg-gray-800 text-center"
           >
             Log in Here
-          </a>
+          </Link>
         </div>
       </div>
     </section>
