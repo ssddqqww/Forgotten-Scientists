@@ -1,0 +1,246 @@
+{
+    "Quiz": [
+        {
+            "id": 1,
+            "name": "The Laws of Motion",
+            "description": "Test your knowledge about Newton's three laws of motion and their applications.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 2,
+            "name": "The Solar System",
+            "description": "How well do you know our planetary neighbors? Take this quiz and find out.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 3,
+            "name": "Elements and Compounds",
+            "description": "Identify various elements, compounds, and their chemical properties.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 4,
+            "name": "Electricity Basics",
+            "description": "Understand the core concepts of current, voltage, and resistance.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 5,
+            "name": "Human Anatomy",
+            "description": "Explore the structure and functions of the human body systems.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 6,
+            "name": "The History of Computers",
+            "description": "Trace the evolution of computers from early machines to modern devices.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 7,
+            "name": "Photosynthesis",
+            "description": "Learn how plants convert sunlight into chemical energy.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 8,
+            "name": "Climate and Weather",
+            "description": "Understand how climate systems shape our planet's weather patterns.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 9,
+            "name": "The Atom",
+            "description": "Dive deep into the structure and behavior of atoms and subatomic particles.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 10,
+            "name": "Waves and Sound",
+            "description": "Learn how sound travels through different media and the science of waves.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 11,
+            "name": "Forces and Energy",
+            "description": "Explore how forces interact and how energy is transferred in systems.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 12,
+            "name": "Space Exploration",
+            "description": "Discover key milestones in humanity’s journey into space.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 13,
+            "name": "The Periodic Table",
+            "description": "Match elements to their properties and atomic numbers.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 14,
+            "name": "Light and Optics",
+            "description": "Understand reflection, refraction, and how lenses work.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 15,
+            "name": "Evolution and Genetics",
+            "description": "Test your understanding of heredity and evolutionary theory.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 16,
+            "name": "Rocks and Minerals",
+            "description": "Identify different rock types and how they form.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 17,
+            "name": "Oceanography",
+            "description": "Dive into the mysteries of Earth’s oceans and marine life.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 18,
+            "name": "Artificial Intelligence",
+            "description": "Explore the basics of AI, machine learning, and their real-world applications.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 19,
+            "name": "Quantum Mechanics",
+            "description": "Challenge your understanding of quantum phenomena and uncertainty.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 20,
+            "name": "Ecology and Environment",
+            "description": "Learn how ecosystems function and how humans impact them.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 21,
+            "name": "The Human Brain",
+            "description": "Test your knowledge about brain anatomy and neural functions.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 22,
+            "name": "Renewable Energy",
+            "description": "Discover the science behind solar, wind, and hydroelectric energy.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 23,
+            "name": "Astronomy 101",
+            "description": "Explore constellations, galaxies, and the expanding universe.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 24,
+            "name": "Nuclear Physics",
+            "description": "Understand nuclear fission, fusion, and their role in energy production.",
+            "image": "/HeroBG.jpg"
+        }
+    ],
+    "Scientist": [
+        {
+            "id": 1,
+            "name": "Albert Einstein",
+            "description": "Developed the theory of relativity, changing our understanding of time, space, and energy.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 2,
+            "name": "Isaac Newton",
+            "description": "Formulated the laws of motion and universal gravitation.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 3,
+            "name": "Marie Curie",
+            "description": "Pioneer in radioactivity; first person to win two Nobel Prizes in different sciences.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 4,
+            "name": "Charles Darwin",
+            "description": "Proposed the theory of evolution by natural selection.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 5,
+            "name": "Nikola Tesla",
+            "description": "Inventor and engineer known for contributions to alternating current (AC) electrical systems.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 6,
+            "name": "Galileo Galilei",
+            "description": "Father of modern observational astronomy and experimental physics.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 7,
+            "name": "Stephen Hawking",
+            "description": "Theoretical physicist known for his work on black holes and cosmology.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 8,
+            "name": "Ada Lovelace",
+            "description": "Recognized as the first computer programmer for her work on Charles Babbage’s Analytical Engine.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 9,
+            "name": "Dmitri Mendeleev",
+            "description": "Created the Periodic Table of Elements, organizing chemical elements by their properties.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 10,
+            "name": "Rosalind Franklin",
+            "description": "Her X-ray diffraction images were critical in discovering the DNA double helix structure.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 11,
+            "name": "Michael Faraday",
+            "description": "Discovered electromagnetic induction and principles underlying electric motors and transformers.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 12,
+            "name": "Gregor Mendel",
+            "description": "Father of genetics; discovered the fundamental laws of inheritance through pea plant experiments.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 13,
+            "name": "Niels Bohr",
+            "description": "Developed the Bohr model of the atom and contributed to quantum theory.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 14,
+            "name": "James Clerk Maxwell",
+            "description": "Formulated the classical theory of electromagnetic radiation.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 15,
+            "name": "Richard Feynman",
+            "description": "Known for his work in quantum mechanics and quantum electrodynamics.",
+            "image": "/HeroBG.jpg"
+        },
+        {
+            "id": 16,
+            "name": "Carl Sagan",
+            "description": "Astronomer and science communicator who popularized science through books and TV.",
+            "image": "/HeroBG.jpg"
+        }
+    ]
+}

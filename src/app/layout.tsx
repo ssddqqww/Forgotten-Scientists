@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import NavigationBar from "./components/layout/NavigationBar";
+import Footer from "./components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "Forgotten Scientists",
@@ -20,6 +21,7 @@ export default function RootLayout({
       >
         <NavigationBar />
         {children}
+        <Footer />
       </body>
     </html>
   );
