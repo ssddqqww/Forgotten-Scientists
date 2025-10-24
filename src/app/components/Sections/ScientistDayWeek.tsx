@@ -3,7 +3,7 @@ export default function ScientistDayWeek() {
         <section className="pt-20 pb-40">
             <div className="grid md:grid-cols-2 gap-8 md:divide-x md:divide-gray-900">
                 {/* Scientist of the Day */}
-                <div className="flex flex-col p-6">
+                <div className="flex flex-col p-6 pl-0">
                     <h2 className="text-3xl md:text-5xl font-bold">Scientist of the Day</h2>
                     <span className="text-xl md:text-2xl font-bold my-3">John Doe</span>
                     <div className="flex flex-col flex-wrap md:flex-row items-start gap-6">
@@ -13,7 +13,7 @@ export default function ScientistDayWeek() {
                             className="w-full md:w-72 lg:w-70 h-64 object-cover rounded-lg"
                         />
                         <div>
-                            <p className="text-base lg:w-50  md:text-lg text-gray-900 mt-2">
+                            <p className="text-base lg:w-70  md:text-lg text-gray-900 mt-2">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam
                                 nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
                                 volutpat...
@@ -36,7 +36,7 @@ export default function ScientistDayWeek() {
                             className="w-full md:w-72 lg:w-70 h-64 object-cover rounded-lg"
                         />
                         <div>
-                            <p className="text-base lg:w-50 md:text-lg text-gray-900 mt-2">
+                            <p className="text-base lg:w-70 md:text-lg text-gray-900 mt-2">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam
                                 nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
                                 volutpat...

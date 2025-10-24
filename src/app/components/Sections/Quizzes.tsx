@@ -104,9 +104,9 @@ export default function Quizzes() {
 
             {/* Quiz Cards */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                {quiz.map((card) => (
+                {quiz.map((card, i) => (
                     <div
-                        key={card.id}
+                        key={i}
                         className="pb-10 relative flex flex-col items-start pr-8 border-gray-900 sm:border-r sm:[&:nth-child(2n)]:border-r-0 lg:!border-r lg:[&:nth-child(4n)]:!border-r-0"
                     >
                         <h3 className="font-bold mb-1">{card.name}</h3>

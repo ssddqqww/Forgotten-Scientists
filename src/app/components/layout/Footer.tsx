@@ -15,11 +15,11 @@ export default function Footer() {
                     </p>
                 </div>
 
-                <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 text-right md:text-left">
+                <div className="flex flex-col items-start md:items-end text-right md:text-left">
                     <p className="text-sm md:text-base max-w-md">
                         Discover the hidden heroes of science from around the world
                     </p>
-                    <div className="w-12 h-12 bg-gray-200"></div>
+                    <div className="w-40 h-12 bg-gray-300"></div>
                 </div>
             </div>
         </footer>
