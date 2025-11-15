@@ -78,7 +78,7 @@ export default function ExploreScientist() {
 
             {/* Filter Tabs */}
             <div className="flex flex-wrap gap-4 mb-6 text-sm">
-                <button className="flex items-center gap-2 px-4 py-2 border-r">
+                <button className="flex items-center gap-2 pr-4 py-2 border-r">
                     <img
                         src="/icons/Atom_light.png"
                         alt=""
@@ -87,7 +87,7 @@ export default function ExploreScientist() {
                     By Field
                 </button>
 
-                <button className="flex items-center gap-2 px-4 py-2 border-r">
+                <button className="flex items-center gap-2 pr-4 py-2 border-r">
                     <img
                         src="/icons/Map.png"
                         alt=""
@@ -108,9 +108,9 @@ export default function ExploreScientist() {
 
             {/* Scientist Cards */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                {scientist.map((card) => (
+                {scientist.map((card, i) => (
                     <div
-                        key={card.id}
+                        key={i}
                         className="pb-10 relative flex flex-col items-start pr-8 border-gray-900 sm:border-r sm:[&:nth-child(2n)]:border-r-0 lg:!border-r lg:[&:nth-child(4n)]:!border-r-0"
                     >
                         <h3 className="font-bold mb-1">{card.name}</h3>
@@ -122,9 +122,9 @@ export default function ExploreScientist() {
                         <p className="text-md text-gray-900 mt-2">
                             {card.description}
                         </p>
-                        <button className="absolute bottom-0 mt-3 px-4 py-1 bg-black text-white rounded-md text-sm">
+                        <a href="/readmore" className="absolute bottom-0 mt-3 px-4 py-1 bg-black text-white rounded-md text-sm">
                             Read more
-                        </button>
+                        </a>
                     </div>
                 ))}
             </div>

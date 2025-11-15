@@ -19,6 +19,10 @@ Follow these steps to run the frontend locally:
     ```bash
     npm run dev
 
+3. Run REST API simulation server (remove later):
+    ```bash
+    npx json-server --watch db.json --port 3001
+
 Open your browser and go to:
 👉 http://localhost:3000
 

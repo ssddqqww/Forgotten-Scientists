@@ -40,6 +40,7 @@ export default function NavigationBar() {
 
                             <nav className="flex flex-col">
                                 <Link href="/" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">Home</Link>
+                                <Link href="/about" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">About Us</Link>
                                 <Link href="/scientists" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">Scientists</Link>
                                 <Link href="/timeline" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">Timeline</Link>
                                 <Link href="/map" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">Map</Link>
