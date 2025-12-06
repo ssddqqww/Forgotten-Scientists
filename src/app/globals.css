@@ -1,5 +1,6 @@
 @import "tailwindcss";
-
+/* @import "@/styles/map-styles.css";
+@import "react-leaflet-markercluster/dist/styles.min.css"; */
 @theme {
    --font-sans: "Inter", sans-serif;
 
@@ -8,4 +9,18 @@
 .body {
   font-family: var(--font-inter);
 }
+
+.custom-marker {
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  border: 2px solid white !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.leaflet-marker-icon.custom-marker:hover {
+  transform: scale(1.25);
+  transition: 0.2s ease;
+  z-index: 999 !important;
+}
+
 

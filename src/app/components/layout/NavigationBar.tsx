@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function NavigationBar() {
     const [open, setOpen] = useState(false);
     return (
-        <nav className="border-gray-200 bg-black p-4 absolute top-0 left-0 w-full z-50">
+        <nav className="border-gray-200 bg-black p-4 sticky top-0 left-0 w-full z-[1100]">
             <div className=" flex lg:gap-30 items-center mx-auto lg:p-2">
 
                 <form className="flex w-full items-center">

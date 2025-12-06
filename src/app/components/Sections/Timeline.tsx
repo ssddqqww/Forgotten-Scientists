@@ -93,7 +93,7 @@ export default function Timeline() {
                         .map((a, i) => (
                             <div
                                 key={i}
-                                className="flex border border-2 border-gray-300 rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition p-4"
+                                className="flex  border-2 border-gray-300 rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition p-4"
                             >
                                 <img
                                     src={a.image}
