@@ -11,15 +11,15 @@ export default function Quizzes() {
     }
 
     const [quiz, setQuiz] = useState<Quiz[]>([
-        // Initial dummy data
-        // { id: 1, name: "Physics Quiz", description: "Test your knowledge in Physics with this exciting quiz covering fundamental concepts and theories.", image: "/HeroBG.jpg" },
-        // { id: 2, name: "Chemistry Quiz", description: "Challenge yourself with our Chemistry Quiz, featuring questions on elements, compounds, and reactions.", image: "/HeroBG.jpg" },
-        // { id: 3, name: "Biology Quiz", description: "Explore the wonders of life with our Biology Quiz, covering topics from cell structure to ecosystems.", image: "/HeroBG.jpg" },
-        // { id: 4, name: "Mathematics Quiz", description: "Sharpen your math skills with this quiz that includes questions on algebra, geometry, and calculus.", image: "/HeroBG.jpg" },
-        // { id: 5, name: "Astronomy Quiz", description: "Test your knowledge of the cosmos with our Astronomy Quiz, featuring questions about stars, planets, and galaxies.", image: "/HeroBG.jpg" },
-        // { id: 6, name: "Geology Quiz", description: "Discover the Earth's secrets with our Geology Quiz, covering rocks, minerals, and geological processes.", image: "/HeroBG.jpg" },
-        // { id: 7, name: "Environmental Science Quiz", description: "Learn about environmental issues and sustainability with our Environmental Science Quiz.", image: "/HeroBG.jpg" },
-        // { id: 8, name: "Computer Science Quiz", description: "Challenge your understanding of algorithms, data structures, and programming with our Computer Science Quiz.", image: "/HeroBG.jpg" },
+         //Initial dummy data
+         { id: 1, name: "Physics Quiz", description: "Test your knowledge in Physics with this exciting quiz covering fundamental concepts and theories.", image: "/HeroBG.jpg" },
+         { id: 2, name: "Chemistry Quiz", description: "Challenge yourself with our Chemistry Quiz, featuring questions on elements, compounds, and reactions.", image: "/HeroBG.jpg" },
+         { id: 3, name: "Biology Quiz", description: "Explore the wonders of life with our Biology Quiz, covering topics from cell structure to ecosystems.", image: "/HeroBG.jpg" },
+         { id: 4, name: "Mathematics Quiz", description: "Sharpen your math skills with this quiz that includes questions on algebra, geometry, and calculus.", image: "/HeroBG.jpg" },
+         { id: 5, name: "Astronomy Quiz", description: "Test your knowledge of the cosmos with our Astronomy Quiz, featuring questions about stars, planets, and galaxies.", image: "/HeroBG.jpg" },
+         { id: 6, name: "Geology Quiz", description: "Discover the Earth's secrets with our Geology Quiz, covering rocks, minerals, and geological processes.", image: "/HeroBG.jpg" },
+         { id: 7, name: "Environmental Science Quiz", description: "Learn about environmental issues and sustainability with our Environmental Science Quiz.", image: "/HeroBG.jpg" },
+         { id: 8, name: "Computer Science Quiz", description: "Challenge your understanding of algorithms, data structures, and programming with our Computer Science Quiz.", image: "/HeroBG.jpg" },
     ]);
     const [page, setPage] = useState(3);
     const [loading, setLoading] = useState(false);

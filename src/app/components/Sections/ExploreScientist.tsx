@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 export default function ExploreScientist() {
@@ -12,14 +13,14 @@ export default function ExploreScientist() {
 
     const [scientist, setScientist] = useState<Scientist[]>([
         // Initial dummy data
-        // { id: 1, name: "John Doe", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
-        // { id: 2, name: "Jane Smith", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
-        // { id: 3, name: "Alice Johnson", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
-        // { id: 4, name: "Bob Brown", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
-        // { id: 5, name: "John Doe", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
-        // { id: 6, name: "Jane Smith", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
-        // { id: 7, name: "Alice Johnson", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
-        // { id: 8, name: "Bob Brown", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
+         { id: 1, name: "John Doe", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
+         { id: 2, name: "Jane Smith", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
+         { id: 3, name: "Alice Johnson", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
+         { id: 4, name: "Bob Brown", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
+         { id: 5, name: "John Doe", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
+         { id: 6, name: "Jane Smith", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
+         { id: 7, name: "Alice Johnson", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
+         { id: 8, name: "Bob Brown", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
     ]);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
@@ -122,9 +123,9 @@ export default function ExploreScientist() {
                         <p className="text-md text-gray-900 mt-2">
                             {card.description}
                         </p>
-                        <a href="/readmore" className="absolute bottom-0 mt-3 px-4 py-1 bg-black text-white rounded-md text-sm">
+                        <Link href="/readmore" className="absolute bottom-0 mt-3 px-4 py-1 bg-black text-white rounded-md text-sm">
                             Read more
-                        </a>
+                        </Link>
                     </div>
                 ))}
             </div>

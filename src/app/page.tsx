@@ -7,7 +7,7 @@ import MapForgottenScientist from "./components/Sections/MapForgottenScientist";
 
 export default function Home() {
   return (
-    <>
+    <div>
       <Hero/>     
       <div className="px-10 md:px-2 lg:px-20">
         <ScientistDayWeek/>
@@ -16,6 +16,6 @@ export default function Home() {
         <MapForgottenScientist/>
         <Quizzes/>
       </div>
-    </>
+    </div>
   );
 }
