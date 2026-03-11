@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "leaflet/dist/leaflet.css";
-/* তুমি চাইলে নিচের ফাইলকে project-global CSS এ যুক্ত করতে পারো */
+
 
 
 import NavigationBar from "./components/layout/NavigationBar";
