@@ -35,6 +35,7 @@ export default function MapForgottenScientist() {
   const [centuryFilter, setCenturyFilter] = useState<string | null>(null);
   const [hoverId, setHoverId] = useState<number | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
+
   // =====================================================
   // AUTO-GEOCODE USING NOMINATIM
   // =====================================================
@@ -103,13 +104,18 @@ export default function MapForgottenScientist() {
     });
   }, [scientists, query, fieldFilter, countryFilter, centuryFilter]);
 
-  const createIcon = (img: string) =>
-    L.icon({
+  // =====================================================
+  // CREATE ICON (only on client!)
+  // =====================================================
+  const createIcon = (img: string) => {
+    if (typeof window === "undefined") return null; // не створюємо на сервері
+    return L.icon({
       iconUrl: img,
       iconSize: [52, 52],
       iconAnchor: [26, 52],
       className: "custom-marker",
     });
+  };
 
   const center: [number, number] = [20, 0];
 
@@ -217,7 +223,7 @@ export default function MapForgottenScientist() {
                   <Marker
                     key={s.id}
                     position={[s.lat!, s.lng!]}
-                    icon={createIcon(s.image)}
+                    icon={createIcon(s.image) || undefined} // <-- без server-side помилки
                     eventHandlers={{
                       mouseover: () => setHoverId(s.id),
                       mouseout: () => setHoverId(null),
