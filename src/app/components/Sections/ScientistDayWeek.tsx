@@ -2,22 +2,25 @@ export default function ScientistDayWeek() {
     return (
         <section className="pt-20 pb-40">
             <div className="grid md:grid-cols-2 gap-8 md:divide-x md:divide-gray-900">
+
                 {/* Scientist of the Day */}
-                <div className="flex flex-col p-6 pl-0">
+                <div className="flex flex-col p-6">
                     <h2 className="text-3xl md:text-5xl font-bold">Scientist of the Day</h2>
-                    <span className="text-xl md:text-2xl font-bold my-3">John Doe</span>
-                    <div className="flex flex-col flex-wrap md:flex-row items-start gap-6">
+                    <span className="text-xl md:text-2xl font-bold my-3">Viktor Amazaspovich Ambartsumian</span>
+
+                    <div className="flex flex-col md:flex-row items-start gap-6">
                         <img
-                            src="/HeroBG.jpg"
+                            src="/scientist18.png"
                             alt="Scientist"
-                            className="w-full md:w-72 lg:w-70 h-64 object-cover rounded-lg"
+                            className="w-full md:w-72 h-64 object-cover rounded-lg"
                         />
-                        <div>
-                            <p className="text-base lg:w-70  md:text-lg text-gray-900 mt-2">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam
-                                nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-                                volutpat...
+
+                        <div className="max-w-sm">
+                            <p className="text-base md:text-lg text-gray-900 mt-2">
+Showed that many stars form continuously in associations — stellar formation is ongoing, not a once‑in‑a‑lifetime event. 
+
                             </p>
+
                             <button className="mt-3 px-5 py-2 bg-black text-white rounded-md text-sm md:text-base">
                                 Read more
                             </button>
@@ -28,29 +31,33 @@ export default function ScientistDayWeek() {
                 {/* Scientist of the Week */}
                 <div className="flex flex-col p-6">
                     <h2 className="text-3xl md:text-5xl font-bold">Scientist of the Week</h2>
-                    <span className="text-xl md:text-2xl font-bold my-3">John Doe</span>
-                    <div className="flex flex-col flex-wrap md:flex-row items-start gap-6">
+                    <span className="text-xl md:text-2xl font-bold my-3">Mary Fairfax Somerville</span>
+
+                    <div className="flex flex-col md:flex-row items-start gap-6">
                         <img
-                            src="/HeroBG.jpg"
+                            src="/scientist28.png"
                             alt="Scientist"
-                            className="w-full md:w-72 lg:w-70 h-64 object-cover rounded-lg"
+                            className="w-full md:w-72 h-64 object-cover rounded-lg"
                         />
-                        <div>
-                            <p className="text-base lg:w-70 md:text-lg text-gray-900 mt-2">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam
-                                nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-                                volutpat...
+
+                        <div className="max-w-sm">
+                            <p className="text-base md:text-lg text-gray-900 mt-2">
+                                Demonstrated that science and mathematical knowledge can be accessible, and unified many fields into a coherent view — laying groundwork for modern interdisciplinary science.
+
                             </p>
+
                             <button className="mt-3 px-5 py-2 bg-black text-white rounded-md text-sm md:text-base">
                                 Read more
                             </button>
                         </div>
                     </div>
                 </div>
+
             </div>
 
             {/* Icons Row */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 divide-x divide-gray-900 mt-12 text-center">
+
                 <div className="flex flex-col items-center p-6">
                     <div className="w-14 h-14 overflow-hidden flex items-center justify-center">
                         <img
@@ -97,6 +104,7 @@ export default function ScientistDayWeek() {
                     />
                     <span className="text-sm font-normal mt-3">News</span>
                 </div>
+
             </div>
         </section>
     )

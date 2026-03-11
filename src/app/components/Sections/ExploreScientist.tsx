@@ -13,14 +13,14 @@ export default function ExploreScientist() {
 
     const [scientist, setScientist] = useState<Scientist[]>([
         // Initial dummy data
-         { id: 1, name: "John Doe", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
-         { id: 2, name: "Jane Smith", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
-         { id: 3, name: "Alice Johnson", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
-         { id: 4, name: "Bob Brown", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
-         { id: 5, name: "John Doe", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
-         { id: 6, name: "Jane Smith", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
-         { id: 7, name: "Alice Johnson", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
-         { id: 8, name: "Bob Brown", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...", image: "/HeroBG.jpg" },
+         { id: 1, name: " Ellen Henrietta Swallow Richards", description: "Ellen Swallow Richards was the first woman to graduate from Massachusetts Institute of Technology (MIT) and a pioneer of sanitary chemistry and home economics. ", image: "/scientist01.png" },
+         { id: 2, name: "Matilda Moldenhauer Brooks", description: "Matilda Moldenhauer Brooks (1888–1981) was an American biologist who demonstrated that the dye methylene blue can counteract cyanide and carbon‑monoxide poisoning, making a major contribution to medical toxicology and cell biology. ", image: "/scientist02.png"},
+         { id: 3, name: "Chien‑Shiung Wu", description: "Chien‑Shiung Wu was a Chinese‑American experimental physicist whose 1956 “Wu experiment” definitively showed that weak interactions violate parity symmetry — a breakthrough that reshaped particle physics. She also contributed to the uranium‑enrichment process during the Manhattan Project. ", image: "/3scientist.png" },
+         { id: 4, name: "Nettie Maria Stevens", description: "Demonstrated that sex is determined by specific chromosomes (X and Y), providing first strong evidence that heredity — not environment — defines sex in many species.", image: "/scientist4.png" },
+         { id: 5, name: "George Green", description: " George Green was an English mathematician and physicist, largely self‑taught, whose 1828 work dramatically changed physics: his mathematical methods introduced the idea of potential and laid the groundwork for modern electromagnetism and potential theory. ", image: "/scientist5.png" },
+         { id: 6, name: "Julius Robert von Mayer", description: "One of the first to formulate the principle of conservation of energy (first law of thermodynamics) — that energy (work, heat) is conserved — and early attempt to quantify the mechanical equivalent of heat. ", image: "/scientist6.png" },
+         { id: 7, name: "Elizabeth Langdon Williams", description: "Elizabeth Langdon Williams (1879–1981) — American human computer and astronomer. Her complex orbit‑calculations under Lowell Observatory’s Planet X search contributed to the eventual discovery of Pluto. ", image: "/scientist7.png" },
+         { id: 8, name: "Ida Eva Noddack (née Tacke)", description: "Co‑discovered the chemical element Rhenium and was among the first to propose the possibility of nuclear fission. ", image: "/0.008scientist.png" },
     ]);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
