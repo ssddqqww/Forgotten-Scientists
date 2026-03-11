@@ -207,7 +207,7 @@ export default function MapForgottenScientist() {
               minZoom={2}
               scrollWheelZoom
               className="h-[620px] w-full"
-              whenCreated={() => setMapLoaded(true)}
+              whenReady={() => setMapLoaded(true)}
             >
               <TileLayer
                 url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
