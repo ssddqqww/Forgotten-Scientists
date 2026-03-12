@@ -33,7 +33,7 @@ export default function Timeline() {
     ];
 
     return (
-        <section className="pt-20 pb-40">
+        <section id="timeline" className="pt-20 pb-40">
             <div className="text-start">
                 <h2 className="text-5xl font-bold mb-2">Timeline of Scientific Achievements</h2>
 

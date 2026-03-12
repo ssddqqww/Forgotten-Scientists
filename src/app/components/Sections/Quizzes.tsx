@@ -66,7 +66,7 @@ export default function Quizzes() {
         }
     };
     return (
-        <section className="pt-20 pb-40">
+        <section id="quizzes" className="pt-20 pb-40">
             <h2 className="text-5xl font-bold mb-2">Quizzes</h2>
             <p className="text-gray-600 mb-6">
                 Check your Knowledge!

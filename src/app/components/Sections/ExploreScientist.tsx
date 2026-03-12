@@ -70,8 +70,8 @@ export default function ExploreScientist() {
     };
 
     return (
-        <section className="pt-20 pb-40">
-            <h2 className="text-5xl font-bold mb-2">Explore Scientists</h2>
+<section id="scientists" className="pt-20 pb-40"> 
+    <h2 className="text-5xl font-bold mb-2">Explore Scientists</h2>
             <p className="text-gray-600 mb-6">
                 Browse scientists by field, country, or century. Click on a card to
                 learn more.
@@ -135,5 +135,5 @@ export default function ExploreScientist() {
                 </button> : <div className="text-gray-600">No more scientists to load.</div>}
             </div>
         </section>
-    )
+    );
 }
