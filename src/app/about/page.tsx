@@ -4,7 +4,7 @@ export default function about() {
       name: "Kseniia Gubenko",
       role: "Team Lead",
       image: "Knesiia.png",
-      about: "I'm the team leader of the project \"Forgotten Scientists.\" I brought the team together and contribute to the development through HTML, CSS, and design.",
+      about: "I'm the team leader of the project \"Forgotten Scientists.\" I brought the team together and contribute to the development through React frontend implementation, dynamic data rendering, and responsive UI design.",
     },
     {
       name: "Yeva Kushnir",

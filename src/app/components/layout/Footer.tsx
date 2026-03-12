@@ -8,7 +8,7 @@ export default function Footer() {
                         info@forgottenscientists.com
                     </p>
                     <p>
-                        <span className="font-semibold">Phone number:</span> +380 00 000 00 00
+                        <span className="font-semibold">Phone number:</span> +380 67 422 20 99
                     </p>
                     <p className="text-xs text-gray-400 mt-2">
                         ©Forgotten scientists
@@ -19,7 +19,6 @@ export default function Footer() {
                     <p className="text-sm md:text-base max-w-md">
                         Discover the hidden heroes of science from around the world
                     </p>
-                    <div className="w-40 h-12 bg-gray-300"></div>
                 </div>
             </div>
         </footer>

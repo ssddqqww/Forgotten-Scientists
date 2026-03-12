@@ -7,8 +7,7 @@ export default function Hero() {
         style={{ backgroundImage: "url('/HeroBG.jpg')" }}
       >
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/90 to-transparent" />
-
+                <div className="absolute inset-0 bg-gradient-to-r from-white/27 to-transparent" />
         <div className="relative z-10 flex flex-col justify-center px-6 sm:px-10 lg:px-16 w-full max-w-lg">
           <h1 className="text-6xl lg:text-7xl font-semibold mb-3 leading-tight">
             Forgotten Scientists
