@@ -4,8 +4,8 @@ export const scientists = [
     name: "Albert Einstein",
     field: "Physics",
     country: "Germany",
-    image: "./scientist.jpg",
-    location: "Ulm, Germany",
+image: "/scientists/scientist.jpg", 
+location: "Ulm, Germany",
     century: "20th",
     description: "Developed the theory of relativity."
   },
@@ -14,7 +14,7 @@ export const scientists = [
     name: "Marie Curie",
     field: "Chemistry",
     country: "Poland",
-    image: "./scientist.jpg",
+    image: "/scientists/scientist.jpg",
     location: "Warsaw, Poland",
     century: "19th",
     description: "Pioneer in radioactivity research."
@@ -24,7 +24,7 @@ export const scientists = [
     name: "Ibn al-Haytham",
     field: "Optics",
     country: "Iraq",
-    image: "./scientist.jpg",
+    image: "/scientists/scientist.jpg",
     location: "Basra, Iraq",
     century: "10th",
     description: "Father of modern optics."
@@ -34,7 +34,7 @@ export const scientists = [
     name: "Isaac Newton",
     field: "Physics",
     country: "United Kingdom",
-    image: "./scientist.jpg",
+    image: "/scientists/scientist.jpg",
     location: "Woolsthorpe, England",
     century: "17th",
     description: "Formulated the laws of motion and universal gravitation."
@@ -44,7 +44,7 @@ export const scientists = [
     name: "Nikola Tesla",
     field: "Electrical Engineering",
     country: "Serbia",
-    image: "./scientist.jpg",
+    image: "/scientists/scientist.jpg",
     location: "Smiljan, Croatia",
     century: "19th",
     description: "Invented AC power system and contributed to electromagnetism."
@@ -54,7 +54,7 @@ export const scientists = [
     name: "Ada Lovelace",
     field: "Mathematics",
     country: "United Kingdom",
-    image: "./scientist.jpg",
+    image: "/scientists/scientist.jpg",
     location: "London, England",
     century: "19th",
     description: "First computer programmer."
@@ -64,7 +64,7 @@ export const scientists = [
     name: "Al-Khwarizmi",
     field: "Mathematics",
     country: "Uzbekistan",
-    image: "./scientist.jpg",
+    image: "/scientists/scientist.jpg",
     location: "Khiva, Uzbekistan",
     century: "9th",
     description: "Father of algebra."
@@ -74,7 +74,7 @@ export const scientists = [
     name: "Charles Darwin",
     field: "Biology",
     country: "United Kingdom",
-    image: "./scientist.jpg",
+    image: "/scientists/scientist.jpg",
     location: "Shrewsbury, England",
     century: "19th",
     description: "Developed the theory of evolution by natural selection."
@@ -84,7 +84,7 @@ export const scientists = [
     name: "Hypatia",
     field: "Philosophy",
     country: "Egypt",
-    image: "./scientist.jpg",
+    image: "/scientists/scientist.jpg",
     location: "Alexandria, Egypt",
     century: "4th",
     description: "Renowned philosopher, astronomer, and mathematician."
@@ -94,7 +94,7 @@ export const scientists = [
     name: "Jagdish Chandra Bose",
     field: "Botany",
     country: "India",
-    image: "./scientist.jpg",
+    image: "/scientists/scientist.jpg",
     location: "Kolkata, India",
     century: "19th",
     description: "Pioneer in plant physiology and wireless communication."
