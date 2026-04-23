@@ -70,7 +70,7 @@ export default function ExploreScientist() {
     };
 
     return (
-<section id="scientists" className="pt-20 pb-40"> 
+<section id="scientists" className="scroll-mt-24 pt-20 pb-40"> 
     <h2 className="text-5xl font-bold mb-2">Explore Scientists</h2>
             <p className="text-gray-600 mb-6">
                 Browse scientists by field, country, or century. Click on a card to

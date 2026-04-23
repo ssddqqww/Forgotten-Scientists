@@ -1,7 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import AuthLayout from "../components/AuthLayout";
+import { loginUser } from "../lib/auth";
 
 type LoginValues = {
   email: string;
@@ -9,6 +12,8 @@ type LoginValues = {
 };
 
 export default function LoginPage() {
+  const router = useRouter();
+  const [formError, setFormError] = useState("");
   const {
     register,
     handleSubmit,
@@ -16,8 +21,15 @@ export default function LoginPage() {
   } = useForm<LoginValues>();
 
   const onSubmit = (data: LoginValues) => {
-    console.log("Login Data:", data);
-    alert("Logged in successfully!");
+    setFormError("");
+    const result = loginUser(data.email, data.password);
+
+    if (!result.ok) {
+      setFormError(result.message ?? "Could not log in.");
+      return;
+    }
+
+    router.push("/profile");
   };
 
   return (
@@ -26,12 +38,23 @@ export default function LoginPage() {
       subtitle="Log in to continue exploring the hidden heroes of science."
     >
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Log in</h2>
+      {formError && (
+        <p className="mb-3 rounded-lg bg-red-50 p-3 text-sm text-red-600">
+          {formError}
+        </p>
+      )}
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
         <input
           type="email"
           placeholder="Email"
-          {...register("email", { required: "Email is required" })}
+          {...register("email", {
+            required: "Email is required",
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              message: "Enter a valid email address",
+            },
+          })}
           className="p-2 border rounded-lg outline-none"
         />
         {errors.email && <p className="text-red-500">{errors.email.message}</p>}

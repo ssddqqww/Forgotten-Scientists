@@ -113,8 +113,11 @@ export default function ScientistDayWeek() {
           <span className="text-sm font-normal mt-3">Quizzes</span>
         </div>
 
-        {/* News — поки без скролу */}
-        <div className="flex flex-col items-center p-6">
+        {/* News */}
+        <div
+          className="flex flex-col items-center p-6 cursor-pointer"
+          onClick={() => document.getElementById("news")?.scrollIntoView({ behavior: "smooth" })}
+        >
           <img
             className="w-16 h-16 object-contain"
             src="/icons/globe.png"

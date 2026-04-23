@@ -4,6 +4,7 @@ import ExploreScientist from "@/app/components/Sections/ExploreScientist"
 import Timeline from "./components/Sections/Timeline";
 import Quizzes from "./components/Sections/Quizzes";
 import MapForgottenScientist from "./components/Sections/MapForgottenScientist";
+import News from "./components/Sections/News";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         <Timeline/>
         <MapForgottenScientist/>
         <Quizzes/>
+        <News/>
       </div>
     </div>
   );
