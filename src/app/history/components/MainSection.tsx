@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import React, { useState } from 'react'
 import data from '../fakeData/Data'
     interface History {
@@ -31,10 +32,12 @@ function MainSection() {
                         className="pb-10 relative flex flex-col items-start pr-8 border-gray-900 sm:border-r sm:[&:nth-child(2n)]:border-r-0 lg:!border-r lg:[&:nth-child(4n)]:!border-r-0"
                     >
                         <h3 className="font-bold mb-1">{card.name}</h3>
-                        <img
+                        <Image
                             src={card.image}
                             alt="Quiz"
-                            className="w-full h-50 object-cover rounded-md mb-4"
+                            width={320}
+                            height={240}
+                            className="mb-4 h-50 w-full rounded-md object-cover"
                         />
                         <p className="text-md text-gray-900 mt-2">
                             {card.description}

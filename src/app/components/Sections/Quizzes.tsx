@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 export default function Quizzes() {
@@ -57,7 +58,7 @@ export default function Quizzes() {
     // Initial load
     useEffect(() => {
         if (hasMore) fetchQuiz(page);
-    }, [page]);
+    }, [page, hasMore]);
 
     // Load more handler
     const handleLoadMore = () => {
@@ -75,29 +76,17 @@ export default function Quizzes() {
             {/* Filter Tabs */}
             <div className="flex flex-wrap gap-4 mb-6 text-sm">
                 <button className="flex items-center gap-2 px-4 py-2 border-r">
-                    <img
-                        src="/icons/Atom_light.png"
-                        alt=""
-                        className="w-8 h-8 object-contain"
-                    />
+                    <Image src="/icons/Atom_light.png" alt="" width={32} height={32} className="w-8 h-8 object-contain" />
                     By Field
                 </button>
 
                 <button className="flex items-center gap-2 px-4 py-2 border-r">
-                    <img
-                        src="/icons/Map.png"
-                        alt=""
-                        className="w-8 h-8 object-contain"
-                    />
+                    <Image src="/icons/Map.png" alt="" width={32} height={32} className="w-8 h-8 object-contain" />
                     By Country
                 </button>
 
                 <button className="flex items-center gap-2 px-4 py-2">
-                    <img
-                        src="/icons/Watch.png"
-                        alt=""
-                        className="w-8 h-8 object-contain"
-                    />
+                    <Image src="/icons/Watch.png" alt="" width={32} height={32} className="w-8 h-8 object-contain" />
                     By Century
                 </button>
             </div>
@@ -110,10 +99,12 @@ export default function Quizzes() {
                         className="pb-10 relative flex flex-col items-start pr-8 border-gray-900 sm:border-r sm:[&:nth-child(2n)]:border-r-0 lg:!border-r lg:[&:nth-child(4n)]:!border-r-0"
                     >
                         <h3 className="font-bold mb-1">{card.name}</h3>
-                        <img
+                        <Image
                             src={card.image}
                             alt="Quiz"
-                            className="w-full h-50 object-cover rounded-md mb-4"
+                            width={320}
+                            height={240}
+                            className="mb-4 h-50 w-full rounded-md object-cover"
                         />
                         <p className="text-md text-gray-900 mt-2">
                             {card.description}

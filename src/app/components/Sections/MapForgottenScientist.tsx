@@ -4,7 +4,7 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import { scientists as rawScientists } from "../../../../data/scientists";
+import { scientists as rawScientists } from "../../../../data/scientists.js";
 
 // React-Leaflet dynamic imports
 const MapContainer = dynamic(
@@ -44,8 +44,6 @@ export default function MapForgottenScientist() {
   const [fieldFilter, setFieldFilter] = useState<string | null>(null);
   const [countryFilter, setCountryFilter] = useState<string | null>(null);
   const [centuryFilter, setCenturyFilter] = useState<string | null>(null);
-  const [hoverId, setHoverId] = useState<number | null>(null);
-  const [mapLoaded, setMapLoaded] = useState(false);
   const [L, setL] = useState<typeof import("leaflet") | null>(null);
 
   // Динамічний імпорт Leaflet на клієнті
@@ -220,7 +218,6 @@ export default function MapForgottenScientist() {
               minZoom={2}
               scrollWheelZoom
               className="h-[620px] w-full"
-              whenReady={() => setMapLoaded(true)}
             >
               <TileLayer url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"} />
 
@@ -229,10 +226,6 @@ export default function MapForgottenScientist() {
                   key={s.id}
                   position={[s.lat!, s.lng!]}
                   icon={createIcon(s.image)}
-                  eventHandlers={{
-                    mouseover: () => setHoverId(s.id),
-                    mouseout: () => setHoverId(null),
-                  }}
                 >
                   <Popup>
                     <div className="text-center w-40">

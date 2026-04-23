@@ -3,6 +3,12 @@ export type StoredUser = {
   email: string;
   password: string;
   createdAt: string;
+  username?: string;
+  pronouns?: string;
+  phone?: string;
+  bio?: string;
+  favoriteField?: string;
+  preferredSection?: string;
 };
 
 const USERS_KEY = "forgotten-scientists-users";
@@ -11,6 +17,17 @@ export const AUTH_CHANGE_EVENT = "forgotten-scientists-auth-change";
 
 const emitAuthChange = () => {
   window.dispatchEvent(new Event(AUTH_CHANGE_EVENT));
+};
+
+const makeUsername = (fullName: string, email: string) => {
+  const base =
+    fullName
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, ".")
+      .replace(/^\.+|\.+$/g, "") || email.split("@")[0];
+
+  return base.slice(0, 24);
 };
 
 export const getUsers = (): StoredUser[] => {
@@ -49,6 +66,7 @@ export const registerUser = (user: Omit<StoredUser, "createdAt">) => {
     email: normalizedEmail,
     password: user.password,
     createdAt: new Date().toISOString(),
+    username: makeUsername(user.fullName, normalizedEmail),
   };
 
   window.localStorage.setItem(USERS_KEY, JSON.stringify([...users, nextUser]));
@@ -77,4 +95,28 @@ export const loginUser = (email: string, password: string) => {
 export const logoutUser = () => {
   window.localStorage.removeItem(CURRENT_USER_KEY);
   emitAuthChange();
+};
+
+export const updateCurrentUser = (updates: Partial<Omit<StoredUser, "email" | "createdAt" | "password">>) => {
+  const currentUser = getCurrentUser();
+
+  if (!currentUser) {
+    return { ok: false, message: "No active user found." };
+  }
+
+  const nextUser: StoredUser = {
+    ...currentUser,
+    ...updates,
+    fullName: updates.fullName?.trim() || currentUser.fullName,
+  };
+
+  const users = getUsers().map((savedUser) =>
+    savedUser.email === currentUser.email ? nextUser : savedUser
+  );
+
+  window.localStorage.setItem(USERS_KEY, JSON.stringify(users));
+  window.localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(nextUser));
+  emitAuthChange();
+
+  return { ok: true, user: nextUser };
 };

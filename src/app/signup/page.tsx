@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import AuthLayout from "../components/AuthLayout";
 import { registerUser } from "../lib/auth";
 
@@ -37,86 +38,105 @@ export default function SignUpPage() {
       return;
     }
 
-    router.push("/profile");
+    router.push("/account");
   };
 
   return (
     <AuthLayout
       title="Join Us!"
       subtitle="Create your account and start exploring the hidden heroes of science."
+      eyebrow="Create account"
     >
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">Sign Up</h2>
+      <div className="mb-8">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gray-500">
+          Account
+        </p>
+        <h2 className="mt-3 text-4xl font-bold text-black">Sign up</h2>
+      </div>
+
       {formError && (
-        <p className="mb-3 rounded-lg bg-red-50 p-3 text-sm text-red-600">
+        <p className="mb-4 rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-600">
           {formError}
         </p>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
-        <input
-          type="text"
-          placeholder="Full Name"
-          {...register("fullName", { required: "Full name is required" })}
-          className="p-2 border rounded-lg outline-none"
-        />
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
+        <label className="flex flex-col gap-2 text-sm text-gray-700">
+          Full name
+          <input
+            type="text"
+            placeholder="Your full name"
+            {...register("fullName", { required: "Full name is required" })}
+            className="rounded-md border border-gray-300 bg-white px-4 py-3 outline-none transition focus:border-black"
+          />
+        </label>
         {errors.fullName && (
           <p className="text-red-500">{errors.fullName.message}</p>
         )}
 
-        <input
-          type="email"
-          placeholder="Email"
-          {...register("email", {
-            required: "Email is required",
-            pattern: {
-              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-              message: "Enter a valid email address",
-            },
-          })}
-          className="p-2 border rounded-lg outline-none"
-        />
+        <label className="flex flex-col gap-2 text-sm text-gray-700">
+          Email
+          <input
+            type="email"
+            placeholder="name@example.com"
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "Enter a valid email address",
+              },
+            })}
+            className="rounded-md border border-gray-300 bg-white px-4 py-3 outline-none transition focus:border-black"
+          />
+        </label>
         {errors.email && <p className="text-red-500">{errors.email.message}</p>}
 
-        <input
-          type="password"
-          placeholder="Password"
-          {...register("password", {
-            required: "Password is required",
-            minLength: { value: 6, message: "At least 6 characters" },
-          })}
-          className="p-2 border rounded-lg outline-none"
-        />
+        <label className="flex flex-col gap-2 text-sm text-gray-700">
+          Password
+          <input
+            type="password"
+            placeholder="Create a password"
+            {...register("password", {
+              required: "Password is required",
+              minLength: { value: 6, message: "At least 6 characters" },
+            })}
+            className="rounded-md border border-gray-300 bg-white px-4 py-3 outline-none transition focus:border-black"
+          />
+        </label>
         {errors.password && (
           <p className="text-red-500">{errors.password.message}</p>
         )}
 
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          {...register("confirmPassword", {
-            required: "Confirm your password",
-            validate: (value) =>
-              value === watch("password") || "Passwords do not match",
-          })}
-          className="p-2 border rounded-lg outline-none"
-        />
+        <label className="flex flex-col gap-2 text-sm text-gray-700">
+          Confirm password
+          <input
+            type="password"
+            placeholder="Repeat your password"
+            {...register("confirmPassword", {
+              required: "Confirm your password",
+              validate: (value) =>
+                value === watch("password") || "Passwords do not match",
+            })}
+            className="rounded-md border border-gray-300 bg-white px-4 py-3 outline-none transition focus:border-black"
+          />
+        </label>
         {errors.confirmPassword && (
           <p className="text-red-500">{errors.confirmPassword.message}</p>
         )}
 
         <button
           type="submit"
-          className="bg-indigo-600 text-white rounded-lg py-2 hover:bg-indigo-700 mt-2"
+          className="mt-2 rounded-md bg-black py-3 text-white transition hover:bg-gray-800"
         >
           Create Account
         </button>
       </form>
 
-      <p className="text-sm mt-4 text-gray-600">
+      <p className="mt-6 text-sm text-gray-600">
         Already have an account?{" "}
-        <a href="/login" className="text-indigo-600 hover:underline">
+        <Link href="/login" className="font-medium text-black underline-offset-4 hover:underline">
           Log in
-        </a>
+        </Link>
       </p>
     </AuthLayout>
   );

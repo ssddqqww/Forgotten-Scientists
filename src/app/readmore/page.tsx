@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function readmore() {
@@ -12,10 +13,12 @@ export default function readmore() {
       <div className="flex flex-col md:flex-row items-start gap-8">
 
         <div className="w-full md:w-1/3 flex-shrink-0">
-          <img
-            src="planet_bg.png"
+          <Image
+            src="/planet_bg.png"
             alt="Isaac Newton"
-            className="rounded-lg object-cover w-full h-96"
+            width={640}
+            height={480}
+            className="h-96 w-full rounded-lg object-cover"
           />
         </div>
 

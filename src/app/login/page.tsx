@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import AuthLayout from "../components/AuthLayout";
 import { loginUser } from "../lib/auth";
 
@@ -29,59 +30,72 @@ export default function LoginPage() {
       return;
     }
 
-    router.push("/profile");
+    router.push("/account");
   };
 
   return (
     <AuthLayout
       title="Welcome Back!"
       subtitle="Log in to continue exploring the hidden heroes of science."
+      eyebrow="Member access"
     >
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">Log in</h2>
+      <div className="mb-8">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gray-500">
+          Account
+        </p>
+        <h2 className="mt-3 text-4xl font-bold text-black">Log in</h2>
+      </div>
+
       {formError && (
-        <p className="mb-3 rounded-lg bg-red-50 p-3 text-sm text-red-600">
+        <p className="mb-4 rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-600">
           {formError}
         </p>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
-        <input
-          type="email"
-          placeholder="Email"
-          {...register("email", {
-            required: "Email is required",
-            pattern: {
-              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-              message: "Enter a valid email address",
-            },
-          })}
-          className="p-2 border rounded-lg outline-none"
-        />
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
+        <label className="flex flex-col gap-2 text-sm text-gray-700">
+          Email
+          <input
+            type="email"
+            placeholder="name@example.com"
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "Enter a valid email address",
+              },
+            })}
+            className="rounded-md border border-gray-300 bg-white px-4 py-3 outline-none transition focus:border-black"
+          />
+        </label>
         {errors.email && <p className="text-red-500">{errors.email.message}</p>}
 
-        <input
-          type="password"
-          placeholder="Password"
-          {...register("password", { required: "Password is required" })}
-          className="p-2 border rounded-lg outline-none"
-        />
+        <label className="flex flex-col gap-2 text-sm text-gray-700">
+          Password
+          <input
+            type="password"
+            placeholder="Enter your password"
+            {...register("password", { required: "Password is required" })}
+            className="rounded-md border border-gray-300 bg-white px-4 py-3 outline-none transition focus:border-black"
+          />
+        </label>
         {errors.password && (
           <p className="text-red-500">{errors.password.message}</p>
         )}
 
         <button
           type="submit"
-          className="bg-indigo-600 text-white rounded-lg py-2 hover:bg-indigo-700 mt-2"
+          className="mt-2 rounded-md bg-black py-3 text-white transition hover:bg-gray-800"
         >
           Log in
         </button>
       </form>
 
-      <p className="text-sm mt-4 text-gray-600">
+      <p className="mt-6 text-sm text-gray-600">
         Don’t have an account?{" "}
-        <a href="/signup" className="text-indigo-600 hover:underline">
+        <Link href="/signup" className="font-medium text-black underline-offset-4 hover:underline">
           Sign up
-        </a>
+        </Link>
       </p>
     </AuthLayout>
   );

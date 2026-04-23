@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 export default function Timeline() {
@@ -40,29 +41,17 @@ export default function Timeline() {
                 {/* Filter Tabs */}
                 <div className="flex flex-wrap gap-4 mb-6 text-sm">
                     <button className="flex items-center gap-2 pr-4 py-2 border-r">
-                        <img
-                            src="/icons/Atom_light.png"
-                            alt=""
-                            className="w-8 h-8 object-contain"
-                        />
+                        <Image src="/icons/Atom_light.png" alt="" width={32} height={32} className="w-8 h-8 object-contain" />
                         By Field
                     </button>
 
                     <button className="flex items-center gap-2 pr-4 py-2 border-r">
-                        <img
-                            src="/icons/Map.png"
-                            alt=""
-                            className="w-8 h-8 object-contain"
-                        />
+                        <Image src="/icons/Map.png" alt="" width={32} height={32} className="w-8 h-8 object-contain" />
                         By Country
                     </button>
 
                     <button className="flex items-center gap-2 pr-4 py-2">
-                        <img
-                            src="/icons/Watch.png"
-                            alt=""
-                            className="w-8 h-8 object-contain"
-                        />
+                        <Image src="/icons/Watch.png" alt="" width={32} height={32} className="w-8 h-8 object-contain" />
                         By Century
                     </button>
                 </div>
@@ -95,10 +84,12 @@ export default function Timeline() {
                                 key={i}
                                 className="flex  border-2 border-gray-300 rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition p-4"
                             >
-                                <img
+                                <Image
                                     src={a.image}
                                     alt={a.name}
-                                    className="w-1/2 rounded-lg object-cover aspect-square"
+                                    width={320}
+                                    height={320}
+                                    className="aspect-square w-1/2 rounded-lg object-cover"
                                 />
                                 <div className="p-6 flex flex-col justify-between w-1/2 text-left">
                                     <div>

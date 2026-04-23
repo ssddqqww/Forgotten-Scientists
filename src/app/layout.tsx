@@ -6,6 +6,7 @@ import "leaflet/dist/leaflet.css";
 
 import NavigationBar from "./components/layout/NavigationBar";
 import Footer from "./components/layout/Footer";
+import SmoothScrollHandler from "./components/layout/SmoothScrollHandler";
 
 export const metadata: Metadata = {
   title: "Forgotten Scientists",
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body
         className="antialiased relative"
       >
+        <SmoothScrollHandler />
         <NavigationBar />
         {children}
         <Footer />

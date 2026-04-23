@@ -1,13 +1,51 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Menu, X, User, Search, Mic } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { AUTH_CHANGE_EVENT, getCurrentUser, logoutUser, type StoredUser } from "../../lib/auth";
+import { smoothScrollToId } from "../../lib/smoothScroll";
+import { scientistDirectory } from "../../../../data/scientistDirectory";
+
+type SpeechRecognitionConstructor = new () => {
+    continuous: boolean;
+    interimResults: boolean;
+    lang: string;
+    onresult: ((event: {
+        results: ArrayLike<ArrayLike<{ transcript: string }>>;
+    }) => void) | null;
+    onend: (() => void) | null;
+    onerror: (() => void) | null;
+    start: () => void;
+    stop: () => void;
+};
 
 export default function NavigationBar() {
     const [open, setOpen] = useState(false);
     const [user, setUser] = useState<StoredUser | null>(null);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [isListening, setIsListening] = useState(false);
+    const [supportsVoiceInput, setSupportsVoiceInput] = useState(false);
+    const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+    const [logoutNotice, setLogoutNotice] = useState(false);
+    const [searchFocused, setSearchFocused] = useState(false);
+    const [searchNotice, setSearchNotice] = useState("");
+    const pathname = usePathname();
+    const router = useRouter();
+    const recognitionRef = useRef<InstanceType<SpeechRecognitionConstructor> | null>(null);
+    const searchRef = useRef<HTMLDivElement | null>(null);
+
+    const searchResults = useMemo(() => {
+        const query = searchQuery.trim().toLowerCase();
+        if (!query) return [];
+
+        return scientistDirectory
+            .filter((scientist) => scientist.name.toLowerCase().includes(query))
+            .slice(0, 8);
+    }, [searchQuery]);
+
+    const showSearchDropdown = searchFocused && searchQuery.trim().length > 0;
 
     useEffect(() => {
         const syncUser = () => setUser(getCurrentUser());
@@ -22,26 +60,210 @@ export default function NavigationBar() {
         };
     }, []);
 
-    const handleLogout = () => {
+    useEffect(() => {
+        const SpeechRecognition =
+            typeof window !== "undefined"
+                ? ((window as Window & {
+                    webkitSpeechRecognition?: SpeechRecognitionConstructor;
+                    SpeechRecognition?: SpeechRecognitionConstructor;
+                }).SpeechRecognition ||
+                    (window as Window & {
+                        webkitSpeechRecognition?: SpeechRecognitionConstructor;
+                    }).webkitSpeechRecognition)
+                : undefined;
+
+        if (!SpeechRecognition) return;
+
+        const recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = "en-US";
+        recognition.onresult = (event) => {
+            const transcript = Array.from(event.results)
+                .map((result) => result[0]?.transcript ?? "")
+                .join(" ")
+                .trim();
+
+            if (transcript) {
+                setSearchQuery(transcript);
+            }
+        };
+        recognition.onend = () => setIsListening(false);
+        recognition.onerror = () => setIsListening(false);
+
+        recognitionRef.current = recognition;
+        setSupportsVoiceInput(true);
+
+        return () => {
+            recognition.stop();
+            recognitionRef.current = null;
+        };
+    }, []);
+
+    useEffect(() => {
+        if (!logoutNotice) return;
+
+        const timer = window.setTimeout(() => {
+            setLogoutNotice(false);
+        }, 2600);
+
+        return () => window.clearTimeout(timer);
+    }, [logoutNotice]);
+
+    useEffect(() => {
+        if (!searchNotice) return;
+
+        const timer = window.setTimeout(() => {
+            setSearchNotice("");
+        }, 2600);
+
+        return () => window.clearTimeout(timer);
+    }, [searchNotice]);
+
+    useEffect(() => {
+        const handleOutsideClick = (event: MouseEvent) => {
+            if (!searchRef.current?.contains(event.target as Node)) {
+                setSearchFocused(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleOutsideClick);
+        return () => document.removeEventListener("mousedown", handleOutsideClick);
+    }, []);
+
+    const confirmLogout = () => {
         logoutUser();
         setOpen(false);
+        setShowLogoutConfirm(false);
+        setUser(null);
+        setLogoutNotice(true);
+
+        if (pathname === "/profile") {
+            router.push("/");
+            return;
+        }
+
+        router.refresh();
     };
 
-    return (
-        <nav className="border-gray-200 bg-black p-4 sticky top-0 left-0 w-full z-[1100]">
-            <div className=" flex lg:gap-30 items-center mx-auto lg:p-2">
+    const handleSectionNavigation = (sectionId: string) => {
+        setOpen(false);
 
-                <form className="flex w-full items-center">
-                    <div className="relative w-full">
-                        <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                            <Search className="w-4 h-4 text-gray-900" aria-hidden="true" />
+        if (pathname === "/") {
+            window.history.pushState({}, "", `/#${sectionId}`);
+            smoothScrollToId(sectionId);
+            return;
+        }
+
+        router.push(`/#${sectionId}`);
+    };
+
+    const handleMicClick = () => {
+        if (!recognitionRef.current) return;
+
+        if (isListening) {
+            recognitionRef.current.stop();
+            setIsListening(false);
+            return;
+        }
+
+        setIsListening(true);
+        recognitionRef.current.start();
+    };
+
+    const handleSearchSelect = (id: number, available: boolean) => {
+        setSearchFocused(false);
+
+        if (!available) {
+            setSearchNotice("This scientist profile is coming soon.");
+            return;
+        }
+
+        setSearchQuery("");
+        router.push(`/scientists/${id}`);
+    };
+
+    const hideNavigation = pathname === "/login" || pathname === "/signup";
+    const compactNavigation = pathname === "/profile";
+
+    if (hideNavigation) {
+        return null;
+    }
+
+        return (
+        <>
+        <nav className={`border-gray-200 bg-black p-4 left-0 w-full z-[1100] ${compactNavigation ? "relative" : "sticky top-0"}`}>
+            <div className="flex items-center justify-between gap-6 mx-auto lg:p-2">
+                {compactNavigation ? (
+                    <Link href="/" className="text-sm font-semibold tracking-[0.18em] uppercase text-white">
+                        Forgotten Scientists
+                    </Link>
+                ) : (
+                    <form className="flex w-full items-center">
+                        <div ref={searchRef} className="relative w-full">
+                            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                <Search className="w-4 h-4 text-gray-900" aria-hidden="true" />
+                            </div>
+                            <input
+                                type="text"
+                                id="voice-search"
+                                value={searchQuery}
+                                onChange={(event) => setSearchQuery(event.target.value)}
+                                onFocus={() => setSearchFocused(true)}
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
+                                placeholder="Search scientists"
+                            />
+                            <button
+                                type="button"
+                                onClick={handleMicClick}
+                                disabled={!supportsVoiceInput}
+                                className={`absolute inset-y-0 end-0 flex items-center pe-3 ${supportsVoiceInput ? "cursor-pointer" : "cursor-not-allowed opacity-40"}`}
+                                title={supportsVoiceInput ? "Use voice input" : "Voice input is not supported in this browser"}
+                            >
+                                <Mic className={`w-4 h-4 ${isListening ? "text-red-500" : "text-gray-900 hover:text-gray-900"}`} aria-label="Microphone" />
+                            </button>
+
+                            {showSearchDropdown && (
+                                <div className="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-[1200] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl">
+                                    {searchResults.length > 0 ? (
+                                        <div className="py-2">
+                                            {searchResults.map((scientist) => (
+                                                <button
+                                                    key={scientist.id}
+                                                    type="button"
+                                                    onClick={() => handleSearchSelect(scientist.id, scientist.available)}
+                                                    className="flex w-full items-center justify-between gap-4 px-4 py-3 text-left hover:bg-gray-50"
+                                                >
+                                                    <div>
+                                                        <p className="text-sm font-semibold text-gray-900">
+                                                            {scientist.name}
+                                                        </p>
+                                                        <p className="text-xs text-gray-500">
+                                                            {scientist.available ? "Available now" : "Coming soon"}
+                                                        </p>
+                                                    </div>
+                                                    <span
+                                                        className={`rounded-full px-2 py-1 text-[11px] font-medium ${
+                                                            scientist.available
+                                                                ? "bg-black text-white"
+                                                                : "bg-gray-200 text-gray-700"
+                                                        }`}
+                                                    >
+                                                        {scientist.available ? "Open" : "Soon"}
+                                                    </span>
+                                                </button>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <div className="px-4 py-4 text-sm text-gray-500">
+                                            No scientists found for this search.
+                                        </div>
+                                    )}
+                                </div>
+                            )}
                         </div>
-                        <input type="text" id="voice-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" placeholder="Search" required />
-                        <button type="button" className="absolute inset-y-0 end-0 flex items-center pe-3">
-                            <Mic className="w-4 h-4 text-gray-900 hover:text-gray-900" aria-label="Microphone" />
-                        </button>
-                    </div>
-                </form>
+                    </form>
+                )}
 
 
                 <div className="relative">
@@ -70,7 +292,7 @@ export default function NavigationBar() {
                             <nav className="flex flex-col">
                                 <Link onClick={() => setOpen(false)} href="/" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">Home</Link>
                                 {user ? (
-                                    <Link onClick={() => setOpen(false)} href="/profile" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">Profile</Link>
+                                    <Link onClick={() => setOpen(false)} href="/profile" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">My Profile</Link>
                                 ) : (
                                     <>
                                         <Link onClick={() => setOpen(false)} href="/login" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">Log in</Link>
@@ -78,16 +300,16 @@ export default function NavigationBar() {
                                     </>
                                 )}
                                 <Link onClick={() => setOpen(false)} href="/about" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">About Us</Link>
-                                <Link onClick={() => setOpen(false)} href="/#scientists" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">Scientists</Link>
-                                <Link onClick={() => setOpen(false)} href="/#timeline" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">Timeline</Link>
-                                <Link onClick={() => setOpen(false)} href="/#map" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">Map</Link>
-                                <Link onClick={() => setOpen(false)} href="/#quizzes" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">Quizzes</Link>
-                                <Link onClick={() => setOpen(false)} href="/#news" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">News</Link>
+                                <button type="button" onClick={() => handleSectionNavigation("scientists")} className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800 text-left">Scientists</button>
+                                <button type="button" onClick={() => handleSectionNavigation("timeline")} className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800 text-left">Timeline</button>
+                                <button type="button" onClick={() => handleSectionNavigation("map")} className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800 text-left">Map</button>
+                                <button type="button" onClick={() => handleSectionNavigation("quizzes")} className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800 text-left">Quizzes</button>
+                                <button type="button" onClick={() => handleSectionNavigation("news")} className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800 text-left">News</button>
                                 <Link onClick={() => setOpen(false)} href="/history" className={`px-4 py-3 hover:bg-gray-800 ${user ? "border-b border-gray-700" : ""}`}>History</Link>
                                 {user && (
                                     <button
                                         type="button"
-                                        onClick={handleLogout}
+                                        onClick={() => setShowLogoutConfirm(true)}
                                         className="px-4 py-3 text-left hover:bg-gray-800"
                                     >
                                         Log out
@@ -99,5 +321,43 @@ export default function NavigationBar() {
                 </div>
             </div>
         </nav>
+        {showLogoutConfirm && (
+            <div className="fixed inset-0 z-[1250] flex items-center justify-center bg-black/60 px-4">
+                <div className="w-full max-w-sm rounded-lg bg-white p-6 text-black shadow-2xl">
+                    <h2 className="text-xl font-bold">Log out?</h2>
+                    <p className="mt-3 text-sm leading-7 text-gray-600">
+                        Are you sure you want to log out of your account?
+                    </p>
+
+                    <div className="mt-6 flex justify-end gap-3">
+                        <button
+                            type="button"
+                            onClick={() => setShowLogoutConfirm(false)}
+                            className="rounded-md border border-gray-300 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        >
+                            No
+                        </button>
+                        <button
+                            type="button"
+                            onClick={confirmLogout}
+                            className="rounded-md bg-black px-4 py-2 text-sm text-white hover:bg-gray-800"
+                        >
+                            Yes, log out
+                        </button>
+                    </div>
+                </div>
+            </div>
+        )}
+        {logoutNotice && (
+            <div className="fixed right-4 top-24 z-[1260] rounded-md bg-white px-4 py-3 text-sm text-black shadow-xl ring-1 ring-black/10">
+                You were successfully logged out.
+            </div>
+        )}
+        {searchNotice && (
+            <div className="fixed right-4 top-24 z-[1260] rounded-md bg-white px-4 py-3 text-sm text-black shadow-xl ring-1 ring-black/10">
+                {searchNotice}
+            </div>
+        )}
+        </>
     )
 }

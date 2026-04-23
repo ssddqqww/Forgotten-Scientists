@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import { X } from "lucide-react";
 import { newsItems, type NewsItem } from "../../../../data/news";
@@ -12,7 +13,7 @@ const filters = [
   { label: "By Facts", value: "Did You Know?", icon: "/icons/Atom_light.png" },
 ] as const;
 
-const INITIAL_VISIBLE_NEWS = 5;
+const INITIAL_VISIBLE_NEWS = 6;
 
 export default function News() {
   const [activeCategory, setActiveCategory] = useState<(typeof filters)[number]["value"]>("All");
@@ -59,10 +60,12 @@ export default function News() {
               index === filters.length - 1 ? "px-4" : "pr-4 border-r"
             } ${activeCategory === filter.value ? "font-bold text-black" : "text-gray-800 hover:text-black"}`}
           >
-            <img
+            <Image
               src={filter.icon}
               alt=""
-              className="w-8 h-8 object-contain"
+              width={32}
+              height={32}
+              className="h-8 w-8 object-contain"
             />
             {filter.label}
           </button>

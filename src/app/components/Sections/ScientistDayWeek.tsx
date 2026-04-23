@@ -1,5 +1,7 @@
   "use client";
+  import Image from "next/image";
   import React from "react";
+  import { smoothScrollToId } from "@/app/lib/smoothScroll";
 
 export default function ScientistDayWeek() {
   return (
@@ -12,10 +14,12 @@ export default function ScientistDayWeek() {
           <span className="text-xl md:text-2xl font-bold my-3">Viktor Amazaspovich Ambartsumian</span>
 
           <div className="flex flex-col md:flex-row items-start gap-6">
-            <img
+            <Image
               src="/scientist18.png"
               alt="Scientist"
-              className="w-full md:w-72 h-64 object-cover rounded-lg"
+              width={288}
+              height={256}
+              className="h-64 w-full rounded-lg object-cover md:w-72"
             />
 
             <div className="max-w-sm">
@@ -36,10 +40,12 @@ export default function ScientistDayWeek() {
           <span className="text-xl md:text-2xl font-bold my-3">Mary Fairfax Somerville</span>
 
           <div className="flex flex-col md:flex-row items-start gap-6">
-            <img
+            <Image
               src="/scientist28.png"
               alt="Scientist"
-              className="w-full md:w-72 h-64 object-cover rounded-lg"
+              width={288}
+              height={256}
+              className="h-64 w-full rounded-lg object-cover md:w-72"
             />
 
             <div className="max-w-sm">
@@ -62,13 +68,15 @@ export default function ScientistDayWeek() {
         {/* Scientists */}
         <div
           className="flex flex-col items-center p-6 cursor-pointer"
-          onClick={() => document.getElementById("scientists")?.scrollIntoView({ behavior: "smooth" })}
+          onClick={() => smoothScrollToId("scientists")}
         >
           <div className="w-14 h-14 overflow-hidden flex items-center justify-center">
-            <img
+            <Image
               src="/icons/Flask_light.png"
               alt="Scientists"
-              className="w-full h-full object-cover scale-125"
+              width={56}
+              height={56}
+              className="h-full w-full object-cover scale-125"
             />
           </div>
           <span className="text-sm font-normal mt-3">Scientists</span>
@@ -77,12 +85,14 @@ export default function ScientistDayWeek() {
         {/* Timeline */}
         <div
           className="flex flex-col items-center p-6 cursor-pointer"
-          onClick={() => document.getElementById("timeline")?.scrollIntoView({ behavior: "smooth" })}
+          onClick={() => smoothScrollToId("timeline")}
         >
-          <img
+          <Image
             className="w-16 h-16 object-contain"
             src="/icons/Hourglass_light.png"
             alt="Timeline"
+            width={64}
+            height={64}
           />
           <span className="text-sm font-normal mt-3">Timeline</span>
         </div>
@@ -90,12 +100,14 @@ export default function ScientistDayWeek() {
         {/* Map */}
         <div
           className="flex flex-col items-center p-6 cursor-pointer"
-          onClick={() => document.getElementById("map")?.scrollIntoView({ behavior: "smooth" })}
+          onClick={() => smoothScrollToId("map")}
         >
-          <img
+          <Image
             className="w-16 h-16 object-contain"
             src="/icons/Map.png"
             alt="Map"
+            width={64}
+            height={64}
           />
           <span className="text-sm font-normal mt-3">Map</span>
         </div>
@@ -103,12 +115,14 @@ export default function ScientistDayWeek() {
         {/* Quizzes */}
         <div
           className="flex flex-col items-center p-6 cursor-pointer"
-          onClick={() => document.getElementById("quizzes")?.scrollIntoView({ behavior: "smooth" })}
+          onClick={() => smoothScrollToId("quizzes")}
         >
-          <img
+          <Image
             className="w-16 h-16 object-contain"
             src="/icons/Waterfall.png"
             alt="Quizzes"
+            width={64}
+            height={64}
           />
           <span className="text-sm font-normal mt-3">Quizzes</span>
         </div>
@@ -116,12 +130,14 @@ export default function ScientistDayWeek() {
         {/* News */}
         <div
           className="flex flex-col items-center p-6 cursor-pointer"
-          onClick={() => document.getElementById("news")?.scrollIntoView({ behavior: "smooth" })}
+          onClick={() => smoothScrollToId("news")}
         >
-          <img
+          <Image
             className="w-16 h-16 object-contain"
             src="/icons/globe.png"
             alt="News"
+            width={64}
+            height={64}
           />
           <span className="text-sm font-normal mt-3">News</span>
         </div>
