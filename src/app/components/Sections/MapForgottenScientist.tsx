@@ -2,9 +2,9 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import { scientists as rawScientists } from "../../../../data/scientists.js";
+import { scientistMapLocations } from "../../../../data/scientistMapLocations";
+import { scientists } from "../../../../data/scientistsData";
 
 // React-Leaflet dynamic imports
 const MapContainer = dynamic(
@@ -29,17 +29,31 @@ type Scientist = {
   name: string;
   field: string;
   country: string;
-  image: string;
   location: string;
-  description: string;
-  century?: string | number;
-  lat?: number;
-  lng?: number;
+  century: string;
+  whatOpened: string;
+  shortBio: string;
+  image?: string;
+  mapLabel: string;
+  lat: number;
+  lng: number;
 };
 
+type ScientistGroup = {
+  key: string;
+  lat: number;
+  lng: number;
+  label: string;
+  scientists: Scientist[];
+};
+
+function normalize(value: string) {
+  return value.toLowerCase().replace(/\s+/g, " ").trim();
+}
+
+const mapLocationById = new Map(scientistMapLocations.map((location) => [location.id, location]));
+
 export default function MapForgottenScientist() {
-  const [scientists, setScientists] = useState<Scientist[]>([]);
-  const [loadingGeo, setLoadingGeo] = useState(true);
   const [query, setQuery] = useState("");
   const [fieldFilter, setFieldFilter] = useState<string | null>(null);
   const [countryFilter, setCountryFilter] = useState<string | null>(null);
@@ -51,89 +65,101 @@ export default function MapForgottenScientist() {
     import("leaflet").then((Leaflet) => setL(Leaflet));
   }, []);
 
-  // AUTO-GEOCODE
-  useEffect(() => {
-    async function geocodeAll() {
-      const results: Scientist[] = [];
-      for (const s of rawScientists as Scientist[]) {
-        if (s.lat && s.lng) {
-          results.push(s);
-          continue;
-        }
-        const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-          s.location
-        )}`;
-        try {
-          const res = await fetch(url, {
-            headers: { "User-Agent": "forgotten-scientists-app" },
-          });
-          const data = await res.json();
-          if (data?.[0]) {
-            results.push({
-              ...s,
-              lat: parseFloat(data[0].lat),
-              lng: parseFloat(data[0].lon),
-            });
-          } else {
-            results.push({ ...s, lat: 0, lng: 0 });
-          }
-        } catch {
-          results.push({ ...s, lat: 0, lng: 0 });
-        }
-      }
-      setScientists(results);
-      setLoadingGeo(false);
-    }
-    geocodeAll();
+  const mappedScientists = useMemo<Scientist[]>(() => {
+    return scientists.flatMap((scientist) => {
+      const mapLocation = mapLocationById.get(scientist.id);
+      if (!mapLocation) return [];
+
+      return [
+        {
+          ...scientist,
+          mapLabel: mapLocation.label,
+          lat: mapLocation.lat,
+          lng: mapLocation.lng,
+        },
+      ];
+    });
   }, []);
 
   const fields = useMemo(
-    () => Array.from(new Set(scientists.map((s) => s.field))),
-    [scientists]
+    () => Array.from(new Set(mappedScientists.map((s) => s.field))).sort((a, b) => a.localeCompare(b)),
+    [mappedScientists]
   );
   const countries = useMemo(
-    () => Array.from(new Set(scientists.map((s) => s.country))),
-    [scientists]
+    () => Array.from(new Set(mappedScientists.map((s) => s.country))).sort((a, b) => a.localeCompare(b)),
+    [mappedScientists]
   );
   const centuries = useMemo(
     () =>
       Array.from(
         new Set(
-          scientists.map((s) => (s.century ? String(s.century) : "Unknown"))
+          mappedScientists.map((s) => (s.century ? String(s.century) : "Unknown"))
         )
-      ),
-    [scientists]
+      ).sort((a, b) => a.localeCompare(b)),
+    [mappedScientists]
   );
 
   const filtered = useMemo(() => {
-    return scientists.filter((s) => {
-      if (!s.lat || !s.lng) return false;
-      if (query && !s.name.toLowerCase().includes(query.toLowerCase()))
-        return false;
+    const search = normalize(query);
+
+    return mappedScientists.filter((s) => {
+      if (search) {
+        const searchable = normalize(
+          [s.name, s.field, s.country, s.location, s.mapLabel, s.century, s.whatOpened].join(" ")
+        );
+        if (!searchable.includes(search)) return false;
+      }
       if (fieldFilter && s.field !== fieldFilter) return false;
       if (countryFilter && s.country !== countryFilter) return false;
       if (centuryFilter && String(s.century ?? "Unknown") !== centuryFilter)
         return false;
       return true;
     });
-  }, [scientists, query, fieldFilter, countryFilter, centuryFilter]);
+  }, [mappedScientists, query, fieldFilter, countryFilter, centuryFilter]);
 
-  const createIcon = (img: string) => {
+  const groupedScientists = useMemo<ScientistGroup[]>(() => {
+    const groups = new Map<string, ScientistGroup>();
+
+    filtered.forEach((scientist) => {
+      const key = `${scientist.lat.toFixed(4)},${scientist.lng.toFixed(4)}`;
+      const group = groups.get(key);
+
+      if (group) {
+        group.scientists.push(scientist);
+      } else {
+        groups.set(key, {
+          key,
+          lat: scientist.lat,
+          lng: scientist.lng,
+          label: scientist.mapLabel,
+          scientists: [scientist],
+        });
+      }
+    });
+
+    return Array.from(groups.values());
+  }, [filtered]);
+
+  const createIcon = (group: ScientistGroup) => {
     if (!L) return undefined;
-    return L.icon({
-      iconUrl: img,
-      iconSize: [52, 52],
-      iconAnchor: [26, 52],
-      className: "custom-marker",
+    const count = group.scientists.length;
+    const label = count > 1 ? String(count) : group.scientists[0].name.slice(0, 1);
+
+    return L.divIcon({
+      html: `<div style="display:grid;place-items:center;width:42px;height:42px;border-radius:9999px;background:#000;color:#fff;border:3px solid #dbeafe;box-shadow:0 10px 22px rgba(0,0,0,.22);font-weight:800;font-size:${count > 1 ? "15px" : "18px"};">${label}</div>`,
+      iconSize: [42, 42],
+      iconAnchor: [21, 21],
+      popupAnchor: [0, -18],
+      className: "",
     });
   };
 
   const center: [number, number] = [20, 0];
 
-  if (loadingGeo || !L)
+  if (!L)
     return (
       <div className="flex items-center justify-center h-96 text-lg font-semibold">
-        Geocoding scientist locations...
+        Loading scientist map...
       </div>
     );
 
@@ -143,13 +169,15 @@ export default function MapForgottenScientist() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
           <div>
             <h1 className="text-4xl font-bold">Map of Forgotten Scientists</h1>
-            <p className="text-gray-600">Discover science across the world</p>
+            <p className="text-gray-600">
+              {filtered.length} of {mappedScientists.length} scientists shown from verified profile locations
+            </p>
           </div>
           <div className="flex items-center gap-3">
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search scientist..."
+              placeholder="Search name, field, country..."
               className="px-4 py-2 rounded-full border shadow-sm w-56"
             />
           </div>
@@ -157,7 +185,10 @@ export default function MapForgottenScientist() {
 
         <div className="relative rounded-2xl overflow-hidden shadow-xl">
           <aside className="absolute left-4 top-4 z-[1000] bg-white/80 backdrop-blur-lg p-4 rounded-2xl shadow">
-            <h3 className="font-semibold mb-2">Filters</h3>
+            <h3 className="font-semibold mb-1">Filters</h3>
+            <p className="mb-3 text-xs text-gray-600">
+              {groupedScientists.length} map points
+            </p>
             <div className="flex flex-col gap-2 text-sm">
               <select
                 className="px-3 py-2 rounded-md border"
@@ -200,6 +231,7 @@ export default function MapForgottenScientist() {
 
               <button
                 onClick={() => {
+                  setQuery("");
                   setFieldFilter(null);
                   setCountryFilter(null);
                   setCenturyFilter(null);
@@ -221,24 +253,32 @@ export default function MapForgottenScientist() {
             >
               <TileLayer url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"} />
 
-              {filtered.map((s) => (
+              {groupedScientists.map((group) => (
                 <Marker
-                  key={s.id}
-                  position={[s.lat!, s.lng!]}
-                  icon={createIcon(s.image)}
+                  key={group.key}
+                  position={[group.lat, group.lng]}
+                  icon={createIcon(group)}
                 >
                   <Popup>
-                    <div className="text-center w-40">
-                      <Image
-                        src={s.image}
-                        alt={s.name}
-                        width={64}
-                        height={64}
-                        className="rounded-full mx-auto mb-2"
-                      />
-                      <h3 className="font-bold">{s.name}</h3>
-                      <p className="text-sm text-gray-600">{s.field}</p>
-                      <p className="text-xs text-gray-500 mt-1">{s.location}</p>
+                    <div className="max-h-72 w-64 overflow-y-auto pr-1">
+                      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                        {group.label}
+                      </p>
+                      <div className="space-y-3">
+                        {group.scientists.map((scientist) => (
+                          <div key={scientist.id} className="border-b border-gray-200 pb-3 last:border-b-0 last:pb-0">
+                            <h3 className="font-bold leading-tight">{scientist.name}</h3>
+                            <p className="mt-1 text-sm text-gray-700">{scientist.field}</p>
+                            <p className="mt-1 text-xs text-gray-500">{scientist.location}</p>
+                            <a
+                              href={`/scientists/${scientist.id}`}
+                              className="mt-2 inline-block rounded-md bg-black px-3 py-1 text-xs font-semibold text-white"
+                            >
+                              Open profile
+                            </a>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </Popup>
                 </Marker>

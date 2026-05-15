@@ -40,10 +40,7 @@ export default function LoginPage() {
       eyebrow="Member access"
     >
       <div className="mb-8">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gray-500">
-          Account
-        </p>
-        <h2 className="mt-3 text-4xl font-bold text-black">Log in</h2>
+        <h2 className="text-4xl font-bold text-black">Log in</h2>
       </div>
 
       {formError && (
