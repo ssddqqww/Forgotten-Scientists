@@ -24,10 +24,10 @@ export default function SignUpPage() {
     watch,
   } = useForm<SignUpValues>();
 
-  const onSubmit = (data: SignUpValues) => {
+  const onSubmit = async (data: SignUpValues) => {
     setFormError("");
 
-    const result = registerUser({
+    const result = await registerUser({
       fullName: data.fullName,
       email: data.email,
       password: data.password,
@@ -95,7 +95,7 @@ export default function SignUpPage() {
             placeholder="Create a password"
             {...register("password", {
               required: "Password is required",
-              minLength: { value: 6, message: "At least 6 characters" },
+              minLength: { value: 8, message: "At least 8 characters" },
             })}
             className="rounded-md border border-gray-300 bg-white px-4 py-3 outline-none transition focus:border-black"
           />

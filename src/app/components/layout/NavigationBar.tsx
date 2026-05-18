@@ -48,15 +48,22 @@ export default function NavigationBar() {
     const showSearchDropdown = searchFocused && searchQuery.trim().length > 0;
 
     useEffect(() => {
-        const syncUser = () => setUser(getCurrentUser());
+        let active = true;
+
+        const syncUser = async () => {
+            const currentUser = await getCurrentUser();
+
+            if (active) {
+                setUser(currentUser);
+            }
+        };
 
         syncUser();
         window.addEventListener(AUTH_CHANGE_EVENT, syncUser);
-        window.addEventListener("storage", syncUser);
 
         return () => {
+            active = false;
             window.removeEventListener(AUTH_CHANGE_EVENT, syncUser);
-            window.removeEventListener("storage", syncUser);
         };
     }, []);
 
@@ -131,14 +138,14 @@ export default function NavigationBar() {
         return () => document.removeEventListener("mousedown", handleOutsideClick);
     }, []);
 
-    const confirmLogout = () => {
-        logoutUser();
+    const confirmLogout = async () => {
+        await logoutUser();
         setOpen(false);
         setShowLogoutConfirm(false);
         setUser(null);
         setLogoutNotice(true);
 
-        if (pathname === "/profile") {
+        if (pathname === "/profile" || pathname === "/account") {
             router.push("/");
             return;
         }

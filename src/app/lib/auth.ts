@@ -1,122 +1,111 @@
-export type StoredUser = {
-  fullName: string;
-  email: string;
-  password: string;
-  createdAt: string;
-  username?: string;
-  pronouns?: string;
-  phone?: string;
-  bio?: string;
-  favoriteField?: string;
-  preferredSection?: string;
+"use client";
+
+import type { StoredUser } from "./auth-types";
+
+export type { StoredUser };
+
+type AuthSuccess = {
+  ok: true;
+  user: StoredUser;
 };
 
-const USERS_KEY = "forgotten-scientists-users";
-const CURRENT_USER_KEY = "forgotten-scientists-current-user";
+type AuthFailure = {
+  ok: false;
+  message: string;
+};
+
+export type AuthResult = AuthSuccess | AuthFailure;
+
 export const AUTH_CHANGE_EVENT = "forgotten-scientists-auth-change";
 
 const emitAuthChange = () => {
   window.dispatchEvent(new Event(AUTH_CHANGE_EVENT));
 };
 
-const makeUsername = (fullName: string, email: string) => {
-  const base =
-    fullName
-      .trim()
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, ".")
-      .replace(/^\.+|\.+$/g, "") || email.split("@")[0];
+const parseAuthResponse = async (response: Response): Promise<AuthResult> => {
+  const payload = await response.json().catch(() => ({}));
 
-  return base.slice(0, 24);
-};
-
-export const getUsers = (): StoredUser[] => {
-  if (typeof window === "undefined") return [];
-
-  try {
-    const users = window.localStorage.getItem(USERS_KEY);
-    return users ? JSON.parse(users) : [];
-  } catch {
-    return [];
-  }
-};
-
-export const getCurrentUser = (): StoredUser | null => {
-  if (typeof window === "undefined") return null;
-
-  try {
-    const user = window.localStorage.getItem(CURRENT_USER_KEY);
-    return user ? JSON.parse(user) : null;
-  } catch {
-    return null;
-  }
-};
-
-export const registerUser = (user: Omit<StoredUser, "createdAt">) => {
-  const users = getUsers();
-  const normalizedEmail = user.email.trim().toLowerCase();
-  const existingUser = users.find((savedUser) => savedUser.email === normalizedEmail);
-
-  if (existingUser) {
-    return { ok: false, message: "An account with this email already exists." };
+  if (!response.ok) {
+    return {
+      ok: false,
+      message: typeof payload.message === "string" ? payload.message : "Authentication failed.",
+    };
   }
 
-  const nextUser: StoredUser = {
-    fullName: user.fullName.trim(),
-    email: normalizedEmail,
-    password: user.password,
-    createdAt: new Date().toISOString(),
-    username: makeUsername(user.fullName, normalizedEmail),
-  };
-
-  window.localStorage.setItem(USERS_KEY, JSON.stringify([...users, nextUser]));
-  window.localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(nextUser));
-  emitAuthChange();
-
-  return { ok: true, user: nextUser };
+  return { ok: true, user: payload.user };
 };
 
-export const loginUser = (email: string, password: string) => {
-  const normalizedEmail = email.trim().toLowerCase();
-  const user = getUsers().find(
-    (savedUser) => savedUser.email === normalizedEmail && savedUser.password === password
-  );
+export const getCurrentUser = async (): Promise<StoredUser | null> => {
+  const response = await fetch("/api/auth/me", {
+    method: "GET",
+    cache: "no-store",
+    credentials: "same-origin",
+  });
 
-  if (!user) {
-    return { ok: false, message: "Email or password is incorrect." };
+  if (!response.ok) return null;
+
+  const payload = await response.json().catch(() => ({}));
+  return payload.user ?? null;
+};
+
+export const registerUser = async (user: {
+  fullName: string;
+  email: string;
+  password: string;
+}): Promise<AuthResult> => {
+  const response = await fetch("/api/auth/signup", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "same-origin",
+    body: JSON.stringify(user),
+  });
+  const result = await parseAuthResponse(response);
+
+  if (result.ok) {
+    emitAuthChange();
   }
 
-  window.localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user));
-  emitAuthChange();
-
-  return { ok: true, user };
+  return result;
 };
 
-export const logoutUser = () => {
-  window.localStorage.removeItem(CURRENT_USER_KEY);
+export const loginUser = async (email: string, password: string): Promise<AuthResult> => {
+  const response = await fetch("/api/auth/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "same-origin",
+    body: JSON.stringify({ email, password }),
+  });
+  const result = await parseAuthResponse(response);
+
+  if (result.ok) {
+    emitAuthChange();
+  }
+
+  return result;
+};
+
+export const logoutUser = async () => {
+  await fetch("/api/auth/logout", {
+    method: "POST",
+    credentials: "same-origin",
+  });
   emitAuthChange();
 };
 
-export const updateCurrentUser = (updates: Partial<Omit<StoredUser, "email" | "createdAt" | "password">>) => {
-  const currentUser = getCurrentUser();
+export const updateCurrentUser = async (
+  updates: Partial<Omit<StoredUser, "id" | "email" | "createdAt">>
+): Promise<AuthResult> => {
+  const response = await fetch("/api/auth/me", {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    credentials: "same-origin",
+    body: JSON.stringify(updates),
+  });
+  const result = await parseAuthResponse(response);
 
-  if (!currentUser) {
-    return { ok: false, message: "No active user found." };
+  if (result.ok) {
+    emitAuthChange();
   }
 
-  const nextUser: StoredUser = {
-    ...currentUser,
-    ...updates,
-    fullName: updates.fullName?.trim() || currentUser.fullName,
-  };
-
-  const users = getUsers().map((savedUser) =>
-    savedUser.email === currentUser.email ? nextUser : savedUser
-  );
-
-  window.localStorage.setItem(USERS_KEY, JSON.stringify(users));
-  window.localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(nextUser));
-  emitAuthChange();
-
-  return { ok: true, user: nextUser };
+  return result;
 };

@@ -11,13 +11,26 @@ export default function AccountWelcomePage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const currentUser = getCurrentUser();
-    setUser(currentUser);
-    setLoading(false);
+    let active = true;
 
-    if (!currentUser) {
-      router.push("/login");
-    }
+    const loadUser = async () => {
+      const currentUser = await getCurrentUser();
+
+      if (!active) return;
+
+      setUser(currentUser);
+      setLoading(false);
+
+      if (!currentUser) {
+        router.push("/login");
+      }
+    };
+
+    loadUser();
+
+    return () => {
+      active = false;
+    };
   }, [router]);
 
   if (loading || !user) {
@@ -34,7 +47,7 @@ export default function AccountWelcomePage() {
         <p className="text-sm font-semibold text-gray-600">Your account</p>
         <h1 className="mt-2 text-5xl font-bold">Welcome, {user.fullName}</h1>
         <p className="mt-4 max-w-2xl text-lg text-gray-700">
-          Your profile is saved in this browser, so you can log out and log back in with the same email and password.
+          Your profile is saved securely on the server, so you can log in from another browser or device.
         </p>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">

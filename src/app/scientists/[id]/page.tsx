@@ -4,15 +4,15 @@ import { notFound } from "next/navigation";
 import { getScientistById, scientists } from "../../../../data/scientistsData";
 
 type ScientistPageProps = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export function generateStaticParams() {
   return scientists.map((scientist) => ({ id: String(scientist.id) }));
 }
 
-export default function ScientistPage({ params }: ScientistPageProps) {
-  const { id } = params;
+export default async function ScientistPage({ params }: ScientistPageProps) {
+  const { id } = await params;
   const scientist = getScientistById(Number(id));
 
   if (!scientist) {
@@ -38,6 +38,10 @@ export default function ScientistPage({ params }: ScientistPageProps) {
               width={760}
               height={760}
               className="h-[28rem] w-full rounded-lg object-cover"
+              style={{
+                objectFit: scientist.imageFit ?? "cover",
+                objectPosition: scientist.imagePosition ?? "center",
+              }}
             />
           ) : (
             <div className="flex h-[28rem] w-full items-center justify-center rounded-lg border border-dashed border-gray-400 bg-gray-50 text-sm text-gray-500">

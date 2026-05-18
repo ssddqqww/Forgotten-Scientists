@@ -21,9 +21,9 @@ export default function LoginPage() {
     formState: { errors },
   } = useForm<LoginValues>();
 
-  const onSubmit = (data: LoginValues) => {
+  const onSubmit = async (data: LoginValues) => {
     setFormError("");
-    const result = loginUser(data.email, data.password);
+    const result = await loginUser(data.email, data.password);
 
     if (!result.ok) {
       setFormError(result.message ?? "Could not log in.");

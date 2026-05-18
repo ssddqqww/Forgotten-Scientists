@@ -35,23 +35,36 @@ export default function ProfilePage() {
   });
 
   useEffect(() => {
-    const currentUser = getCurrentUser();
-    setUser(currentUser);
-    setLoading(false);
+    let active = true;
 
-    if (!currentUser) {
-      router.push("/login");
-      return;
-    }
+    const loadUser = async () => {
+      const currentUser = await getCurrentUser();
 
-    setFormState({
-      fullName: currentUser.fullName,
-      username: currentUser.username ?? "",
-      pronouns: currentUser.pronouns ?? "",
-      phone: currentUser.phone ?? "",
-      bio: currentUser.bio ?? "",
-      favoriteField: currentUser.favoriteField ?? "",
-    });
+      if (!active) return;
+
+      setUser(currentUser);
+      setLoading(false);
+
+      if (!currentUser) {
+        router.push("/login");
+        return;
+      }
+
+      setFormState({
+        fullName: currentUser.fullName,
+        username: currentUser.username ?? "",
+        pronouns: currentUser.pronouns ?? "",
+        phone: currentUser.phone ?? "",
+        bio: currentUser.bio ?? "",
+        favoriteField: currentUser.favoriteField ?? "",
+      });
+    };
+
+    loadUser();
+
+    return () => {
+      active = false;
+    };
   }, [router]);
 
   useEffect(() => {
@@ -69,8 +82,8 @@ export default function ProfilePage() {
     [user]
   );
 
-  const handleSave = () => {
-    const result = updateCurrentUser({
+  const handleSave = async () => {
+    const result = await updateCurrentUser({
       fullName: formState.fullName,
       username: formState.username.trim(),
       pronouns: formState.pronouns,
@@ -273,15 +286,15 @@ export default function ProfilePage() {
                   <div className="rounded-md border border-gray-200 bg-white px-4 py-4">
                     <p className="text-sm font-semibold text-black">Password</p>
                     <p className="mt-2 text-sm leading-7 text-gray-600">
-                      Your password is currently stored locally in this browser for this demo
-                      flow.
+                      Your password is hashed on the server and is never stored in this
+                      browser.
                     </p>
                   </div>
 
                   <div className="rounded-md border border-gray-200 bg-white px-4 py-4">
                     <p className="text-sm font-semibold text-black">Authentication status</p>
                     <p className="mt-2 text-sm leading-7 text-gray-600">
-                      Your account is active and available on this device.
+                      Your account is active through a secure httpOnly session cookie.
                     </p>
                   </div>
                 </div>

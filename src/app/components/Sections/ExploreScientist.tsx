@@ -188,13 +188,21 @@ export default function ExploreScientist() {
                     >
                         <h3 className="font-bold mb-1">{card.name}</h3>
                         {card.image ? (
-                            <Image
-                                src={card.image}
-                                alt={card.name}
-                                width={320}
-                                height={240}
-                                className="mb-4 h-50 w-full rounded-md object-cover"
-                            />
+                            <div className="mb-4 h-50 w-full overflow-hidden rounded-md bg-gray-50">
+                                <Image
+                                    src={card.image}
+                                    alt={card.name}
+                                    width={320}
+                                    height={240}
+                                    className="h-full w-full"
+                                    style={{
+                                        objectFit: card.imageFit ?? "cover",
+                                        objectPosition: card.imagePosition ?? "center",
+                                        transform: card.imageScale ? `scale(${card.imageScale})` : undefined,
+                                        transformOrigin: card.imagePosition ?? "center",
+                                    }}
+                                />
+                            </div>
                         ) : (
                             <div className="mb-4 flex h-50 w-full items-center justify-center rounded-md border border-dashed border-gray-400 bg-gray-50 text-sm text-gray-500">
                                 Photo placeholder

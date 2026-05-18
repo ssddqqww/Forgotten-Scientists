@@ -1,29 +1,44 @@
-# Forgotten-Scientists
-An interactive platform highlighting overlooked scientists, featuring quizzes, timelines, maps, and user profiles to educate and inspire.
+# Forgotten Scientists
 
+An interactive Next.js platform highlighting overlooked scientists, featuring quizzes,
+timelines, maps, secure accounts, and user profiles.
 
-# 🌐 Frontend Setup (Next.js)
-
-(This assumes that you already have cloned the repo)
-Follow these steps to run the frontend locally:
-
----
-
-## 🚀 Getting Started
+## Getting Started
 
 1. Install dependencies:
-    ```bash
-    npm install
 
-2. Run the development server:
-    ```bash
-    npm run dev
+   ```bash
+   npm install
+   ```
 
-3. Run REST API simulation server (remove later):
-    ```bash
-    npx json-server --watch db.json --port 3001
+2. Create a Supabase project and run the SQL migration in
+   `supabase/migrations/202605180001_auth.sql` from the Supabase SQL editor.
 
-Open your browser and go to:
-👉 http://localhost:3000
+3. Create `.env.local` from `.env.example`:
 
-If everything is working, you should see the frontend app running.
+   ```bash
+   SUPABASE_URL=https://your-project-ref.supabase.co
+   SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+   ```
+
+   `SUPABASE_SERVICE_ROLE_KEY` must stay server-only. Never expose it as a
+   `NEXT_PUBLIC_` variable and never paste it into client-side code.
+
+4. Run the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+Open http://localhost:3000.
+
+## Auth And Database
+
+The app uses Next.js API routes for signup, login, logout, sessions, and profile
+updates. Passwords are salted and hashed with `scrypt`. Browser sessions are stored
+in an `httpOnly` cookie, while the database stores only a SHA-256 hash of the session
+token.
+
+For Vercel, add the same `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` values in
+the project Environment Variables. SQLite is intentionally not used in production
+because Vercel serverless deployments do not provide a persistent local filesystem.

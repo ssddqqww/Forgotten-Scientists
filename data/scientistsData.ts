@@ -12,6 +12,9 @@ export type Scientist = {
   longBio: string;
   sources: string[];
   image?: string;
+  imagePosition?: string;
+  imageFit?: "cover" | "contain";
+  imageScale?: number;
 };
 
 type RawScientist = {
@@ -27,14 +30,102 @@ type RawScientist = {
 };
 
 const imageById: Partial<Record<number, string>> = {
-  1: "/scientist01.png",
-  2: "/scientist02.png",
-  3: "/3scientist.png",
-  4: "/scientist4.png",
-  5: "/scientist5.png",
-  6: "/scientist6.png",
-  7: "/scientist7.png",
-  8: "/0.008scientist.png",
+  1: "/scientist-photos/01-ellen-swallow-richards.jpg",
+  3: "/scientist-photos/03-chien-shiung-wu.png",
+  4: "/scientist-photos/04-nettie-maria-stevens.jpg",
+  6: "/scientist-photos/06-julius-robert-von-mayer.jpg",
+  7: "/scientist-photos/07-elizabeth-langdon-williams.jpg",
+  8: "/scientist-photos/08-ida-noddack.png",
+  9: "/scientist-photos/09-florence-bascom.jpg",
+  10: "/scientist-photos/10-josephine-garis-cochrane.png",
+  13: "/scientist-photos/13-annie-easley.jpg",
+  15: "/scientist-photos/15-henrietta-swope.png",
+  17: "/scientist-photos/17-agnes-pockels.jpg",
+  18: "/scientist-photos/18-viktor-ambartsumian.png",
+  21: "/scientist-photos/21-annie-scott-dill-maunder.jpg",
+  22: "/scientist-photos/22-zonia-baber.jpg",
+  23: "/scientist-photos/23-isabella-karle.jpg",
+  24: "/scientist-photos/24-charles-henry-turner.jpg",
+  26: "/scientist-photos/26-sophie-brahe.jpg",
+  27: "/scientist-photos/27-caroline-herschel.jpg",
+  28: "/scientist-photos/28-mary-somerville.jpg",
+  29: "/scientist-photos/29-fanny-hesse.jpg",
+  30: "/scientist-photos/30-rosalba-carriera.jpg",
+  31: "/scientist-photos/31-dorothea-klumpke-roberts.jpg",
+  33: "/scientist-photos/33-lydia-villa-komaroff.jpg",
+  34: "/scientist-photos/34-beulah-louise-henry.jpg",
+  36: "/scientist-photos/36-domenico-pacini.png",
+  37: "/scientist-photos/37-ivan-stranski.jpg",
+  38: "/scientist-photos/38-gabrio-piola.jpg",
+  39: "/scientist-photos/39-hertha-ayrton.jpg",
+  42: "/scientist-photos/42-ruby-hirose.jpg",
+  44: "/scientist-photos/44-esther-lederberg.jpg",
+  45: "/scientist-photos/45-charlotte-moore-sitterly.jpg",
+  46: "/scientist-photos/46-marietta-blau.jpg",
+  47: "/scientist-photos/47-annie-jump-cannon.jpg",
+  50: "/scientist-photos/50-ellen-gleditsch.jpg",
+  51: "/scientist-photos/51-fe-del-mundo.jpg",
+  53: "/scientist-photos/53-alice-evans.jpg",
+  54: "/scientist-photos/54-ellen-ochoa.jpg",
+  55: "/scientist-photos/55-margarita-salas.jpg",
+  56: "/scientist-photos/56-joan-feynman.jpg",
+  57: "/scientist-photos/57-ruby-payne-scott.jpg",
+  58: "/scientist-photos/58-mary-cartwright.jpg",
+  59: "/scientist-photos/59-xia-peisu.jpg",
+  60: "/scientist-photos/60-martha-haynes.jpg",
+  62: "/scientist-photos/62-clara-immerwahr.jpg",
+  63: "/scientist-photos/63-emily-warren-roebling.jpg",
+  65: "/scientist-photos/65-mary-sears.jpg",
+  66: "/scientist-photos/66-harriet-brooks.png",
+  68: "/scientist-photos/68-alice-eastwood.jpg",
+  72: "/scientist-photos/72-alessandra-giliani.jpg",
+  73: "/scientist-photos/73-james-croll.jpg",
+  76: "/scientist-photos/76-inge-lehmann.jpg",
+  78: "/scientist-photos/78-simeon-aisenstein.jpg",
+  79: "/scientist-photos/79-jakob-von-bielfeld.jpg",
+  80: "/scientist-photos/80-johann-heinrich-lambert.jpg",
+};
+
+const imagePositionById: Partial<Record<number, string>> = {
+  9: "center 38%",
+  10: "center 38%",
+  13: "center 38%",
+  17: "center 22%",
+  18: "center 30%",
+  22: "center 38%",
+  24: "center 35%",
+  26: "center 18%",
+  28: "center 40%",
+  29: "center 24%",
+  30: "center 38%",
+  31: "center 35%",
+  38: "center top",
+  39: "center 58%",
+  50: "center top",
+  51: "center 35%",
+  57: "center 38%",
+  58: "center 38%",
+  62: "center 18%",
+  63: "center 62%",
+  68: "center 58%",
+  72: "center top",
+  73: "center 58%",
+  76: "center 58%",
+  79: "center 38%",
+  80: "center 38%",
+};
+
+const imageFitById: Partial<Record<number, "cover" | "contain">> = {
+  37: "contain",
+  50: "contain",
+  62: "contain",
+  68: "contain",
+  72: "contain",
+};
+
+const imageScaleById: Partial<Record<number, number>> = {
+  39: 1.08,
+  63: 1.08,
 };
 
 const fieldById: Record<number, string> = {
@@ -232,6 +323,9 @@ export const scientists: Scientist[] = (scientistsRaw as RawScientist[]).map((sc
   longBio: cleanText(scientist.long),
   sources: scientist.sources.map(cleanSource),
   image: imageById[scientist.id],
+  imagePosition: imagePositionById[scientist.id],
+  imageFit: imageFitById[scientist.id],
+  imageScale: imageScaleById[scientist.id],
 }));
 
 export function getScientistById(id: number) {
