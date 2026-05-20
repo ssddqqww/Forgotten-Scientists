@@ -98,10 +98,13 @@ export default function Timeline() {
     };
 
     const filterButtonClass =
-        "flex items-center gap-2 pr-4 py-2 border-r cursor-pointer select-none";
+        "flex w-full cursor-pointer select-none items-center justify-between gap-3 rounded-full border border-gray-300 px-4 py-3 text-left text-sm text-gray-900 transition hover:bg-gray-50 md:w-auto md:justify-start md:gap-2 md:rounded-none md:border-0 md:border-r md:py-2 md:pl-0 md:pr-4 md:hover:bg-transparent";
+
+    const filterButtonPlainClass =
+        "flex w-full cursor-pointer select-none items-center justify-between gap-3 rounded-full border border-gray-300 px-4 py-3 text-left text-sm text-gray-900 transition hover:bg-gray-50 md:w-auto md:justify-start md:gap-2 md:rounded-none md:border-0 md:py-2 md:pl-0 md:pr-4 md:hover:bg-transparent";
 
     const dropdownClass =
-        "absolute left-0 top-full z-20 mt-2 min-w-[220px] border border-gray-300 bg-white shadow-lg";
+        "absolute left-0 top-full z-[1120] mt-2 max-h-72 w-full min-w-0 overflow-y-auto rounded-xl border border-gray-300 bg-white shadow-lg md:w-auto md:min-w-[220px] md:rounded-none";
 
     const optionClass =
         "block w-full px-4 py-2 text-left text-sm hover:bg-gray-100";
@@ -119,15 +122,17 @@ export default function Timeline() {
     };
 
     return (
-        <section id="timeline" className="scroll-mt-24 pt-20 pb-40">
+        <section id="timeline" className="scroll-mt-24 pt-16 pb-28 md:pt-20 md:pb-40">
             <div className="text-start">
-                <h2 className="mb-2 text-5xl font-bold">Timeline of Forgotten Scientists</h2>
-                <p className="mb-6 max-w-4xl text-gray-600">
+                <h2 className="mb-3 text-[2.75rem] font-bold leading-[1.03] md:mb-2 md:text-5xl md:leading-none">
+                    Timeline of Forgotten Scientists
+                </h2>
+                <p className="mb-7 max-w-4xl text-base leading-7 text-gray-600 md:mb-6">
                     Move through scientists across centuries. The year is the best available timeline anchor from each profile, while the card highlights what they are remembered for.
                 </p>
 
-                <div className="mb-6 flex flex-wrap gap-4 text-sm">
-                    <div className="relative">
+                <div className="mb-8 grid grid-cols-1 gap-3 text-sm sm:grid-cols-3 md:mb-6 md:flex md:flex-wrap md:gap-4">
+                    <div className="relative min-w-0">
                         <button
                             type="button"
                             className={filterButtonClass}
@@ -156,7 +161,7 @@ export default function Timeline() {
                         )}
                     </div>
 
-                    <div className="relative">
+                    <div className="relative min-w-0">
                         <button
                             type="button"
                             className={filterButtonClass}
@@ -185,10 +190,10 @@ export default function Timeline() {
                         )}
                     </div>
 
-                    <div className="relative">
+                    <div className="relative min-w-0">
                         <button
                             type="button"
-                            className="flex cursor-pointer select-none items-center gap-2 py-2 pr-4"
+                            className={filterButtonPlainClass}
                             onClick={() => setOpenMenu(openMenu === "century" ? null : "century")}
                         >
                             <Image src="/icons/Watch.png" alt="" width={32} height={32} className="h-8 w-8 object-contain" />
@@ -223,7 +228,7 @@ export default function Timeline() {
                                 setCenturyFilter("");
                                 setOpenMenu(null);
                             }}
-                            className="border px-4 py-2 text-gray-700 hover:bg-gray-50"
+                            className="rounded-full border border-gray-300 px-4 py-3 text-gray-700 hover:bg-gray-50 sm:col-span-3 md:rounded-none md:py-2"
                         >
                             Clear filters
                         </button>
@@ -232,8 +237,8 @@ export default function Timeline() {
 
                 {timelineMarkers.length > 0 && selectedScientist ? (
                     <>
-                        <div className="relative mb-10 mt-12">
-                            <div className="mb-3 flex items-center justify-between gap-4 text-sm text-gray-600">
+                        <div className="relative mb-8 mt-10 md:mb-10 md:mt-12">
+                            <div className="mb-3 flex flex-wrap items-center justify-between gap-3 text-xs text-gray-600 md:text-sm">
                                 <span>
                                     Showing {markerStart + 1}-{Math.min(markerStart + timelineMarkers.length, filteredScientists.length)} of {filteredScientists.length}
                                 </span>
@@ -243,24 +248,32 @@ export default function Timeline() {
                                     </span>
                                 )}
                             </div>
+                            <div className="mb-4 flex items-end justify-between gap-4 md:hidden">
+                                <span className="text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">
+                                    Current anchor
+                                </span>
+                                <span className="text-2xl font-bold leading-none text-black">
+                                    {selectedScientist.timelineYear ?? selectedScientist.century}
+                                </span>
+                            </div>
 
-                            <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-2 md:gap-4">
                                 <button
                                     type="button"
                                     onClick={handlePreviousMarker}
                                     disabled={markerStart === 0}
-                                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gray-900 bg-white text-gray-900 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-35"
+                                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-900 bg-white text-gray-900 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-35 md:h-11 md:w-11"
                                     aria-label="Previous timeline dates"
                                 >
                                     <ChevronLeft size={22} />
                                 </button>
 
-                                <div className="relative min-h-24 flex-1 px-2">
-                                    <div className="absolute left-0 right-0 top-12 border-t-4 border-gray-900"></div>
-                                    <div className="absolute right-0 top-[42px] h-5 w-5 rotate-45 border-r-4 border-t-4 border-gray-900"></div>
+                                <div className="relative min-h-14 flex-1 px-1 md:min-h-24 md:px-2">
+                                    <div className="absolute left-0 right-0 top-5 border-t-4 border-gray-900 md:top-12"></div>
+                                    <div className="absolute right-0 top-[14px] h-5 w-5 rotate-45 border-r-4 border-t-4 border-gray-900 md:top-[42px]"></div>
 
                                     <div
-                                        className="relative z-10 grid min-h-24 items-start"
+                                        className="relative z-10 grid min-h-14 items-start md:min-h-24"
                                         style={{ gridTemplateColumns: `repeat(${timelineMarkers.length}, minmax(0, 1fr))` }}
                                     >
                                         {timelineMarkers.map((item, index) => {
@@ -274,11 +287,11 @@ export default function Timeline() {
                                                     onClick={() => setSelectedIndex(globalIndex)}
                                                     className="group flex flex-col items-center text-center"
                                                 >
-                                                    <span className={`mb-4 text-lg font-bold ${isSelected ? "text-black" : "text-gray-700"}`}>
+                                                    <span className={`hidden md:mb-4 md:block md:text-lg md:font-bold ${isSelected ? "text-black" : "text-gray-700"}`}>
                                                         {item.timelineYear ?? item.century}
                                                     </span>
                                                     <span
-                                                        className={`h-8 w-8 rounded-full border-2 transition ${
+                                                        className={`mt-1 h-7 w-7 rounded-full border-2 transition md:mt-0 md:h-8 md:w-8 ${
                                                             isSelected
                                                                 ? "border-black bg-black"
                                                                 : "border-gray-700 bg-gray-100 group-hover:bg-gray-200"
@@ -297,7 +310,7 @@ export default function Timeline() {
                                     type="button"
                                     onClick={handleNextMarker}
                                     disabled={markerStart >= maxMarkerStart}
-                                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gray-900 bg-white text-gray-900 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-35"
+                                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-900 bg-white text-gray-900 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-35 md:h-11 md:w-11"
                                     aria-label="Next timeline dates"
                                 >
                                     <ChevronRight size={22} />
@@ -305,12 +318,12 @@ export default function Timeline() {
                             </div>
                         </div>
 
-                        <article className="relative overflow-hidden border-y border-gray-900 bg-[#fbfaf7] py-8 md:grid md:grid-cols-[minmax(12rem,0.45fr)_1fr] md:gap-10 md:py-10">
-                            <div className="relative px-6 pb-8 md:border-r md:border-gray-300 md:pb-0 md:pr-10">
+                        <article className="relative overflow-hidden border-y border-gray-900 bg-[#fbfaf7] py-7 md:grid md:grid-cols-[minmax(12rem,0.45fr)_1fr] md:gap-10 md:py-10">
+                            <div className="relative px-5 pb-8 md:border-r md:border-gray-300 md:px-6 md:pb-0 md:pr-10">
                                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gray-500">
                                     Timeline anchor
                                 </p>
-                                <p className="mt-3 text-6xl font-bold leading-none text-black md:text-7xl">
+                                <p className="mt-3 text-5xl font-bold leading-none text-black md:text-7xl">
                                     {selectedScientist.timelineYear ?? selectedScientist.century}
                                 </p>
                                 <div className="mt-8 flex items-center gap-3">
@@ -339,7 +352,7 @@ export default function Timeline() {
                                 </div>
                             </div>
 
-                            <div className="px-6 text-left md:pl-0 md:pr-8">
+                            <div className="px-5 text-left md:px-6 md:pl-0 md:pr-8">
                                 <div className="flex flex-wrap items-center gap-2 text-xs text-gray-600">
                                     <span className="border border-gray-900 px-2 py-1 font-semibold text-gray-900">
                                         Focused profile
@@ -350,10 +363,10 @@ export default function Timeline() {
                                 <p className="mt-6 text-sm font-semibold uppercase tracking-[0.14em] text-gray-500">
                                     Known for
                                 </p>
-                                <h3 className="mt-2 text-3xl font-bold leading-tight md:text-4xl">
+                                <h3 className="mt-2 text-2xl font-bold leading-tight md:text-4xl">
                                     {selectedScientist.name}
                                 </h3>
-                                <p className="mt-5 max-w-4xl text-lg leading-8 text-gray-800">
+                                <p className="mt-5 max-w-4xl text-base leading-7 text-gray-800 md:text-lg md:leading-8">
                                     {makePreview(selectedScientist.whatOpened)}
                                 </p>
                                 <div className="mt-6 border-l-4 border-black pl-5">
@@ -368,7 +381,7 @@ export default function Timeline() {
                                     </p>
                                     <Link
                                         href={`/scientists/${selectedScientist.id}?from=timeline`}
-                                        className="w-fit rounded-md bg-black px-5 py-2 text-sm text-white hover:bg-gray-800"
+                                        className="w-full rounded-md bg-black px-5 py-2 text-center text-sm text-white hover:bg-gray-800 sm:w-fit"
                                     >
                                         Open scientist profile
                                     </Link>

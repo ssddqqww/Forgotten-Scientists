@@ -34,30 +34,30 @@ export default function News() {
   };
 
   return (
-    <section id="news" className="scroll-mt-24 pt-20 pb-40">
-      <h2 className="text-5xl font-bold mb-2">News</h2>
-      <p className="text-gray-600 mb-6">
+    <section id="news" className="scroll-mt-24 pt-16 pb-28 md:pt-20 md:pb-40">
+      <h2 className="mb-2 text-4xl font-bold md:text-5xl">News</h2>
+      <p className="mb-6 text-base leading-7 text-gray-600">
         Discover anniversaries, archive discoveries, project updates, and short facts.
       </p>
 
       <div
-        className="mb-8 flex min-h-32 items-end bg-cover bg-center p-8 text-white"
+        className="mb-8 flex min-h-36 items-end bg-cover bg-center p-5 text-white md:min-h-32 md:p-8"
         style={{ backgroundImage: "linear-gradient(90deg, rgba(0,0,0,.72), rgba(0,0,0,.18)), url('/HeroBG.jpg')" }}
       >
         <div>
           <p className="text-sm font-semibold uppercase">Forgotten Scientists</p>
-          <h3 className="text-3xl font-bold">Latest stories from science history</h3>
+          <h3 className="text-2xl font-bold leading-tight md:text-3xl">Latest stories from science history</h3>
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-4 mb-6 text-sm">
+      <div className="mb-8 grid grid-cols-2 gap-3 text-sm md:mb-6 md:flex md:flex-wrap md:gap-4">
         {filters.map((filter, index) => (
           <button
             key={filter.value}
             type="button"
             onClick={() => handleFilterChange(filter.value)}
-            className={`flex items-center gap-2 py-2 transition ${
-              index === filters.length - 1 ? "px-4" : "pr-4 border-r"
+            className={`flex w-full items-center gap-2 rounded-full border border-gray-300 px-3 py-3 text-left transition md:w-auto md:rounded-none md:border-0 md:py-2 ${
+              index === filters.length - 1 ? "col-span-2 justify-center md:col-span-1 md:px-4" : "md:pr-4 md:border-r"
             } ${activeCategory === filter.value ? "font-bold text-black" : "text-gray-800 hover:text-black"}`}
           >
             <Image
@@ -76,7 +76,7 @@ export default function News() {
         {visibleNews.map((item) => (
           <article
             key={item.id}
-            className="pb-12 relative flex flex-col items-start pr-8 border-gray-900 sm:border-r sm:[&:nth-child(2n)]:border-r-0 lg:!border-r lg:[&:nth-child(3n)]:!border-r-0"
+            className="relative flex flex-col items-start border-gray-900 pb-0 pr-0 sm:border-r sm:pb-12 sm:pr-8 sm:[&:nth-child(2n)]:border-r-0 lg:!border-r lg:[&:nth-child(3n)]:!border-r-0"
           >
             <p className="mb-2 text-sm font-semibold text-gray-600">{item.type}</p>
             <h3 className="font-bold mb-1">{item.title}</h3>
@@ -88,7 +88,7 @@ export default function News() {
             <button
               type="button"
               onClick={() => setSelectedNews(item)}
-              className="absolute bottom-0 mt-3 px-4 py-1 bg-black text-white rounded-md text-sm"
+              className="mt-4 rounded-md bg-black px-4 py-1 text-sm text-white sm:absolute sm:bottom-0"
             >
               Read more
             </button>

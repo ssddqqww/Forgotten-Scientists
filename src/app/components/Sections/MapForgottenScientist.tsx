@@ -160,10 +160,10 @@ export default function MapForgottenScientist() {
   const center: [number, number] = [20, 0];
   const hasActiveFilters = Boolean(query || fieldFilter || countryFilter || centuryFilter);
   const filterButtonClass =
-    "flex items-center gap-3 py-2 pr-6 text-sm text-gray-900 transition hover:text-gray-600";
-  const filterDividerClass = "relative pr-6 after:absolute after:right-0 after:top-1/2 after:h-12 after:w-px after:-translate-y-1/2 after:bg-gray-900";
+    "flex w-full items-center justify-between gap-3 rounded-full border border-gray-300 px-4 py-3 text-left text-sm text-gray-900 transition hover:bg-gray-50 md:w-auto md:justify-start md:rounded-none md:border-0 md:py-2 md:pl-0 md:pr-6 md:hover:bg-transparent md:hover:text-gray-600";
+  const filterDividerClass = "relative min-w-0 md:pr-6 md:after:absolute md:after:right-0 md:after:top-1/2 md:after:h-12 md:after:w-px md:after:-translate-y-1/2 md:after:bg-gray-900";
   const dropdownClass =
-    "absolute left-0 top-full z-[1100] mt-3 max-h-72 min-w-56 overflow-y-auto border border-gray-300 bg-white py-2 shadow-xl";
+    "absolute left-0 top-full z-[1100] mt-3 max-h-72 w-full min-w-0 overflow-y-auto rounded-xl border border-gray-300 bg-white py-2 shadow-xl md:w-auto md:min-w-56 md:rounded-none";
   const optionClass =
     "block w-full px-4 py-2 text-left text-sm text-gray-800 hover:bg-gray-100";
 
@@ -177,7 +177,7 @@ export default function MapForgottenScientist() {
 
   if (!L)
     return (
-      <section id="map" className="scroll-mt-24 pt-12 pb-20">
+      <section id="map" className="scroll-mt-24 pt-16 pb-28 md:pt-12 md:pb-20">
         <div className="flex h-96 items-center justify-center text-lg font-semibold">
           Loading scientist map...
         </div>
@@ -185,12 +185,12 @@ export default function MapForgottenScientist() {
     );
 
   return (
-    <section id="map" className="scroll-mt-24 pt-12 pb-20">
-      <div className="max-w-7xl mx-auto px-4">
+    <section id="map" className="scroll-mt-24 pt-16 pb-28 md:pt-12 md:pb-20">
+      <div className="max-w-7xl mx-auto px-0 md:px-4">
         <div className="mb-8 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
-            <h1 className="text-4xl font-bold">Map of Forgotten Scientists</h1>
-            <p className="text-gray-600">
+            <h1 className="text-[2.5rem] font-bold leading-tight md:text-4xl md:leading-none">Map of Forgotten Scientists</h1>
+            <p className="mt-2 text-base leading-7 text-gray-600 md:mt-0">
               {filtered.length} of {mappedScientists.length} scientists shown from verified profile locations
             </p>
           </div>
@@ -205,7 +205,7 @@ export default function MapForgottenScientist() {
         </div>
 
         <div className="mb-8 flex flex-col gap-4 text-sm">
-          <div className="flex flex-wrap items-center gap-6">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 md:flex md:flex-wrap md:items-center md:gap-6">
             <div className={`relative ${filterDividerClass}`}>
               <button
                 type="button"
@@ -264,7 +264,7 @@ export default function MapForgottenScientist() {
               )}
             </div>
 
-            <div className="relative">
+            <div className="relative min-w-0">
               <button
                 type="button"
                 className={filterButtonClass}
@@ -303,7 +303,7 @@ export default function MapForgottenScientist() {
                   setCenturyFilter(null);
                   setOpenMenu(null);
                 }}
-                className="border px-4 py-2 text-gray-700 hover:bg-gray-50"
+                className="rounded-full border border-gray-300 px-4 py-3 text-gray-700 hover:bg-gray-50 sm:col-span-3 md:rounded-none md:py-2"
               >
                 Clear filters
               </button>
@@ -316,13 +316,13 @@ export default function MapForgottenScientist() {
         </div>
 
         <div className="relative rounded-2xl overflow-hidden shadow-xl">
-          <div className="min-h-[620px] w-full">
+          <div className="min-h-[460px] w-full md:min-h-[620px]">
             <MapContainer
               center={center}
               zoom={2}
               minZoom={2}
               scrollWheelZoom
-              className="h-[620px] w-full"
+              className="h-[460px] w-full md:h-[620px]"
             >
               <TileLayer url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"} />
 

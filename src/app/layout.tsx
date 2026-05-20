@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className="antialiased relative"
+        className="relative bg-white text-black antialiased"
       >
         <SmoothScrollHandler />
         <NavigationBar />

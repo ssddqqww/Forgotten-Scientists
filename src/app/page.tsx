@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div>
       <Hero/>     
-      <div className="px-10 md:px-2 lg:px-20">
+      <div className="px-5 sm:px-8 md:px-2 lg:px-20">
         <ScientistDayWeek/>
         <ExploreScientist/>
         <Timeline/>
