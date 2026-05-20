@@ -1,18 +1,37 @@
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getScientistById, scientists } from "../../../../data/scientistsData";
+import BackLink from "./BackLink";
 
 type ScientistPageProps = {
   params: Promise<{ id: string }>;
+  searchParams?: Promise<{ from?: string | string[] }>;
+};
+
+const backTargets = {
+  featured: "/#featured-scientists",
+  scientists: "/#scientists",
+  timeline: "/#timeline",
+  map: "/#map",
 };
 
 export function generateStaticParams() {
   return scientists.map((scientist) => ({ id: String(scientist.id) }));
 }
 
-export default async function ScientistPage({ params }: ScientistPageProps) {
+export default async function ScientistPage({ params, searchParams }: ScientistPageProps) {
   const { id } = await params;
+  const resolvedSearchParams = searchParams ? await searchParams : {};
+  const rawFrom = Array.isArray(resolvedSearchParams.from)
+    ? resolvedSearchParams.from[0]
+    : resolvedSearchParams.from;
+  const useHistoryBack = rawFrom === "search";
+  const backHref =
+    useHistoryBack
+      ? "/"
+      : rawFrom && rawFrom in backTargets
+        ? backTargets[rawFrom as keyof typeof backTargets]
+        : "/#scientists";
   const scientist = getScientistById(Number(id));
 
   if (!scientist) {
@@ -21,13 +40,7 @@ export default async function ScientistPage({ params }: ScientistPageProps) {
 
   return (
     <section className="px-10 pb-20 pt-30 md:px-6 lg:px-20">
-      <Link
-        href="/#scientists"
-        className="flex items-center gap-2 text-gray-700 mb-6 hover:text-gray-900 transition"
-      >
-        <span className="text-xl">←</span>
-        <span>Back</span>
-      </Link>
+      <BackLink href={backHref} useHistoryBack={useHistoryBack} />
 
       <div className="grid items-start gap-10 xl:grid-cols-[minmax(300px,380px)_minmax(0,1fr)]">
         <div className="w-full">

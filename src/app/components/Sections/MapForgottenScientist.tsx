@@ -3,6 +3,8 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
+import { ChevronDown } from "lucide-react";
 import { scientistMapLocations } from "../../../../data/scientistMapLocations";
 import { scientists } from "../../../../data/scientistsData";
 
@@ -58,6 +60,7 @@ export default function MapForgottenScientist() {
   const [fieldFilter, setFieldFilter] = useState<string | null>(null);
   const [countryFilter, setCountryFilter] = useState<string | null>(null);
   const [centuryFilter, setCenturyFilter] = useState<string | null>(null);
+  const [openMenu, setOpenMenu] = useState<"field" | "country" | "century" | null>(null);
   const [L, setL] = useState<typeof import("leaflet") | null>(null);
 
   // Динамічний імпорт Leaflet на клієнті
@@ -155,94 +158,164 @@ export default function MapForgottenScientist() {
   };
 
   const center: [number, number] = [20, 0];
+  const hasActiveFilters = Boolean(query || fieldFilter || countryFilter || centuryFilter);
+  const filterButtonClass =
+    "flex items-center gap-3 py-2 pr-6 text-sm text-gray-900 transition hover:text-gray-600";
+  const filterDividerClass = "relative pr-6 after:absolute after:right-0 after:top-1/2 after:h-12 after:w-px after:-translate-y-1/2 after:bg-gray-900";
+  const dropdownClass =
+    "absolute left-0 top-full z-[1100] mt-3 max-h-72 min-w-56 overflow-y-auto border border-gray-300 bg-white py-2 shadow-xl";
+  const optionClass =
+    "block w-full px-4 py-2 text-left text-sm text-gray-800 hover:bg-gray-100";
+
+  const handleFilterChange = (
+    setter: (value: string | null) => void,
+    value: string
+  ) => {
+    setter(value || null);
+    setOpenMenu(null);
+  };
 
   if (!L)
     return (
-      <div className="flex items-center justify-center h-96 text-lg font-semibold">
-        Loading scientist map...
-      </div>
+      <section id="map" className="scroll-mt-24 pt-12 pb-20">
+        <div className="flex h-96 items-center justify-center text-lg font-semibold">
+          Loading scientist map...
+        </div>
+      </section>
     );
 
   return (
     <section id="map" className="scroll-mt-24 pt-12 pb-20">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
+        <div className="mb-8 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
             <h1 className="text-4xl font-bold">Map of Forgotten Scientists</h1>
             <p className="text-gray-600">
               {filtered.length} of {mappedScientists.length} scientists shown from verified profile locations
             </p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="w-full md:w-auto md:pb-1">
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search name, field, country..."
-              className="px-4 py-2 rounded-full border shadow-sm w-56"
+              className="h-12 w-full rounded-full border border-gray-900 bg-white px-5 text-sm shadow-sm outline-none transition placeholder:text-gray-500 focus:ring-2 focus:ring-black/10 sm:w-96"
             />
           </div>
         </div>
 
-        <div className="relative rounded-2xl overflow-hidden shadow-xl">
-          <aside className="absolute left-4 top-4 z-[1000] bg-white/80 backdrop-blur-lg p-4 rounded-2xl shadow">
-            <h3 className="font-semibold mb-1">Filters</h3>
-            <p className="mb-3 text-xs text-gray-600">
-              {groupedScientists.length} map points
-            </p>
-            <div className="flex flex-col gap-2 text-sm">
-              <select
-                className="px-3 py-2 rounded-md border"
-                value={fieldFilter ?? ""}
-                onChange={(e) =>
-                  setFieldFilter(e.target.value || null)
-                }
-              >
-                <option value="">All Fields</option>
-                {fields.map((f) => (
-                  <option key={f}>{f}</option>
-                ))}
-              </select>
-
-              <select
-                className="px-3 py-2 rounded-md border"
-                value={countryFilter ?? ""}
-                onChange={(e) =>
-                  setCountryFilter(e.target.value || null)
-                }
-              >
-                <option value="">All Countries</option>
-                {countries.map((c) => (
-                  <option key={c}>{c}</option>
-                ))}
-              </select>
-
-              <select
-                className="px-3 py-2 rounded-md border"
-                value={centuryFilter ?? ""}
-                onChange={(e) =>
-                  setCenturyFilter(e.target.value || null)
-                }
-              >
-                <option value="">All Centuries</option>
-                {centuries.map((c) => (
-                  <option key={c}>{c}</option>
-                ))}
-              </select>
-
+        <div className="mb-8 flex flex-col gap-4 text-sm">
+          <div className="flex flex-wrap items-center gap-6">
+            <div className={`relative ${filterDividerClass}`}>
               <button
+                type="button"
+                className={filterButtonClass}
+                onClick={() => setOpenMenu(openMenu === "field" ? null : "field")}
+              >
+                <Image src="/icons/Atom_light.png" alt="" width={32} height={32} className="h-8 w-8 object-contain" />
+                <span>{fieldFilter ?? "By Field"}</span>
+                <ChevronDown className="h-4 w-4" />
+              </button>
+              {openMenu === "field" && (
+                <div className={dropdownClass}>
+                  <button type="button" className={optionClass} onClick={() => handleFilterChange(setFieldFilter, "")}>
+                    All Fields
+                  </button>
+                  {fields.map((field) => (
+                    <button
+                      key={field}
+                      type="button"
+                      className={optionClass}
+                      onClick={() => handleFilterChange(setFieldFilter, field)}
+                    >
+                      {field}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className={`relative ${filterDividerClass}`}>
+              <button
+                type="button"
+                className={filterButtonClass}
+                onClick={() => setOpenMenu(openMenu === "country" ? null : "country")}
+              >
+                <Image src="/icons/Map.png" alt="" width={32} height={32} className="h-8 w-8 object-contain" />
+                <span>{countryFilter ?? "By Country"}</span>
+                <ChevronDown className="h-4 w-4" />
+              </button>
+              {openMenu === "country" && (
+                <div className={dropdownClass}>
+                  <button type="button" className={optionClass} onClick={() => handleFilterChange(setCountryFilter, "")}>
+                    All Countries
+                  </button>
+                  {countries.map((country) => (
+                    <button
+                      key={country}
+                      type="button"
+                      className={optionClass}
+                      onClick={() => handleFilterChange(setCountryFilter, country)}
+                    >
+                      {country}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="relative">
+              <button
+                type="button"
+                className={filterButtonClass}
+                onClick={() => setOpenMenu(openMenu === "century" ? null : "century")}
+              >
+                <Image src="/icons/Watch.png" alt="" width={32} height={32} className="h-8 w-8 object-contain" />
+                <span>{centuryFilter ?? "By Century"}</span>
+                <ChevronDown className="h-4 w-4" />
+              </button>
+              {openMenu === "century" && (
+                <div className={dropdownClass}>
+                  <button type="button" className={optionClass} onClick={() => handleFilterChange(setCenturyFilter, "")}>
+                    All Centuries
+                  </button>
+                  {centuries.map((century) => (
+                    <button
+                      key={century}
+                      type="button"
+                      className={optionClass}
+                      onClick={() => handleFilterChange(setCenturyFilter, century)}
+                    >
+                      {century}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {hasActiveFilters && (
+              <button
+                type="button"
                 onClick={() => {
                   setQuery("");
                   setFieldFilter(null);
                   setCountryFilter(null);
                   setCenturyFilter(null);
+                  setOpenMenu(null);
                 }}
-                className="mt-2 px-3 py-1 bg-gray-100 rounded-md"
+                className="border px-4 py-2 text-gray-700 hover:bg-gray-50"
               >
-                Reset
+                Clear filters
               </button>
-            </div>
-          </aside>
+            )}
+          </div>
 
+          <p className="text-sm text-gray-600">
+            Showing {groupedScientists.length} map points
+          </p>
+        </div>
+
+        <div className="relative rounded-2xl overflow-hidden shadow-xl">
           <div className="min-h-[620px] w-full">
             <MapContainer
               center={center}
@@ -271,7 +344,7 @@ export default function MapForgottenScientist() {
                             <p className="mt-1 text-sm text-gray-700">{scientist.field}</p>
                             <p className="mt-1 text-xs text-gray-500">{scientist.location}</p>
                             <a
-                              href={`/scientists/${scientist.id}`}
+                              href={`/scientists/${scientist.id}?from=map`}
                               className="mt-2 inline-block rounded-md bg-black px-3 py-1 text-xs font-semibold text-white"
                             >
                               Open profile

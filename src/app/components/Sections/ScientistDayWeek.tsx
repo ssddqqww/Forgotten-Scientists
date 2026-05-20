@@ -101,7 +101,7 @@ function FeaturedScientistCard({
           </div>
 
           <Link
-            href={`/scientists/${scientist.id}`}
+            href={`/scientists/${scientist.id}?from=featured`}
             className="mt-5 inline-flex w-fit rounded-md bg-black px-5 py-2 text-sm text-white transition hover:bg-gray-800 md:text-base"
           >
             Read more
@@ -116,7 +116,7 @@ export default function ScientistDayWeek() {
   const featuredScientists = useFeaturedScientists();
 
   return (
-    <section className="pt-20 pb-40">
+    <section id="featured-scientists" className="scroll-mt-24 pt-20 pb-40">
       <div className="grid items-stretch gap-8 md:grid-cols-2">
         {featuredScientists ? (
           <>

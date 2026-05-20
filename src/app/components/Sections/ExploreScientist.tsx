@@ -217,7 +217,7 @@ export default function ExploreScientist() {
                             <span className="border px-2 py-1">{card.century}</span>
                         </div>
                         <Link
-                            href={`/scientists/${card.id}`}
+                            href={`/scientists/${card.id}?from=scientists`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="absolute bottom-0 mt-3 px-4 py-1 bg-black text-white rounded-md text-sm"

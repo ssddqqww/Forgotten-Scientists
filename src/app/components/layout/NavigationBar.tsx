@@ -1,39 +1,23 @@
 "use client"
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Menu, X, User, Search, Mic } from "lucide-react";
+import { Menu, X, User, Search } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { AUTH_CHANGE_EVENT, getCurrentUser, logoutUser, type StoredUser } from "../../lib/auth";
 import { smoothScrollToId } from "../../lib/smoothScroll";
 import { scientistDirectory } from "../../../../data/scientistDirectory";
 
-type SpeechRecognitionConstructor = new () => {
-    continuous: boolean;
-    interimResults: boolean;
-    lang: string;
-    onresult: ((event: {
-        results: ArrayLike<ArrayLike<{ transcript: string }>>;
-    }) => void) | null;
-    onend: (() => void) | null;
-    onerror: (() => void) | null;
-    start: () => void;
-    stop: () => void;
-};
-
 export default function NavigationBar() {
     const [open, setOpen] = useState(false);
     const [user, setUser] = useState<StoredUser | null>(null);
     const [searchQuery, setSearchQuery] = useState("");
-    const [isListening, setIsListening] = useState(false);
-    const [supportsVoiceInput, setSupportsVoiceInput] = useState(false);
     const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
     const [logoutNotice, setLogoutNotice] = useState(false);
     const [searchFocused, setSearchFocused] = useState(false);
     const [searchNotice, setSearchNotice] = useState("");
     const pathname = usePathname();
     const router = useRouter();
-    const recognitionRef = useRef<InstanceType<SpeechRecognitionConstructor> | null>(null);
     const searchRef = useRef<HTMLDivElement | null>(null);
 
     const searchResults = useMemo(() => {
@@ -64,46 +48,6 @@ export default function NavigationBar() {
         return () => {
             active = false;
             window.removeEventListener(AUTH_CHANGE_EVENT, syncUser);
-        };
-    }, []);
-
-    useEffect(() => {
-        const SpeechRecognition =
-            typeof window !== "undefined"
-                ? ((window as Window & {
-                    webkitSpeechRecognition?: SpeechRecognitionConstructor;
-                    SpeechRecognition?: SpeechRecognitionConstructor;
-                }).SpeechRecognition ||
-                    (window as Window & {
-                        webkitSpeechRecognition?: SpeechRecognitionConstructor;
-                    }).webkitSpeechRecognition)
-                : undefined;
-
-        if (!SpeechRecognition) return;
-
-        const recognition = new SpeechRecognition();
-        recognition.continuous = false;
-        recognition.interimResults = false;
-        recognition.lang = "en-US";
-        recognition.onresult = (event) => {
-            const transcript = Array.from(event.results)
-                .map((result) => result[0]?.transcript ?? "")
-                .join(" ")
-                .trim();
-
-            if (transcript) {
-                setSearchQuery(transcript);
-            }
-        };
-        recognition.onend = () => setIsListening(false);
-        recognition.onerror = () => setIsListening(false);
-
-        recognitionRef.current = recognition;
-        setSupportsVoiceInput(true);
-
-        return () => {
-            recognition.stop();
-            recognitionRef.current = null;
         };
     }, []);
 
@@ -165,19 +109,6 @@ export default function NavigationBar() {
         router.push(`/#${sectionId}`);
     };
 
-    const handleMicClick = () => {
-        if (!recognitionRef.current) return;
-
-        if (isListening) {
-            recognitionRef.current.stop();
-            setIsListening(false);
-            return;
-        }
-
-        setIsListening(true);
-        recognitionRef.current.start();
-    };
-
     const handleSearchSelect = (id: number, available: boolean) => {
         setSearchFocused(false);
 
@@ -187,7 +118,7 @@ export default function NavigationBar() {
         }
 
         setSearchQuery("");
-        router.push(`/scientists/${id}`);
+        router.push(`/scientists/${id}?from=search`);
     };
 
     const hideNavigation = pathname === "/login" || pathname === "/signup";
@@ -213,22 +144,15 @@ export default function NavigationBar() {
                             </div>
                             <input
                                 type="text"
-                                id="voice-search"
+                                id="site-search"
                                 value={searchQuery}
                                 onChange={(event) => setSearchQuery(event.target.value)}
+                                onInput={(event) => setSearchQuery(event.currentTarget.value)}
+                                onClick={() => setSearchFocused(true)}
                                 onFocus={() => setSearchFocused(true)}
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
+                                className="block w-full rounded-full border border-gray-300 bg-gray-50 p-2.5 pe-4 ps-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
                                 placeholder="Search scientists"
                             />
-                            <button
-                                type="button"
-                                onClick={handleMicClick}
-                                disabled={!supportsVoiceInput}
-                                className={`absolute inset-y-0 end-0 flex items-center pe-3 ${supportsVoiceInput ? "cursor-pointer" : "cursor-not-allowed opacity-40"}`}
-                                title={supportsVoiceInput ? "Use voice input" : "Voice input is not supported in this browser"}
-                            >
-                                <Mic className={`w-4 h-4 ${isListening ? "text-red-500" : "text-gray-900 hover:text-gray-900"}`} aria-label="Microphone" />
-                            </button>
 
                             {showSearchDropdown && (
                                 <div className="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-[1200] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl">
@@ -312,7 +236,6 @@ export default function NavigationBar() {
                                 <button type="button" onClick={() => handleSectionNavigation("map")} className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800 text-left">Map</button>
                                 <button type="button" onClick={() => handleSectionNavigation("quizzes")} className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800 text-left">Quizzes</button>
                                 <button type="button" onClick={() => handleSectionNavigation("news")} className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800 text-left">News</button>
-                                <Link onClick={() => setOpen(false)} href="/history" className={`px-4 py-3 hover:bg-gray-800 ${user ? "border-b border-gray-700" : ""}`}>History</Link>
                                 {user && (
                                     <button
                                         type="button"

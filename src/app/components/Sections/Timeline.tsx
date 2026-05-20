@@ -126,26 +126,6 @@ export default function Timeline() {
                     Move through scientists across centuries. The year is the best available timeline anchor from each profile, while the card highlights what they are remembered for.
                 </p>
 
-                <div className="mb-8 grid gap-4 border-y border-gray-200 py-4 text-sm text-gray-700 lg:grid-cols-[1fr_auto] lg:items-center">
-                    <div className="grid gap-3 sm:grid-cols-3">
-                        <div>
-                            <p className="font-semibold text-gray-900">Browse</p>
-                            <p>Use arrows to move through the timeline.</p>
-                        </div>
-                        <div>
-                            <p className="font-semibold text-gray-900">Select</p>
-                            <p>Click a year to focus one scientist.</p>
-                        </div>
-                        <div>
-                            <p className="font-semibold text-gray-900">Open</p>
-                            <p>Read the full profile for sources and context.</p>
-                        </div>
-                    </div>
-                    <p className="text-xs uppercase text-gray-500">
-                        {filteredScientists.length} visible of {scientists.length} profiles
-                    </p>
-                </div>
-
                 <div className="mb-6 flex flex-wrap gap-4 text-sm">
                     <div className="relative">
                         <button
@@ -325,42 +305,74 @@ export default function Timeline() {
                             </div>
                         </div>
 
-                        <article className="grid gap-8 border border-gray-300 bg-white p-6 shadow-md md:grid-cols-[minmax(15rem,0.65fr)_1fr]">
-                            {selectedScientist.image ? (
-                                <Image
-                                    src={selectedScientist.image}
-                                    alt={selectedScientist.name}
-                                    width={520}
-                                    height={420}
-                                    className="h-64 w-full object-cover"
-                                />
-                            ) : (
-                                <div className="flex h-64 w-full items-center justify-center border border-dashed border-gray-400 bg-gray-50 text-sm text-gray-500">
-                                    Photo placeholder
+                        <article className="relative overflow-hidden border-y border-gray-900 bg-[#fbfaf7] py-8 md:grid md:grid-cols-[minmax(12rem,0.45fr)_1fr] md:gap-10 md:py-10">
+                            <div className="relative px-6 pb-8 md:border-r md:border-gray-300 md:pb-0 md:pr-10">
+                                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gray-500">
+                                    Timeline anchor
+                                </p>
+                                <p className="mt-3 text-6xl font-bold leading-none text-black md:text-7xl">
+                                    {selectedScientist.timelineYear ?? selectedScientist.century}
+                                </p>
+                                <div className="mt-8 flex items-center gap-3">
+                                    <span className="h-5 w-5 rounded-full border-4 border-black bg-[#fbfaf7]"></span>
+                                    <span className="h-[3px] flex-1 bg-black"></span>
                                 </div>
-                            )}
+                                <div className="mt-8 space-y-4 text-sm">
+                                    <div>
+                                        <p className="text-xs uppercase tracking-[0.14em] text-gray-500">Position</p>
+                                        <p className="mt-1 font-semibold text-gray-900">
+                                            {selectedPosition} of {filteredScientists.length}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs uppercase tracking-[0.14em] text-gray-500">Field</p>
+                                        <p className="mt-1 font-semibold text-gray-900">{selectedScientist.field}</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs uppercase tracking-[0.14em] text-gray-500">Country</p>
+                                        <p className="mt-1 font-semibold text-gray-900">{selectedScientist.country}</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs uppercase tracking-[0.14em] text-gray-500">Era</p>
+                                        <p className="mt-1 font-semibold text-gray-900">{selectedScientist.century}</p>
+                                    </div>
+                                </div>
+                            </div>
 
-                            <div className="flex flex-col text-left">
-                                <div className="mb-4 flex flex-wrap items-center gap-2 text-xs text-gray-600">
+                            <div className="px-6 text-left md:pl-0 md:pr-8">
+                                <div className="flex flex-wrap items-center gap-2 text-xs text-gray-600">
                                     <span className="border border-gray-900 px-2 py-1 font-semibold text-gray-900">
-                                        {selectedScientist.timelineYear ?? selectedScientist.century}
+                                        Focused profile
                                     </span>
                                     <span className="border px-2 py-1">{selectedScientist.field}</span>
                                     <span className="border px-2 py-1">{selectedScientist.country}</span>
                                 </div>
-                                <p className="text-sm font-semibold uppercase text-gray-500">Known for</p>
-                                <h3 className="mt-2 text-3xl font-bold">{selectedScientist.name}</h3>
-                                <p className="mt-4 max-w-3xl text-lg leading-8 text-gray-700">{makePreview(selectedScientist.whatOpened)}</p>
-                                <p className="mt-4 max-w-3xl border-l-2 border-gray-900 pl-4 text-sm leading-6 text-gray-600">
-                                    {selectedScientist.shortBio}
+                                <p className="mt-6 text-sm font-semibold uppercase tracking-[0.14em] text-gray-500">
+                                    Known for
                                 </p>
+                                <h3 className="mt-2 text-3xl font-bold leading-tight md:text-4xl">
+                                    {selectedScientist.name}
+                                </h3>
+                                <p className="mt-5 max-w-4xl text-lg leading-8 text-gray-800">
+                                    {makePreview(selectedScientist.whatOpened)}
+                                </p>
+                                <div className="mt-6 border-l-4 border-black pl-5">
+                                    <p className="max-w-4xl text-sm leading-7 text-gray-600">
+                                        {selectedScientist.shortBio}
+                                    </p>
+                                </div>
 
-                                <Link
-                                    href={`/scientists/${selectedScientist.id}`}
-                                    className="mt-6 w-fit rounded-lg bg-black px-5 py-2 text-sm text-white hover:bg-gray-800"
-                                >
-                                    Open scientist profile
-                                </Link>
+                                <div className="mt-8 flex flex-col gap-4 border-t border-gray-300 pt-6 sm:flex-row sm:items-center sm:justify-between">
+                                    <p className="max-w-xl text-sm text-gray-600">
+                                        Trace the breakthroughs that slipped out of the spotlight, one story at a time.
+                                    </p>
+                                    <Link
+                                        href={`/scientists/${selectedScientist.id}?from=timeline`}
+                                        className="w-fit rounded-md bg-black px-5 py-2 text-sm text-white hover:bg-gray-800"
+                                    >
+                                        Open scientist profile
+                                    </Link>
+                                </div>
                             </div>
                         </article>
                     </>
