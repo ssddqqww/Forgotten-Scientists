@@ -39,10 +39,13 @@ export default function ExploreScientist() {
     };
 
     const filterButtonClass =
-        "flex items-center gap-2 pr-4 py-2 border-r cursor-pointer select-none";
+        "flex w-full cursor-pointer select-none items-center justify-between gap-3 rounded-full border border-gray-300 px-4 py-3 text-left text-sm text-gray-900 transition hover:bg-gray-50 md:w-auto md:justify-start md:gap-2 md:rounded-none md:border-0 md:border-r md:py-2 md:pl-0 md:pr-4 md:hover:bg-transparent";
+
+    const filterButtonPlainClass =
+        "flex w-full cursor-pointer select-none items-center justify-between gap-3 rounded-full border border-gray-300 px-4 py-3 text-left text-sm text-gray-900 transition hover:bg-gray-50 md:w-auto md:justify-start md:gap-2 md:rounded-none md:border-0 md:border-r md:py-2 md:pl-0 md:pr-4 md:hover:bg-transparent";
 
     const dropdownClass =
-        "absolute left-0 top-full z-20 mt-2 min-w-[220px] border border-gray-300 bg-white shadow-lg";
+        "absolute left-0 top-full z-[1120] mt-2 max-h-72 w-full min-w-0 overflow-y-auto rounded-xl border border-gray-300 bg-white shadow-lg md:w-auto md:min-w-[220px] md:rounded-none";
 
     const optionClass =
         "block w-full px-4 py-2 text-left text-sm hover:bg-gray-100";
@@ -56,8 +59,8 @@ export default function ExploreScientist() {
             </p>
 
             {/* Filter Tabs */}
-            <div className="flex flex-wrap gap-4 mb-6 text-sm">
-                <div className="relative">
+            <div className="mb-8 grid grid-cols-1 gap-3 text-sm sm:grid-cols-3 md:mb-6 md:flex md:flex-wrap md:gap-4">
+                <div className="relative min-w-0">
                     <button
                         type="button"
                         className={filterButtonClass}
@@ -92,7 +95,7 @@ export default function ExploreScientist() {
                     )}
                 </div>
 
-                <div className="relative">
+                <div className="relative min-w-0">
                     <button
                         type="button"
                         className={filterButtonClass}
@@ -127,10 +130,10 @@ export default function ExploreScientist() {
                     )}
                 </div>
 
-                <div className="relative">
+                <div className="relative min-w-0">
                     <button
                         type="button"
-                        className={filterButtonClass}
+                        className={filterButtonPlainClass}
                         onClick={() => setOpenMenu(openMenu === "century" ? null : "century")}
                     >
                         <Image
@@ -172,7 +175,7 @@ export default function ExploreScientist() {
                             setVisibleCount(8);
                             setOpenMenu(null);
                         }}
-                        className="px-4 py-2 border text-gray-700 hover:bg-gray-50"
+                        className="rounded-full border border-gray-300 px-4 py-3 text-gray-700 hover:bg-gray-50 sm:col-span-3 md:rounded-none md:py-2"
                     >
                         Clear filters
                     </button>

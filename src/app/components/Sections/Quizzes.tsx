@@ -59,10 +59,10 @@ export default function Quizzes() {
     };
 
     const filterButtonClass =
-        "flex items-center gap-2 pr-4 py-2 border-r cursor-pointer select-none";
+        "flex w-full cursor-pointer select-none items-center justify-between gap-3 rounded-full border border-gray-300 px-4 py-3 text-left text-sm text-gray-900 transition hover:bg-gray-50 md:w-auto md:justify-start md:gap-2 md:rounded-none md:border-0 md:border-r md:py-2 md:pl-0 md:pr-4 md:hover:bg-transparent";
 
     const dropdownClass =
-        "absolute left-0 top-full z-20 mt-2 min-w-[220px] border border-gray-300 bg-white shadow-lg";
+        "absolute left-0 top-full z-[1120] mt-2 max-h-72 w-full min-w-0 overflow-y-auto rounded-xl border border-gray-300 bg-white shadow-lg md:w-auto md:min-w-[220px] md:rounded-none";
 
     const optionClass =
         "block w-full px-4 py-2 text-left text-sm hover:bg-gray-100";
@@ -74,8 +74,8 @@ export default function Quizzes() {
                 Choose a field first, then narrow the quiz by challenge type.
             </p>
 
-            <div className="mb-4 flex flex-wrap items-center gap-4 text-sm">
-                <div className="relative">
+            <div className="mb-4 grid grid-cols-1 gap-3 text-sm md:flex md:flex-wrap md:items-center md:gap-4">
+                <div className="relative min-w-0">
                     <button
                         type="button"
                         className={filterButtonClass}
@@ -117,7 +117,7 @@ export default function Quizzes() {
                             handleFieldChange("");
                             handleCategoryChange("");
                         }}
-                        className="px-4 py-2 border text-gray-700 hover:bg-gray-50"
+                        className="rounded-full border border-gray-300 px-4 py-3 text-gray-700 hover:bg-gray-50 md:rounded-none md:py-2"
                     >
                         Clear filters
                     </button>
