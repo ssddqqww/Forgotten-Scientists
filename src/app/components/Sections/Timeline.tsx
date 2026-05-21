@@ -318,76 +318,73 @@ export default function Timeline() {
                             </div>
                         </div>
 
-                        <article className="relative overflow-hidden border-y border-gray-900 bg-[#fbfaf7] py-5 sm:grid sm:grid-cols-[minmax(12rem,0.45fr)_1fr] sm:gap-10 sm:py-10">
-                            <div className="relative px-4 pb-5 sm:border-r sm:border-gray-300 sm:px-6 sm:pb-0 sm:pr-10">
-                                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gray-500">
+                        <article className="relative overflow-hidden border-y border-gray-900 bg-[#fbfaf7] py-4 sm:grid sm:grid-cols-[minmax(12rem,0.45fr)_1fr] sm:gap-10 sm:py-10">
+                            <div className="relative px-4 pb-4 sm:border-r sm:border-gray-300 sm:px-6 sm:pb-0 sm:pr-10">
+                                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-gray-500 sm:text-xs sm:tracking-[0.18em]">
                                     Timeline anchor
                                 </p>
-                                <p className="mt-2 text-4xl font-bold leading-none text-black sm:mt-3 sm:text-7xl">
+                                <p className="mt-1 text-3xl font-bold leading-none text-black sm:mt-3 sm:text-7xl">
                                     {selectedScientist.timelineYear ?? selectedScientist.century}
                                 </p>
-                                <div className="mt-5 flex items-center gap-3 sm:mt-8">
+                                <div className="mt-5 hidden items-center gap-3 sm:flex sm:mt-8">
                                     <span className="h-4 w-4 rounded-full border-[3px] border-black bg-[#fbfaf7] sm:h-5 sm:w-5 sm:border-4"></span>
                                     <span className="h-[3px] flex-1 bg-black"></span>
                                 </div>
-                                <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 text-sm sm:mt-8 sm:block sm:space-y-4">
+                                <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-xs sm:mt-8 sm:block sm:space-y-4 sm:text-sm">
                                     <div>
-                                        <p className="text-xs uppercase tracking-[0.14em] text-gray-500">Position</p>
-                                        <p className="mt-1 font-semibold text-gray-900">
+                                        <p className="text-[0.65rem] uppercase tracking-[0.13em] text-gray-500 sm:text-xs sm:tracking-[0.14em]">Position</p>
+                                        <p className="mt-0.5 font-semibold text-gray-900 sm:mt-1">
                                             {selectedPosition} of {filteredScientists.length}
                                         </p>
                                     </div>
                                     <div>
-                                        <p className="text-xs uppercase tracking-[0.14em] text-gray-500">Field</p>
-                                        <p className="mt-1 font-semibold text-gray-900">{selectedScientist.field}</p>
+                                        <p className="text-[0.65rem] uppercase tracking-[0.13em] text-gray-500 sm:text-xs sm:tracking-[0.14em]">Field</p>
+                                        <p className="mt-0.5 font-semibold text-gray-900 sm:mt-1">{selectedScientist.field}</p>
                                     </div>
                                     <div>
-                                        <p className="text-xs uppercase tracking-[0.14em] text-gray-500">Country</p>
-                                        <p className="mt-1 font-semibold text-gray-900">{selectedScientist.country}</p>
+                                        <p className="text-[0.65rem] uppercase tracking-[0.13em] text-gray-500 sm:text-xs sm:tracking-[0.14em]">Country</p>
+                                        <p className="mt-0.5 font-semibold text-gray-900 sm:mt-1">{selectedScientist.country}</p>
                                     </div>
                                     <div>
-                                        <p className="text-xs uppercase tracking-[0.14em] text-gray-500">Era</p>
-                                        <p className="mt-1 font-semibold text-gray-900">{selectedScientist.century}</p>
+                                        <p className="text-[0.65rem] uppercase tracking-[0.13em] text-gray-500 sm:text-xs sm:tracking-[0.14em]">Era</p>
+                                        <p className="mt-0.5 font-semibold text-gray-900 sm:mt-1">{selectedScientist.century}</p>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="px-4 text-left sm:px-6 sm:pl-0 sm:pr-8">
-                                <div className="flex flex-wrap items-center gap-2 text-xs text-gray-600">
+                                <div className="hidden flex-wrap items-center gap-2 text-xs text-gray-600 sm:flex">
                                     <span className="border border-gray-900 px-2 py-1 font-semibold text-gray-900">
                                         Focused profile
                                     </span>
                                     <span className="border px-2 py-1">{selectedScientist.field}</span>
                                     <span className="border px-2 py-1">{selectedScientist.country}</span>
                                 </div>
-                                <p className="mt-6 text-sm font-semibold uppercase tracking-[0.14em] text-gray-500">
+                                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-gray-500 sm:mt-6 sm:text-sm">
                                     Known for
                                 </p>
-                                <h3 className="mt-2 text-xl font-bold leading-tight sm:text-4xl">
+                                <h3 className="mt-1.5 text-lg font-bold leading-tight sm:mt-2 sm:text-4xl">
                                     {selectedScientist.name}
                                 </h3>
-                                <p className="mt-4 max-w-4xl text-sm leading-6 text-gray-800 sm:hidden">
-                                    {makePreview(selectedScientist.whatOpened, 34)}
+                                <p className="mt-3 max-w-4xl text-[0.82rem] leading-5 text-gray-800 sm:hidden">
+                                    {makePreview(selectedScientist.whatOpened, 24)}
                                 </p>
                                 <p className="mt-5 hidden max-w-4xl text-lg leading-8 text-gray-800 sm:block">
                                     {makePreview(selectedScientist.whatOpened)}
                                 </p>
-                                <div className="mt-5 border-l-4 border-black pl-4 sm:mt-6 sm:pl-5">
-                                    <p className="max-w-4xl text-sm leading-6 text-gray-600 sm:hidden">
-                                        {makePreview(selectedScientist.shortBio, 26)}
-                                    </p>
+                                <div className="hidden border-l-4 border-black pl-4 sm:mt-6 sm:block sm:pl-5">
                                     <p className="hidden max-w-4xl text-sm leading-7 text-gray-600 sm:block">
                                         {selectedScientist.shortBio}
                                     </p>
                                 </div>
 
-                                <div className="mt-5 flex flex-col gap-4 border-t border-gray-300 pt-5 sm:mt-8 sm:flex-row sm:items-center sm:justify-between sm:pt-6">
-                                    <p className="max-w-xl text-sm text-gray-600">
+                                <div className="mt-4 flex flex-col gap-3 border-t border-gray-300 pt-4 sm:mt-8 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:pt-6">
+                                    <p className="hidden max-w-xl text-sm text-gray-600 sm:block">
                                         Trace the breakthroughs that slipped out of the spotlight, one story at a time.
                                     </p>
                                     <Link
                                         href={`/scientists/${selectedScientist.id}?from=timeline`}
-                                        className="w-full rounded-md bg-black px-5 py-2 text-center text-sm text-white hover:bg-gray-800 sm:w-fit"
+                                        className="w-full rounded-md bg-black px-5 py-2.5 text-center text-sm text-white hover:bg-gray-800 sm:w-fit sm:py-2"
                                     >
                                         Open scientist profile
                                     </Link>

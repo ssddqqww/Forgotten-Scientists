@@ -132,13 +132,13 @@ export default function ScientistDayWeek() {
         )}
       </div>
 
-      <div className="mt-10 grid grid-cols-1 gap-3 text-left sm:hidden">
+      <div className="mx-auto mt-8 flex max-w-[19rem] flex-wrap justify-center gap-2.5 text-left sm:hidden">
         <button
           type="button"
-          className="flex items-center justify-start gap-4 rounded-full border border-gray-300 px-4 py-3 transition hover:bg-gray-50"
+          className="inline-flex min-w-[8.4rem] items-center justify-center gap-2 rounded-full border border-gray-300 px-3 py-2.5 transition hover:bg-gray-50"
           onClick={() => smoothScrollToId("scientists")}
         >
-          <div className="flex h-10 w-10 items-center justify-center overflow-hidden">
+          <div className="flex h-7 w-7 items-center justify-center overflow-hidden">
             <Image
               src="/icons/Flask_light.png"
               alt="Scientists"
@@ -147,43 +147,43 @@ export default function ScientistDayWeek() {
               className="h-full w-full scale-125 object-cover"
             />
           </div>
-          <span className="text-base font-medium">Scientists</span>
+          <span className="text-sm font-medium">Scientists</span>
         </button>
 
         <button
           type="button"
-          className="flex items-center justify-start gap-4 rounded-full border border-gray-300 px-4 py-3 transition hover:bg-gray-50"
+          className="inline-flex min-w-[8.4rem] items-center justify-center gap-2 rounded-full border border-gray-300 px-3 py-2.5 transition hover:bg-gray-50"
           onClick={() => smoothScrollToId("timeline")}
         >
-          <Image className="h-10 w-10 object-contain" src="/icons/Hourglass_light.png" alt="Timeline" width={64} height={64} />
-          <span className="text-base font-medium">Timeline</span>
+          <Image className="h-7 w-7 object-contain" src="/icons/Hourglass_light.png" alt="Timeline" width={64} height={64} />
+          <span className="text-sm font-medium">Timeline</span>
         </button>
 
         <button
           type="button"
-          className="flex items-center justify-start gap-4 rounded-full border border-gray-300 px-4 py-3 transition hover:bg-gray-50"
+          className="inline-flex min-w-[8.4rem] items-center justify-center gap-2 rounded-full border border-gray-300 px-3 py-2.5 transition hover:bg-gray-50"
           onClick={() => smoothScrollToId("map")}
         >
-          <Image className="h-10 w-10 object-contain" src="/icons/Map.png" alt="Map" width={64} height={64} />
-          <span className="text-base font-medium">Map</span>
+          <Image className="h-7 w-7 object-contain" src="/icons/Map.png" alt="Map" width={64} height={64} />
+          <span className="text-sm font-medium">Map</span>
         </button>
 
         <button
           type="button"
-          className="flex items-center justify-start gap-4 rounded-full border border-gray-300 px-4 py-3 transition hover:bg-gray-50"
+          className="inline-flex min-w-[8.4rem] items-center justify-center gap-2 rounded-full border border-gray-300 px-3 py-2.5 transition hover:bg-gray-50"
           onClick={() => smoothScrollToId("quizzes")}
         >
-          <Image className="h-10 w-10 object-contain" src="/icons/Waterfall.png" alt="Quizzes" width={64} height={64} />
-          <span className="text-base font-medium">Quizzes</span>
+          <Image className="h-7 w-7 object-contain" src="/icons/Waterfall.png" alt="Quizzes" width={64} height={64} />
+          <span className="text-sm font-medium">Quizzes</span>
         </button>
 
         <button
           type="button"
-          className="flex items-center justify-start gap-4 rounded-full border border-gray-300 px-4 py-3 transition hover:bg-gray-50"
+          className="inline-flex min-w-[8.4rem] items-center justify-center gap-2 rounded-full border border-gray-300 px-3 py-2.5 transition hover:bg-gray-50"
           onClick={() => smoothScrollToId("news")}
         >
-          <Image className="h-10 w-10 object-contain" src="/icons/globe.png" alt="News" width={64} height={64} />
-          <span className="text-base font-medium">News</span>
+          <Image className="h-7 w-7 object-contain" src="/icons/globe.png" alt="News" width={64} height={64} />
+          <span className="text-sm font-medium">News</span>
         </button>
       </div>
 
