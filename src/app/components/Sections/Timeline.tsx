@@ -122,12 +122,12 @@ export default function Timeline() {
     };
 
     return (
-        <section id="timeline" className="scroll-mt-24 pt-16 pb-28 md:pt-20 md:pb-40">
+        <section id="timeline" className="scroll-mt-24 pt-14 pb-24 sm:pt-20 sm:pb-40">
             <div className="text-start">
-                <h2 className="mb-3 text-[2.75rem] font-bold leading-[1.03] md:mb-2 md:text-5xl md:leading-none">
+                <h2 className="mb-3 max-w-[20rem] text-[2.35rem] font-bold leading-[1.02] sm:mb-2 sm:max-w-none sm:text-5xl sm:leading-none">
                     Timeline of Forgotten Scientists
                 </h2>
-                <p className="mb-7 max-w-4xl text-base leading-7 text-gray-600 md:mb-6">
+                <p className="mb-6 max-w-[21rem] text-sm leading-6 text-gray-600 sm:mb-6 sm:max-w-4xl sm:text-base sm:leading-7">
                     Move through scientists across centuries. The year is the best available timeline anchor from each profile, while the card highlights what they are remembered for.
                 </p>
 
@@ -237,8 +237,8 @@ export default function Timeline() {
 
                 {timelineMarkers.length > 0 && selectedScientist ? (
                     <>
-                        <div className="relative mb-8 mt-10 md:mb-10 md:mt-12">
-                            <div className="mb-3 flex flex-wrap items-center justify-between gap-3 text-xs text-gray-600 md:text-sm">
+                        <div className="relative mb-8 mt-8 sm:mb-10 sm:mt-12">
+                            <div className="mb-3 flex flex-wrap items-center justify-between gap-3 text-xs text-gray-600 sm:text-sm">
                                 <span>
                                     Showing {markerStart + 1}-{Math.min(markerStart + timelineMarkers.length, filteredScientists.length)} of {filteredScientists.length}
                                 </span>
@@ -257,23 +257,23 @@ export default function Timeline() {
                                 </span>
                             </div>
 
-                            <div className="flex items-center gap-2 md:gap-4">
+                            <div className="flex items-center gap-2 sm:gap-4">
                                 <button
                                     type="button"
                                     onClick={handlePreviousMarker}
                                     disabled={markerStart === 0}
-                                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-900 bg-white text-gray-900 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-35 md:h-11 md:w-11"
+                                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-900 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-35 sm:h-11 sm:w-11 sm:border-gray-900"
                                     aria-label="Previous timeline dates"
                                 >
-                                    <ChevronLeft size={22} />
+                                    <ChevronLeft className="h-5 w-5 sm:h-[22px] sm:w-[22px]" />
                                 </button>
 
-                                <div className="relative min-h-14 flex-1 px-1 md:min-h-24 md:px-2">
-                                    <div className="absolute left-0 right-0 top-5 border-t-4 border-gray-900 md:top-12"></div>
-                                    <div className="absolute right-0 top-[14px] h-5 w-5 rotate-45 border-r-4 border-t-4 border-gray-900 md:top-[42px]"></div>
+                                <div className="relative min-h-12 flex-1 px-0.5 sm:min-h-24 sm:px-2">
+                                    <div className="absolute left-0 right-0 top-5 border-t-[3px] border-gray-900 sm:top-12 sm:border-t-4"></div>
+                                    <div className="absolute right-0 top-[42px] hidden h-5 w-5 rotate-45 border-r-4 border-t-4 border-gray-900 sm:block"></div>
 
                                     <div
-                                        className="relative z-10 grid min-h-14 items-start md:min-h-24"
+                                        className="relative z-10 grid min-h-12 items-start sm:min-h-24"
                                         style={{ gridTemplateColumns: `repeat(${timelineMarkers.length}, minmax(0, 1fr))` }}
                                     >
                                         {timelineMarkers.map((item, index) => {
@@ -287,17 +287,17 @@ export default function Timeline() {
                                                     onClick={() => setSelectedIndex(globalIndex)}
                                                     className="group flex flex-col items-center text-center"
                                                 >
-                                                    <span className={`hidden md:mb-4 md:block md:text-lg md:font-bold ${isSelected ? "text-black" : "text-gray-700"}`}>
+                                                    <span className={`hidden sm:mb-4 sm:block sm:text-lg sm:font-bold ${isSelected ? "text-black" : "text-gray-700"}`}>
                                                         {item.timelineYear ?? item.century}
                                                     </span>
                                                     <span
-                                                        className={`mt-1 h-7 w-7 rounded-full border-2 transition md:mt-0 md:h-8 md:w-8 ${
+                                                        className={`mt-2 h-6 w-6 rounded-full border-2 transition sm:mt-0 sm:h-8 sm:w-8 ${
                                                             isSelected
                                                                 ? "border-black bg-black"
                                                                 : "border-gray-700 bg-gray-100 group-hover:bg-gray-200"
                                                         }`}
                                                     ></span>
-                                                    <span className="mt-3 hidden max-w-32 text-xs font-semibold text-gray-700 md:block">
+                                                    <span className="mt-3 hidden max-w-32 text-xs font-semibold text-gray-700 sm:block">
                                                         {item.name}
                                                     </span>
                                                 </button>
@@ -310,27 +310,27 @@ export default function Timeline() {
                                     type="button"
                                     onClick={handleNextMarker}
                                     disabled={markerStart >= maxMarkerStart}
-                                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-900 bg-white text-gray-900 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-35 md:h-11 md:w-11"
+                                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-900 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-35 sm:h-11 sm:w-11 sm:border-gray-900"
                                     aria-label="Next timeline dates"
                                 >
-                                    <ChevronRight size={22} />
+                                    <ChevronRight className="h-5 w-5 sm:h-[22px] sm:w-[22px]" />
                                 </button>
                             </div>
                         </div>
 
-                        <article className="relative overflow-hidden border-y border-gray-900 bg-[#fbfaf7] py-7 md:grid md:grid-cols-[minmax(12rem,0.45fr)_1fr] md:gap-10 md:py-10">
-                            <div className="relative px-5 pb-8 md:border-r md:border-gray-300 md:px-6 md:pb-0 md:pr-10">
+                        <article className="relative overflow-hidden border-y border-gray-900 bg-[#fbfaf7] py-5 sm:grid sm:grid-cols-[minmax(12rem,0.45fr)_1fr] sm:gap-10 sm:py-10">
+                            <div className="relative px-4 pb-5 sm:border-r sm:border-gray-300 sm:px-6 sm:pb-0 sm:pr-10">
                                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gray-500">
                                     Timeline anchor
                                 </p>
-                                <p className="mt-3 text-5xl font-bold leading-none text-black md:text-7xl">
+                                <p className="mt-2 text-4xl font-bold leading-none text-black sm:mt-3 sm:text-7xl">
                                     {selectedScientist.timelineYear ?? selectedScientist.century}
                                 </p>
-                                <div className="mt-8 flex items-center gap-3">
-                                    <span className="h-5 w-5 rounded-full border-4 border-black bg-[#fbfaf7]"></span>
+                                <div className="mt-5 flex items-center gap-3 sm:mt-8">
+                                    <span className="h-4 w-4 rounded-full border-[3px] border-black bg-[#fbfaf7] sm:h-5 sm:w-5 sm:border-4"></span>
                                     <span className="h-[3px] flex-1 bg-black"></span>
                                 </div>
-                                <div className="mt-8 space-y-4 text-sm">
+                                <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 text-sm sm:mt-8 sm:block sm:space-y-4">
                                     <div>
                                         <p className="text-xs uppercase tracking-[0.14em] text-gray-500">Position</p>
                                         <p className="mt-1 font-semibold text-gray-900">
@@ -352,7 +352,7 @@ export default function Timeline() {
                                 </div>
                             </div>
 
-                            <div className="px-5 text-left md:px-6 md:pl-0 md:pr-8">
+                            <div className="px-4 text-left sm:px-6 sm:pl-0 sm:pr-8">
                                 <div className="flex flex-wrap items-center gap-2 text-xs text-gray-600">
                                     <span className="border border-gray-900 px-2 py-1 font-semibold text-gray-900">
                                         Focused profile
@@ -363,19 +363,25 @@ export default function Timeline() {
                                 <p className="mt-6 text-sm font-semibold uppercase tracking-[0.14em] text-gray-500">
                                     Known for
                                 </p>
-                                <h3 className="mt-2 text-2xl font-bold leading-tight md:text-4xl">
+                                <h3 className="mt-2 text-xl font-bold leading-tight sm:text-4xl">
                                     {selectedScientist.name}
                                 </h3>
-                                <p className="mt-5 max-w-4xl text-base leading-7 text-gray-800 md:text-lg md:leading-8">
+                                <p className="mt-4 max-w-4xl text-sm leading-6 text-gray-800 sm:hidden">
+                                    {makePreview(selectedScientist.whatOpened, 34)}
+                                </p>
+                                <p className="mt-5 hidden max-w-4xl text-lg leading-8 text-gray-800 sm:block">
                                     {makePreview(selectedScientist.whatOpened)}
                                 </p>
-                                <div className="mt-6 border-l-4 border-black pl-5">
-                                    <p className="max-w-4xl text-sm leading-7 text-gray-600">
+                                <div className="mt-5 border-l-4 border-black pl-4 sm:mt-6 sm:pl-5">
+                                    <p className="max-w-4xl text-sm leading-6 text-gray-600 sm:hidden">
+                                        {makePreview(selectedScientist.shortBio, 26)}
+                                    </p>
+                                    <p className="hidden max-w-4xl text-sm leading-7 text-gray-600 sm:block">
                                         {selectedScientist.shortBio}
                                     </p>
                                 </div>
 
-                                <div className="mt-8 flex flex-col gap-4 border-t border-gray-300 pt-6 sm:flex-row sm:items-center sm:justify-between">
+                                <div className="mt-5 flex flex-col gap-4 border-t border-gray-300 pt-5 sm:mt-8 sm:flex-row sm:items-center sm:justify-between sm:pt-6">
                                     <p className="max-w-xl text-sm text-gray-600">
                                         Trace the breakthroughs that slipped out of the spotlight, one story at a time.
                                     </p>

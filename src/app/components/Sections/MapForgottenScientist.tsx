@@ -177,7 +177,7 @@ export default function MapForgottenScientist() {
 
   if (!L)
     return (
-      <section id="map" className="scroll-mt-24 pt-16 pb-28 md:pt-12 md:pb-20">
+      <section id="map" className="scroll-mt-24 pt-14 pb-24 sm:pt-12 sm:pb-20">
         <div className="flex h-96 items-center justify-center text-lg font-semibold">
           Loading scientist map...
         </div>
@@ -185,12 +185,12 @@ export default function MapForgottenScientist() {
     );
 
   return (
-    <section id="map" className="scroll-mt-24 pt-16 pb-28 md:pt-12 md:pb-20">
-      <div className="max-w-7xl mx-auto px-0 md:px-4">
+    <section id="map" className="scroll-mt-24 pt-14 pb-24 sm:pt-12 sm:pb-20">
+      <div className="max-w-7xl mx-auto px-0 sm:px-4">
         <div className="mb-8 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
-            <h1 className="text-[2.5rem] font-bold leading-tight md:text-4xl md:leading-none">Map of Forgotten Scientists</h1>
-            <p className="mt-2 text-base leading-7 text-gray-600 md:mt-0">
+            <h1 className="text-[2.15rem] font-bold leading-[1.05] sm:text-4xl sm:leading-none">Map of Forgotten Scientists</h1>
+            <p className="mt-2 text-sm leading-6 text-gray-600 sm:text-base sm:leading-7 md:mt-0">
               {filtered.length} of {mappedScientists.length} scientists shown from verified profile locations
             </p>
           </div>
@@ -316,13 +316,13 @@ export default function MapForgottenScientist() {
         </div>
 
         <div className="relative rounded-2xl overflow-hidden shadow-xl">
-          <div className="min-h-[460px] w-full md:min-h-[620px]">
+          <div className="min-h-[420px] w-full sm:min-h-[620px]">
             <MapContainer
               center={center}
               zoom={2}
               minZoom={2}
               scrollWheelZoom
-              className="h-[460px] w-full md:h-[620px]"
+              className="h-[420px] w-full sm:h-[620px]"
             >
               <TileLayer url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"} />
 

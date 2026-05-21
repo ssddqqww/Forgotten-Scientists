@@ -68,9 +68,9 @@ export default function Quizzes() {
         "block w-full px-4 py-2 text-left text-sm hover:bg-gray-100";
 
     return (
-        <section id="quizzes" className="scroll-mt-24 pt-20 pb-40">
-            <h2 className="text-5xl font-bold mb-2">Quizzes</h2>
-            <p className="text-gray-600 mb-6">
+        <section id="quizzes" className="scroll-mt-24 pt-14 pb-28 sm:pt-20 sm:pb-40">
+            <h2 className="mb-2 text-[2.75rem] font-bold leading-none sm:text-5xl">Quizzes</h2>
+            <p className="mb-6 text-sm leading-6 text-gray-600 sm:text-base sm:leading-normal">
                 Choose a field first, then narrow the quiz by challenge type.
             </p>
 
@@ -132,7 +132,7 @@ export default function Quizzes() {
                     <button
                         type="button"
                         onClick={() => handleCategoryChange("")}
-                        className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
+                        className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition sm:px-4 sm:py-2 sm:text-sm ${
                             !categoryFilter
                                 ? "border-black bg-black text-white"
                                 : "border-gray-300 text-gray-700 hover:border-black"
@@ -145,7 +145,7 @@ export default function Quizzes() {
                             key={category}
                             type="button"
                             onClick={() => handleCategoryChange(category)}
-                            className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
+                            className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition sm:px-4 sm:py-2 sm:text-sm ${
                                 categoryFilter === category
                                     ? "border-black bg-black text-white"
                                     : "border-gray-300 text-gray-700 hover:border-black"
@@ -160,25 +160,25 @@ export default function Quizzes() {
                 </p>
             </div>
 
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
                 {visibleQuizzes.map((quiz) => {
                     const styles = categoryStyles[quiz.category];
 
                     return (
                         <div
                             key={quiz.slug}
-                            className={`group relative flex min-h-[520px] flex-col items-start overflow-hidden rounded-md border p-4 pb-16 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${styles.card}`}
+                            className={`group relative flex flex-col items-start overflow-hidden rounded-md border p-3 pb-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:min-h-[520px] sm:p-4 sm:pb-16 ${styles.card}`}
                         >
                             <div className={`absolute left-0 top-0 h-1.5 w-full ${styles.bar}`} />
-                            <div className="mb-3 flex min-h-16 w-full items-start justify-between gap-3 pt-2">
-                                <h3 className="text-lg font-bold leading-tight text-gray-950">{quiz.title}</h3>
-                                <span className={`shrink-0 border px-2 py-1 text-xs font-semibold ${styles.badge}`}>
+                            <div className="mb-3 flex w-full items-start justify-between gap-3 pt-1 sm:min-h-16 sm:pt-2">
+                                <h3 className="text-base font-bold leading-tight text-gray-950 sm:text-lg">{quiz.title}</h3>
+                                <span className={`shrink-0 border px-2 py-1 text-[0.65rem] font-semibold sm:text-xs ${styles.badge}`}>
                                     {quiz.category}
                                 </span>
                             </div>
 
                             {quiz.image ? (
-                                <div className="mb-4 w-full overflow-hidden rounded-md border border-black/10 bg-white">
+                                <div className="mb-3 w-full overflow-hidden rounded-md border border-black/10 bg-white sm:mb-4">
                                     <Image
                                         src={quiz.image}
                                         alt={quiz.title}
@@ -188,20 +188,20 @@ export default function Quizzes() {
                                     />
                                 </div>
                             ) : (
-                                <div className="mb-4 flex aspect-[4/3] w-full items-center justify-center rounded-md border border-dashed border-gray-400 bg-gray-50 text-sm text-gray-500">
+                                <div className="mb-3 flex aspect-[4/3] w-full items-center justify-center rounded-md border border-dashed border-gray-400 bg-gray-50 text-sm text-gray-500 sm:mb-4">
                                     Quiz image placeholder
                                 </div>
                             )}
 
-                            <p className="text-base leading-7 text-gray-900">{quiz.description}</p>
-                            <div className="mt-3 flex flex-wrap gap-2 text-xs text-gray-600">
+                            <p className="text-sm leading-6 text-gray-900 sm:text-base sm:leading-7">{quiz.description}</p>
+                            <div className="mt-2.5 flex flex-wrap gap-2 text-xs text-gray-600 sm:mt-3">
                                 <span className={`border px-2 py-1 ${styles.meta}`}>{quiz.field}</span>
                                 <span className={`border px-2 py-1 ${styles.meta}`}>{quiz.questions.length} questions</span>
                                 <span className={`border px-2 py-1 ${styles.meta}`}>{quiz.scientistNames.length} scientists</span>
                             </div>
                             <Link
                                 href={`/quizzes/${quiz.slug}`}
-                                className="absolute bottom-4 left-4 mt-3 rounded-md bg-black px-4 py-2 text-sm font-semibold text-white"
+                                className="mt-4 rounded-md bg-black px-4 py-2 text-sm font-semibold text-white sm:absolute sm:bottom-4 sm:left-4 sm:mt-3"
                             >
                                 Take Quiz
                             </Link>
