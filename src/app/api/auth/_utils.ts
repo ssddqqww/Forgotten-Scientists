@@ -3,16 +3,31 @@ import { NextResponse, type NextRequest } from "next/server";
 import {
   SESSION_COOKIE,
   SESSION_MAX_AGE_SECONDS,
+  consumeRateLimit,
   createSession,
   getUserBySessionToken,
 } from "../../lib/auth-server";
 
-const attempts = new Map<string, { count: number; resetAt: number }>();
-const WINDOW_MS = 10 * 60 * 1000;
-const MAX_ATTEMPTS = 20;
+type RateLimitOptions = {
+  maxAttempts: number;
+  windowSeconds: number;
+};
 
 export const jsonError = (message: string, status = 400) =>
-  NextResponse.json({ message }, { status });
+  NextResponse.json(
+    { message },
+    {
+      status,
+      headers: {
+        "Cache-Control": "no-store",
+      },
+    }
+  );
+
+export const noStore = <T extends NextResponse>(response: T) => {
+  response.headers.set("Cache-Control", "no-store");
+  return response;
+};
 
 export const getSessionToken = (request: NextRequest) =>
   request.cookies.get(SESSION_COOKIE)?.value;
@@ -46,18 +61,66 @@ export const clearSessionCookie = (response: NextResponse) => {
   });
 };
 
-export const isRateLimited = (request: NextRequest, scope: string) => {
-  const forwardedFor = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
-  const ip = forwardedFor || request.headers.get("x-real-ip") || "local";
-  const key = `${scope}:${ip}`;
-  const now = Date.now();
-  const current = attempts.get(key);
+const getForwardedOrigin = (request: NextRequest) => {
+  const host = request.headers.get("x-forwarded-host") ?? request.headers.get("host");
+  const protocol =
+    request.headers.get("x-forwarded-proto") ?? request.nextUrl.protocol.replace(/:$/, "");
 
-  if (!current || current.resetAt <= now) {
-    attempts.set(key, { count: 1, resetAt: now + WINDOW_MS });
-    return false;
+  return host ? `${protocol}://${host}` : request.nextUrl.origin;
+};
+
+const getConfiguredOrigins = () =>
+  [process.env.APP_ORIGIN, ...(process.env.ALLOWED_ORIGINS?.split(",") ?? [])]
+    .map((origin) => origin?.trim())
+    .filter((origin): origin is string => Boolean(origin));
+
+export const rejectUntrustedOrigin = (request: NextRequest) => {
+  if (request.method === "GET" || request.method === "HEAD" || request.method === "OPTIONS") {
+    return null;
   }
 
-  current.count += 1;
-  return current.count > MAX_ATTEMPTS;
+  const origin = request.headers.get("origin");
+  const fetchSite = request.headers.get("sec-fetch-site");
+  const trustedOrigins = new Set([
+    request.nextUrl.origin,
+    getForwardedOrigin(request),
+    ...getConfiguredOrigins(),
+  ]);
+
+  if (origin && !trustedOrigins.has(origin)) {
+    return jsonError("Invalid request origin.", 403);
+  }
+
+  if (!origin && fetchSite === "cross-site") {
+    return jsonError("Invalid request origin.", 403);
+  }
+
+  return null;
+};
+
+export const getClientIdentifier = (request: NextRequest) => {
+  const forwardedFor = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+  return forwardedFor || request.headers.get("x-real-ip") || "local";
+};
+
+export const enforceRateLimit = async (
+  request: NextRequest,
+  scope: string,
+  subject: string,
+  options: RateLimitOptions
+) => {
+  const result = await consumeRateLimit({
+    scope,
+    subject,
+    maxAttempts: options.maxAttempts,
+    windowSeconds: options.windowSeconds,
+  });
+
+  if (result.allowed) {
+    return null;
+  }
+
+  const response = jsonError("Too many attempts. Please try again later.", 429);
+  response.headers.set("Retry-After", String(result.retryAfterSeconds));
+  return response;
 };

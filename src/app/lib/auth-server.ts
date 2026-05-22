@@ -1,3 +1,5 @@
+import "server-only";
+
 import { createHash, randomBytes, scryptSync, timingSafeEqual } from "node:crypto";
 
 import type { StoredUser } from "./auth-types";
@@ -18,6 +20,11 @@ type UserRow = {
 
 type SessionRow = {
   user_id: number;
+};
+
+type RateLimitRow = {
+  allowed: boolean;
+  retry_after_seconds: number;
 };
 
 type SupabaseRequestOptions = {
@@ -172,8 +179,34 @@ const verifyPassword = (password: string, storedHash: string) => {
 const hashSessionToken = (token: string) =>
   createHash("sha256").update(token).digest("base64url");
 
+const hashRateLimitSubject = (subject: string) =>
+  createHash("sha256").update(subject).digest("base64url");
+
 const isDuplicateEmailError = (error: unknown) =>
   error instanceof AuthStorageRequestError && error.status === 409;
+
+export const consumeRateLimit = async (input: {
+  scope: string;
+  subject: string;
+  maxAttempts: number;
+  windowSeconds: number;
+}) => {
+  const rows = await supabaseRequest<RateLimitRow[]>("rpc/consume_rate_limit", {
+    method: "POST",
+    body: {
+      p_scope: input.scope,
+      p_subject_hash: hashRateLimitSubject(input.subject),
+      p_max_attempts: input.maxAttempts,
+      p_window_seconds: input.windowSeconds,
+    },
+  });
+  const result = rows[0];
+
+  return {
+    allowed: result?.allowed ?? true,
+    retryAfterSeconds: result?.retry_after_seconds ?? input.windowSeconds,
+  };
+};
 
 export const validateSignupInput = (input: {
   fullName?: unknown;
@@ -319,6 +352,24 @@ export const deleteSession = async (token?: string) => {
   });
 };
 
+const normalizeOptionalProfileText = (value: string | undefined, maxLength: number) => {
+  if (value === undefined) {
+    return { ok: true as const, value: null };
+  }
+
+  const normalized = value.trim();
+
+  if (!normalized) {
+    return { ok: true as const, value: null };
+  }
+
+  if (normalized.length > maxLength) {
+    return { ok: false as const };
+  }
+
+  return { ok: true as const, value: normalized };
+};
+
 export const updateUserProfile = async (
   userId: number,
   updates: Partial<
@@ -340,16 +391,34 @@ export const updateUserProfile = async (
     return null;
   }
 
+  const username = normalizeOptionalProfileText(updates.username, 40);
+  const pronouns = normalizeOptionalProfileText(updates.pronouns, 40);
+  const phone = normalizeOptionalProfileText(updates.phone, 40);
+  const bio = normalizeOptionalProfileText(updates.bio, 1000);
+  const favoriteField = normalizeOptionalProfileText(updates.favoriteField, 80);
+  const preferredSection = normalizeOptionalProfileText(updates.preferredSection, 80);
+
+  if (
+    !username.ok ||
+    !pronouns.ok ||
+    !phone.ok ||
+    !bio.ok ||
+    !favoriteField.ok ||
+    !preferredSection.ok
+  ) {
+    return null;
+  }
+
   const body: Record<string, string | null> = {};
 
   if (fullName !== undefined) body.full_name = fullName;
-  if (updates.username !== undefined) body.username = updates.username.trim() || null;
-  if (updates.pronouns !== undefined) body.pronouns = updates.pronouns || null;
-  if (updates.phone !== undefined) body.phone = updates.phone.trim() || null;
-  if (updates.bio !== undefined) body.bio = updates.bio || null;
-  if (updates.favoriteField !== undefined) body.favorite_field = updates.favoriteField || null;
+  if (updates.username !== undefined) body.username = username.value;
+  if (updates.pronouns !== undefined) body.pronouns = pronouns.value;
+  if (updates.phone !== undefined) body.phone = phone.value;
+  if (updates.bio !== undefined) body.bio = bio.value;
+  if (updates.favoriteField !== undefined) body.favorite_field = favoriteField.value;
   if (updates.preferredSection !== undefined) {
-    body.preferred_section = updates.preferredSection || null;
+    body.preferred_section = preferredSection.value;
   }
 
   if (Object.keys(body).length === 0) {
