@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { AUTH_CHANGE_EVENT, getCurrentUser, logoutUser, type StoredUser } from "../../lib/auth";
 import { announceHomeSection, type HomeSectionId } from "../../lib/homeSections";
-import { smoothScrollToDesktopSection, smoothScrollToId } from "../../lib/smoothScroll";
+import { smoothScrollToId } from "../../lib/smoothScroll";
 import { scientistDirectory } from "../../../../data/scientistDirectory";
 
 export default function NavigationBar() {
@@ -103,12 +103,6 @@ export default function NavigationBar() {
 
         if (pathname === "/") {
             window.history.pushState({}, "", `/#${sectionId}`);
-
-            if (window.matchMedia("(min-width: 1024px)").matches) {
-                smoothScrollToDesktopSection(sectionId);
-                return;
-            }
-
             announceHomeSection(sectionId);
             window.setTimeout(() => smoothScrollToId("explore-workspace"), 0);
             return;

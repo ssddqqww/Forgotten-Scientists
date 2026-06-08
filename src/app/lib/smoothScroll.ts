@@ -17,16 +17,6 @@ export function smoothScrollToId(id: string) {
   smoothScrollToElement(element);
 }
 
-export function smoothScrollToDesktopSection(id: string) {
-  const element = document.querySelector<HTMLElement>(
-    `#desktop-home-sections #${id}`,
-  );
-
-  if (!element) return;
-
-  smoothScrollToElement(element);
-}
-
 function smoothScrollToElement(element: HTMLElement) {
   const startY = window.scrollY;
   const targetY = element.getBoundingClientRect().top + window.scrollY - NAV_OFFSET;
