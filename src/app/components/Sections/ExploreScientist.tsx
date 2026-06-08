@@ -51,7 +51,7 @@ export default function ExploreScientist() {
         "block w-full px-4 py-2 text-left text-sm hover:bg-gray-100";
 
     return (
-<section id="scientists" className="scroll-mt-24 pt-12 pb-28 sm:pt-20 sm:pb-40">
+<section id="scientists" className="scroll-mt-24 pb-12 pt-2 sm:pb-16 sm:pt-4">
     <h2 className="mb-2 text-[2.85rem] font-bold leading-none sm:text-5xl">Explore Scientists</h2>
             <p className="mb-6 text-sm leading-6 text-gray-600 sm:text-base sm:leading-normal">
                 Browse scientists by field, country, or century. Click on a card to

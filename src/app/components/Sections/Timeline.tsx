@@ -122,7 +122,7 @@ export default function Timeline() {
     };
 
     return (
-        <section id="timeline" className="scroll-mt-24 pt-14 pb-24 sm:pt-20 sm:pb-40">
+        <section id="timeline" className="scroll-mt-24 pb-12 pt-2 sm:pb-16 sm:pt-4">
             <div className="text-start">
                 <h2 className="mb-3 max-w-[20rem] text-[2.35rem] font-bold leading-[1.02] sm:mb-2 sm:max-w-none sm:text-5xl sm:leading-none">
                     Timeline of Forgotten Scientists

@@ -34,7 +34,7 @@ export default function News() {
   };
 
   return (
-    <section id="news" className="scroll-mt-24 pt-16 pb-28 md:pt-20 md:pb-40">
+    <section id="news" className="scroll-mt-24 pb-12 pt-2 sm:pb-16 sm:pt-4">
       <h2 className="mb-2 text-4xl font-bold md:text-5xl">News</h2>
       <p className="mb-6 text-base leading-7 text-gray-600">
         Discover anniversaries, archive discoveries, project updates, and short facts.

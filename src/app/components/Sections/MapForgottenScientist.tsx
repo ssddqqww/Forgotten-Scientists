@@ -177,7 +177,7 @@ export default function MapForgottenScientist() {
 
   if (!L)
     return (
-      <section id="map" className="scroll-mt-24 pt-14 pb-24 sm:pt-12 sm:pb-20">
+      <section id="map" className="scroll-mt-24 pb-12 pt-2 sm:pb-16 sm:pt-4">
         <div className="flex h-96 items-center justify-center text-lg font-semibold">
           Loading scientist map...
         </div>
@@ -185,7 +185,7 @@ export default function MapForgottenScientist() {
     );
 
   return (
-    <section id="map" className="scroll-mt-24 pt-14 pb-24 sm:pt-12 sm:pb-20">
+    <section id="map" className="scroll-mt-24 pb-12 pt-2 sm:pb-16 sm:pt-4">
       <div className="max-w-7xl mx-auto px-0 sm:px-4">
         <div className="mb-8 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>

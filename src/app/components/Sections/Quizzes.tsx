@@ -68,7 +68,7 @@ export default function Quizzes() {
         "block w-full px-4 py-2 text-left text-sm hover:bg-gray-100";
 
     return (
-        <section id="quizzes" className="scroll-mt-24 pt-14 pb-28 sm:pt-20 sm:pb-40">
+        <section id="quizzes" className="scroll-mt-24 pb-12 pt-2 sm:pb-16 sm:pt-4">
             <h2 className="mb-2 text-[2.75rem] font-bold leading-none sm:text-5xl">Quizzes</h2>
             <p className="mb-6 text-sm leading-6 text-gray-600 sm:text-base sm:leading-normal">
                 Choose a field first, then narrow the quiz by challenge type.

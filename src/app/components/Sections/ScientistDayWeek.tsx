@@ -5,7 +5,6 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { getFeaturedScientists, type FeaturedScientists } from "../../../../data/featuredScientists";
 import { type Scientist } from "../../../../data/scientistsData";
-import { smoothScrollToId } from "@/app/lib/smoothScroll";
 
 function getNextLocalMidnightDelay() {
   const now = new Date();
@@ -117,7 +116,7 @@ export default function ScientistDayWeek() {
   const featuredScientists = useFeaturedScientists();
 
   return (
-    <section id="featured-scientists" className="scroll-mt-24 pt-14 pb-8 sm:pt-20 sm:pb-40">
+    <section id="featured-scientists" className="scroll-mt-24 pb-12 pt-14 sm:pb-20 sm:pt-20">
       <div className="grid items-stretch gap-5 sm:gap-8 md:grid-cols-2">
         {featuredScientists ? (
           <>
@@ -132,95 +131,6 @@ export default function ScientistDayWeek() {
         )}
       </div>
 
-      <div className="mx-auto mt-8 flex max-w-[19rem] flex-wrap justify-center gap-2.5 text-left sm:hidden">
-        <button
-          type="button"
-          className="inline-flex min-w-[8.4rem] items-center justify-center gap-2 rounded-full border border-gray-300 px-3 py-2.5 transition hover:bg-gray-50"
-          onClick={() => smoothScrollToId("scientists")}
-        >
-          <div className="flex h-7 w-7 items-center justify-center overflow-hidden">
-            <Image
-              src="/icons/Flask_light.png"
-              alt="Scientists"
-              width={56}
-              height={56}
-              className="h-full w-full scale-125 object-cover"
-            />
-          </div>
-          <span className="text-sm font-medium">Scientists</span>
-        </button>
-
-        <button
-          type="button"
-          className="inline-flex min-w-[8.4rem] items-center justify-center gap-2 rounded-full border border-gray-300 px-3 py-2.5 transition hover:bg-gray-50"
-          onClick={() => smoothScrollToId("timeline")}
-        >
-          <Image className="h-7 w-7 object-contain" src="/icons/Hourglass_light.png" alt="Timeline" width={64} height={64} />
-          <span className="text-sm font-medium">Timeline</span>
-        </button>
-
-        <button
-          type="button"
-          className="inline-flex min-w-[8.4rem] items-center justify-center gap-2 rounded-full border border-gray-300 px-3 py-2.5 transition hover:bg-gray-50"
-          onClick={() => smoothScrollToId("map")}
-        >
-          <Image className="h-7 w-7 object-contain" src="/icons/Map.png" alt="Map" width={64} height={64} />
-          <span className="text-sm font-medium">Map</span>
-        </button>
-
-        <button
-          type="button"
-          className="inline-flex min-w-[8.4rem] items-center justify-center gap-2 rounded-full border border-gray-300 px-3 py-2.5 transition hover:bg-gray-50"
-          onClick={() => smoothScrollToId("quizzes")}
-        >
-          <Image className="h-7 w-7 object-contain" src="/icons/Waterfall.png" alt="Quizzes" width={64} height={64} />
-          <span className="text-sm font-medium">Quizzes</span>
-        </button>
-
-        <button
-          type="button"
-          className="inline-flex min-w-[8.4rem] items-center justify-center gap-2 rounded-full border border-gray-300 px-3 py-2.5 transition hover:bg-gray-50"
-          onClick={() => smoothScrollToId("news")}
-        >
-          <Image className="h-7 w-7 object-contain" src="/icons/globe.png" alt="News" width={64} height={64} />
-          <span className="text-sm font-medium">News</span>
-        </button>
-      </div>
-
-      <div className="mt-12 hidden grid-cols-2 divide-x divide-gray-900 text-center sm:grid sm:grid-cols-3 lg:grid-cols-5">
-        <button type="button" className="flex flex-col items-center p-6" onClick={() => smoothScrollToId("scientists")}>
-          <div className="flex h-14 w-14 items-center justify-center overflow-hidden">
-            <Image
-              src="/icons/Flask_light.png"
-              alt="Scientists"
-              width={56}
-              height={56}
-              className="h-full w-full scale-125 object-cover"
-            />
-          </div>
-          <span className="mt-3 text-sm font-normal">Scientists</span>
-        </button>
-
-        <button type="button" className="flex flex-col items-center p-6" onClick={() => smoothScrollToId("timeline")}>
-          <Image className="h-16 w-16 object-contain" src="/icons/Hourglass_light.png" alt="Timeline" width={64} height={64} />
-          <span className="mt-3 text-sm font-normal">Timeline</span>
-        </button>
-
-        <button type="button" className="flex flex-col items-center p-6" onClick={() => smoothScrollToId("map")}>
-          <Image className="h-16 w-16 object-contain" src="/icons/Map.png" alt="Map" width={64} height={64} />
-          <span className="mt-3 text-sm font-normal">Map</span>
-        </button>
-
-        <button type="button" className="flex flex-col items-center p-6" onClick={() => smoothScrollToId("quizzes")}>
-          <Image className="h-16 w-16 object-contain" src="/icons/Waterfall.png" alt="Quizzes" width={64} height={64} />
-          <span className="mt-3 text-sm font-normal">Quizzes</span>
-        </button>
-
-        <button type="button" className="flex flex-col items-center p-6" onClick={() => smoothScrollToId("news")}>
-          <Image className="h-16 w-16 object-contain" src="/icons/globe.png" alt="News" width={64} height={64} />
-          <span className="mt-3 text-sm font-normal">News</span>
-        </button>
-      </div>
     </section>
   );
 }
