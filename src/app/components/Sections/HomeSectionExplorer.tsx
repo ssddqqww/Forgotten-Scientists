@@ -114,7 +114,7 @@ export default function HomeSectionExplorer() {
       id="explore-workspace"
       className="scroll-mt-24 border-t border-[#1a1a1a]/15 pb-20 pt-6 sm:pb-28 sm:pt-8"
     >
-      <div className="mb-8 lg:hidden">
+      <div className="mb-8">
         <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#6c6c6c]">
           Explore the archive
         </p>
@@ -152,79 +152,17 @@ export default function HomeSectionExplorer() {
         </p>
       </div>
 
-      <div className="lg:grid lg:grid-cols-[17rem_minmax(0,1fr)] lg:gap-12 xl:grid-cols-[19rem_minmax(0,1fr)] xl:gap-16">
-        <aside className="hidden lg:block">
-          <div className="sticky top-28">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#6c6c6c]">
-              Explore the archive
-            </p>
-            <h2 className="mt-4 font-serif text-4xl leading-[1.05] text-[#1a1a1a]">
-              Choose a way
-              <br />
-              into the story.
-            </h2>
-            <p className="mt-5 text-sm leading-6 text-[#666]">
-              One focused view at a time. Switch sections without losing your
-              place.
-            </p>
-
-            <div
-              role="tablist"
-              aria-label="Archive sections"
-              className="mt-8 border-t border-[#1a1a1a]/15"
-            >
-              {sections.map(({ id, label, description, icon: Icon }) => {
-                const isActive = activeSection === id;
-
-                return (
-                  <button
-                    key={id}
-                    id={`home-tab-desktop-${id}`}
-                    type="button"
-                    role="tab"
-                    aria-selected={isActive}
-                    aria-controls={`home-panel-${id}`}
-                    onClick={() => selectSection(id)}
-                    className={`group w-full border-b border-[#1a1a1a]/15 py-4 text-left transition-colors ${
-                      isActive ? "text-[#1a1a1a]" : "text-[#777]"
-                    }`}
-                  >
-                    <span className="flex items-center gap-3">
-                      <span
-                        className={`grid h-9 w-9 place-items-center rounded-full transition-colors ${
-                          isActive
-                            ? "bg-[#1a1a1a] text-white"
-                            : "bg-[#1a1a1a]/5 group-hover:bg-[#1a1a1a]/10"
-                        }`}
-                      >
-                        <Icon size={17} strokeWidth={1.7} aria-hidden="true" />
-                      </span>
-                      <span className="font-semibold">{label}</span>
-                    </span>
-                    {isActive && (
-                      <span className="mt-3 block pl-12 text-xs leading-5 text-[#666]">
-                        {description}
-                      </span>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </aside>
-
-        <div
-          id={`home-panel-${activeSection}`}
-          role="tabpanel"
-          aria-labelledby={`home-tab-${activeSection}`}
-          className="min-w-0"
-        >
-          {activeSection === "scientists" && <ExploreScientist />}
-          {activeSection === "timeline" && <Timeline />}
-          {activeSection === "map" && <MapForgottenScientist />}
-          {activeSection === "quizzes" && <Quizzes />}
-          {activeSection === "news" && <News />}
-        </div>
+      <div
+        id={`home-panel-${activeSection}`}
+        role="tabpanel"
+        aria-labelledby={`home-tab-${activeSection}`}
+        className="min-w-0"
+      >
+        {activeSection === "scientists" && <ExploreScientist />}
+        {activeSection === "timeline" && <Timeline />}
+        {activeSection === "map" && <MapForgottenScientist />}
+        {activeSection === "quizzes" && <Quizzes />}
+        {activeSection === "news" && <News />}
       </div>
     </section>
   );

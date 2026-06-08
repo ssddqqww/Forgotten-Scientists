@@ -5,7 +5,10 @@ import {
   announceHomeSection,
   isHomeSectionId,
 } from "../../lib/homeSections";
-import { smoothScrollToId } from "../../lib/smoothScroll";
+import {
+  smoothScrollToDesktopSection,
+  smoothScrollToId,
+} from "../../lib/smoothScroll";
 
 export default function SmoothScrollHandler() {
   useEffect(() => {
@@ -14,6 +17,13 @@ export default function SmoothScrollHandler() {
       if (!hash) return;
 
       if (isHomeSectionId(hash)) {
+        if (window.matchMedia("(min-width: 1024px)").matches) {
+          window.setTimeout(() => {
+            smoothScrollToDesktopSection(hash);
+          }, 100);
+          return;
+        }
+
         announceHomeSection(hash);
       }
 
