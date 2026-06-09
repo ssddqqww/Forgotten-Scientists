@@ -85,7 +85,7 @@ export default function QuizRunner({ quiz }: QuizRunnerProps) {
       <div className="mx-auto max-w-6xl">
         {state !== "results" && (
           <Link
-            href="/#quizzes"
+            href="/quizzes"
             className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-gray-700 hover:text-black"
           >
             <span className="text-xl">←</span>
@@ -215,7 +215,7 @@ export default function QuizRunner({ quiz }: QuizRunnerProps) {
                 <h1 className="text-5xl font-bold">Quick Results</h1>
               </div>
               <Link
-                href="/#quizzes"
+                href="/quizzes"
                 className="inline-flex items-center gap-2 rounded-md bg-black px-5 py-3 text-sm font-semibold text-white hover:bg-gray-800"
               >
                 Return to quizzes

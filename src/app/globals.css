@@ -3,11 +3,14 @@
 @import "react-leaflet-markercluster/dist/styles.min.css"; */
 @theme {
    --font-sans: "Inter", sans-serif;
-
 }
 
-.body {
-  font-family: var(--font-inter);
+html {
+  background: #070b14;
+}
+
+body {
+  min-width: 320px;
 }
 
 .custom-marker {
@@ -22,5 +25,4 @@
   transition: 0.2s ease;
   z-index: 999 !important;
 }
-
 

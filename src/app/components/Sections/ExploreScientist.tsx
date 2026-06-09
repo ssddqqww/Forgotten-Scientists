@@ -51,8 +51,9 @@ export default function ExploreScientist() {
         "block w-full px-4 py-2 text-left text-sm hover:bg-gray-100";
 
     return (
-<section id="scientists" className="scroll-mt-24 pb-12 pt-2 sm:pb-16 sm:pt-4">
-    <h2 className="mb-2 text-[2.85rem] font-bold leading-none sm:text-5xl">Explore Scientists</h2>
+<section id="scientists" className="pb-4">
+    <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-blue-700">Scientist directory</p>
+    <h1 className="mb-3 text-[2.6rem] font-bold leading-[0.98] sm:text-5xl">Explore Scientists</h1>
             <p className="mb-6 text-sm leading-6 text-gray-600 sm:text-base sm:leading-normal">
                 Browse scientists by field, country, or century. Click on a card to
                 learn more.
@@ -183,15 +184,15 @@ export default function ExploreScientist() {
             </div>
 
             {/* Scientist Cards */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
                 {visibleScientists.map((card) => (
-                    <div
+                    <article
                         key={card.id}
-                        className="pb-10 relative flex flex-col items-start pr-8 border-gray-900 sm:border-r sm:[&:nth-child(2n)]:border-r-0 lg:!border-r lg:[&:nth-child(4n)]:!border-r-0"
+                        className="flex flex-col items-start rounded-2xl border border-black/10 bg-[#fbfaf7] p-4 shadow-sm"
                     >
-                        <h3 className="font-bold mb-1">{card.name}</h3>
+                        <h3 className="mb-3 text-lg font-bold leading-tight">{card.name}</h3>
                         {card.image ? (
-                            <div className="mb-4 h-50 w-full overflow-hidden rounded-md bg-gray-50">
+                            <div className="mb-4 h-48 w-full overflow-hidden rounded-xl bg-gray-50">
                                 <Image
                                     src={card.image}
                                     alt={card.name}
@@ -207,11 +208,11 @@ export default function ExploreScientist() {
                                 />
                             </div>
                         ) : (
-                            <div className="mb-4 flex h-50 w-full items-center justify-center rounded-md border border-dashed border-gray-400 bg-gray-50 text-sm text-gray-500">
+                            <div className="mb-4 flex h-48 w-full items-center justify-center rounded-xl border border-dashed border-gray-400 bg-gray-50 text-sm text-gray-500">
                                 Photo placeholder
                             </div>
                         )}
-                        <p className="text-md text-gray-900 mt-2">
+                        <p className="line-clamp-4 text-sm leading-6 text-gray-700">
                             {card.shortBio}
                         </p>
                         <div className="mt-3 flex flex-wrap gap-2 text-xs text-gray-600">
@@ -221,13 +222,11 @@ export default function ExploreScientist() {
                         </div>
                         <Link
                             href={`/scientists/${card.id}?from=scientists`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="absolute bottom-0 mt-3 px-4 py-1 bg-black text-white rounded-md text-sm"
+                            className="mt-5 inline-flex rounded-full bg-black px-4 py-2 text-sm font-semibold text-white"
                         >
                             Read more
                         </Link>
-                    </div>
+                    </article>
                 ))}
             </div>
             <div className="flex justify-center mt-10">
