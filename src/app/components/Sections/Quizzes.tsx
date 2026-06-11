@@ -68,9 +68,8 @@ export default function Quizzes() {
         "block w-full px-4 py-2 text-left text-sm hover:bg-gray-100";
 
     return (
-        <section id="quizzes" className="pb-4">
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-blue-700">Test your knowledge</p>
-            <h1 className="mb-2 text-[2.75rem] font-bold leading-none sm:text-5xl">Quizzes</h1>
+        <section id="quizzes" className="scroll-mt-24 pb-12 pt-2 sm:pb-16 sm:pt-4">
+            <h2 className="mb-2 text-[2.75rem] font-bold leading-none sm:text-5xl">Quizzes</h2>
             <p className="mb-6 text-sm leading-6 text-gray-600 sm:text-base sm:leading-normal">
                 Choose a field first, then narrow the quiz by challenge type.
             </p>
@@ -168,7 +167,7 @@ export default function Quizzes() {
                     return (
                         <div
                             key={quiz.slug}
-                            className={`group relative flex flex-col items-start overflow-hidden rounded-2xl border p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:min-h-[520px] sm:pb-16 ${styles.card}`}
+                            className={`group relative flex flex-col items-start overflow-hidden rounded-md border p-3 pb-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:min-h-[520px] sm:p-4 sm:pb-16 ${styles.card}`}
                         >
                             <div className={`absolute left-0 top-0 h-1.5 w-full ${styles.bar}`} />
                             <div className="mb-3 flex w-full items-start justify-between gap-3 pt-1 sm:min-h-16 sm:pt-2">
@@ -202,7 +201,7 @@ export default function Quizzes() {
                             </div>
                             <Link
                                 href={`/quizzes/${quiz.slug}`}
-                                className="mt-4 rounded-full bg-black px-4 py-2.5 text-sm font-semibold text-white sm:absolute sm:bottom-4 sm:left-4 sm:mt-3"
+                                className="mt-4 rounded-md bg-black px-4 py-2 text-sm font-semibold text-white sm:absolute sm:bottom-4 sm:left-4 sm:mt-3"
                             >
                                 Take Quiz
                             </Link>

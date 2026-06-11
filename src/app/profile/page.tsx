@@ -142,7 +142,7 @@ export default function ProfilePage() {
                   Save changes
                 </button>
                 <Link
-                  href="/scientists"
+                  href="/#scientists"
                   className="rounded-md border border-gray-300 px-5 py-3 text-sm text-gray-700 hover:bg-gray-50"
                 >
                   Explore scientists
@@ -313,13 +313,13 @@ export default function ProfilePage() {
                     Open welcome page
                   </Link>
                   <Link
-                    href="/scientists"
+                    href="/#scientists"
                     className="rounded-md border border-gray-300 bg-white px-4 py-3 text-sm text-gray-700 hover:bg-gray-50"
                   >
                     Explore scientists
                   </Link>
                   <Link
-                    href="/news"
+                    href="/#news"
                     className="rounded-md border border-gray-300 bg-white px-4 py-3 text-sm text-gray-700 hover:bg-gray-50"
                   >
                     Read latest news

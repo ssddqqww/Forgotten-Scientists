@@ -9,10 +9,10 @@ type ScientistPageProps = {
 };
 
 const backTargets = {
-  featured: "/",
-  scientists: "/scientists",
-  timeline: "/timeline",
-  map: "/map",
+  featured: "/#featured-scientists",
+  scientists: "/#scientists",
+  timeline: "/#timeline",
+  map: "/#map",
 };
 
 export function generateStaticParams() {
@@ -31,7 +31,7 @@ export default async function ScientistPage({ params, searchParams }: ScientistP
       ? "/"
       : rawFrom && rawFrom in backTargets
         ? backTargets[rawFrom as keyof typeof backTargets]
-        : "/scientists";
+        : "/#scientists";
   const scientist = getScientistById(Number(id));
 
   if (!scientist) {
@@ -39,8 +39,7 @@ export default async function ScientistPage({ params, searchParams }: ScientistP
   }
 
   return (
-    <section className="bg-[#f5f2eb] px-4 pb-16 pt-8 sm:px-6 sm:pb-20 lg:px-8">
-      <div className="mx-auto max-w-7xl rounded-[1.75rem] border border-black/10 bg-white p-5 shadow-[0_18px_60px_rgba(15,23,42,0.07)] sm:p-8 lg:p-12">
+    <section className="px-10 pb-20 pt-30 md:px-6 lg:px-20">
       <BackLink href={backHref} useHistoryBack={useHistoryBack} />
 
       <div className="grid items-start gap-10 xl:grid-cols-[minmax(300px,380px)_minmax(0,1fr)]">
@@ -51,21 +50,21 @@ export default async function ScientistPage({ params, searchParams }: ScientistP
               alt={scientist.name}
               width={760}
               height={760}
-              className="h-[22rem] w-full rounded-2xl object-cover sm:h-[28rem]"
+              className="h-[28rem] w-full rounded-lg object-cover"
               style={{
                 objectFit: scientist.imageFit ?? "cover",
                 objectPosition: scientist.imagePosition ?? "center",
               }}
             />
           ) : (
-            <div className="flex h-[22rem] w-full items-center justify-center rounded-2xl border border-dashed border-gray-400 bg-gray-50 text-sm text-gray-500 sm:h-[28rem]">
+            <div className="flex h-[28rem] w-full items-center justify-center rounded-lg border border-dashed border-gray-400 bg-gray-50 text-sm text-gray-500">
               Photo placeholder
             </div>
           )}
         </div>
 
         <div className="w-full max-w-4xl">
-          <h1 className="mb-3 text-4xl font-bold leading-tight sm:text-5xl">{scientist.name}</h1>
+          <h1 className="mb-3 text-4xl font-bold">{scientist.name}</h1>
           <div className="mb-6 flex flex-wrap gap-2 text-xs text-gray-600">
             <span className="border px-2 py-1">{scientist.field}</span>
             <span className="border px-2 py-1">{scientist.country}</span>
@@ -95,7 +94,6 @@ export default async function ScientistPage({ params, searchParams }: ScientistP
             </ul>
           </div>
         </div>
-      </div>
       </div>
     </section>
   );

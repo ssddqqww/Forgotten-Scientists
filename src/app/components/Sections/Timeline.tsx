@@ -122,12 +122,11 @@ export default function Timeline() {
     };
 
     return (
-        <section id="timeline" className="pb-4">
+        <section id="timeline" className="scroll-mt-24 pb-12 pt-2 sm:pb-16 sm:pt-4">
             <div className="text-start">
-                <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-blue-700">Chronological archive</p>
-                <h1 className="mb-3 max-w-[20rem] text-[2.35rem] font-bold leading-[1.02] sm:mb-2 sm:max-w-none sm:text-5xl sm:leading-none">
+                <h2 className="mb-3 max-w-[20rem] text-[2.35rem] font-bold leading-[1.02] sm:mb-2 sm:max-w-none sm:text-5xl sm:leading-none">
                     Timeline of Forgotten Scientists
-                </h1>
+                </h2>
                 <p className="mb-6 max-w-[21rem] text-sm leading-6 text-gray-600 sm:mb-6 sm:max-w-4xl sm:text-base sm:leading-7">
                     Move through scientists across centuries. The year is the best available timeline anchor from each profile, while the card highlights what they are remembered for.
                 </p>
@@ -319,7 +318,7 @@ export default function Timeline() {
                             </div>
                         </div>
 
-                        <article className="relative overflow-hidden rounded-2xl border border-black/10 bg-[#fbfaf7] py-4 shadow-sm sm:grid sm:grid-cols-[minmax(12rem,0.45fr)_1fr] sm:gap-10 sm:py-10">
+                        <article className="relative overflow-hidden border-y border-gray-900 bg-[#fbfaf7] py-4 sm:grid sm:grid-cols-[minmax(12rem,0.45fr)_1fr] sm:gap-10 sm:py-10">
                             <div className="relative px-4 pb-4 sm:border-r sm:border-gray-300 sm:px-6 sm:pb-0 sm:pr-10">
                                 <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-gray-500 sm:text-xs sm:tracking-[0.18em]">
                                     Timeline anchor

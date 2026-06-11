@@ -34,15 +34,14 @@ export default function News() {
   };
 
   return (
-    <section id="news" className="pb-4">
-      <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-blue-700">Stories and updates</p>
-      <h1 className="mb-2 text-4xl font-bold md:text-5xl">News</h1>
+    <section id="news" className="scroll-mt-24 pb-12 pt-2 sm:pb-16 sm:pt-4">
+      <h2 className="mb-2 text-4xl font-bold md:text-5xl">News</h2>
       <p className="mb-6 text-base leading-7 text-gray-600">
         Discover anniversaries, archive discoveries, project updates, and short facts.
       </p>
 
       <div
-        className="mb-8 flex min-h-44 items-end overflow-hidden rounded-2xl bg-cover bg-center p-5 text-white md:min-h-52 md:p-8"
+        className="mb-8 flex min-h-36 items-end bg-cover bg-center p-5 text-white md:min-h-32 md:p-8"
         style={{ backgroundImage: "linear-gradient(90deg, rgba(0,0,0,.72), rgba(0,0,0,.18)), url('/HeroBG.jpg')" }}
       >
         <div>
@@ -77,7 +76,7 @@ export default function News() {
         {visibleNews.map((item) => (
           <article
             key={item.id}
-            className="relative flex flex-col items-start rounded-2xl border border-black/10 bg-[#fbfaf7] p-5 shadow-sm"
+            className="relative flex flex-col items-start border-gray-900 pb-0 pr-0 sm:border-r sm:pb-12 sm:pr-8 sm:[&:nth-child(2n)]:border-r-0 lg:!border-r lg:[&:nth-child(3n)]:!border-r-0"
           >
             <p className="mb-2 text-sm font-semibold text-gray-600">{item.type}</p>
             <h3 className="font-bold mb-1">{item.title}</h3>
@@ -89,7 +88,7 @@ export default function News() {
             <button
               type="button"
               onClick={() => setSelectedNews(item)}
-              className="mt-5 rounded-full bg-black px-4 py-2 text-sm font-semibold text-white"
+              className="mt-4 rounded-md bg-black px-4 py-1 text-sm text-white sm:absolute sm:bottom-0"
             >
               Read more
             </button>

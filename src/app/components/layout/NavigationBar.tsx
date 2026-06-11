@@ -1,278 +1,295 @@
-"use client";
+"use client"
 
-import {
-  AUTH_CHANGE_EVENT,
-  getCurrentUser,
-  logoutUser,
-  type StoredUser,
-} from "../../lib/auth";
-import { archiveSections } from "../../lib/archiveSections";
-import {
-  ChevronRight,
-  FlaskConical,
-  Menu,
-  Search,
-  User,
-  X,
-} from "lucide-react";
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Menu, X, User, Search } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import { AUTH_CHANGE_EVENT, getCurrentUser, logoutUser, type StoredUser } from "../../lib/auth";
+import { announceHomeSection, type HomeSectionId } from "../../lib/homeSections";
+import { smoothScrollToId } from "../../lib/smoothScroll";
 import { scientistDirectory } from "../../../../data/scientistDirectory";
 
 export default function NavigationBar() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
-  const [user, setUser] = useState<StoredUser | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchFocused, setSearchFocused] = useState(false);
-  const [searchNotice, setSearchNotice] = useState("");
-  const pathname = usePathname();
-  const router = useRouter();
-  const desktopSearchRef = useRef<HTMLDivElement | null>(null);
-  const mobileSearchRef = useRef<HTMLDivElement | null>(null);
+    const [open, setOpen] = useState(false);
+    const [user, setUser] = useState<StoredUser | null>(null);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+    const [logoutNotice, setLogoutNotice] = useState(false);
+    const [searchFocused, setSearchFocused] = useState(false);
+    const [searchNotice, setSearchNotice] = useState("");
+    const pathname = usePathname();
+    const router = useRouter();
+    const searchRef = useRef<HTMLDivElement | null>(null);
 
-  const searchResults = useMemo(() => {
-    const query = searchQuery.trim().toLowerCase();
-    if (!query) return [];
+    const searchResults = useMemo(() => {
+        const query = searchQuery.trim().toLowerCase();
+        if (!query) return [];
 
-    return scientistDirectory
-      .filter((scientist) => scientist.name.toLowerCase().includes(query))
-      .slice(0, 6);
-  }, [searchQuery]);
+        return scientistDirectory
+            .filter((scientist) => scientist.name.toLowerCase().includes(query))
+            .slice(0, 8);
+    }, [searchQuery]);
 
-  useEffect(() => {
-    const syncUser = async () => setUser(await getCurrentUser());
-    syncUser();
-    window.addEventListener(AUTH_CHANGE_EVENT, syncUser);
-    return () => window.removeEventListener(AUTH_CHANGE_EVENT, syncUser);
-  }, []);
+    const showSearchDropdown = searchFocused && searchQuery.trim().length > 0;
 
-  useEffect(() => {
-    const closeSearch = (event: MouseEvent) => {
-      const target = event.target as Node;
-      if (
-        !desktopSearchRef.current?.contains(target) &&
-        !mobileSearchRef.current?.contains(target)
-      ) {
-        setSearchFocused(false);
-      }
+    useEffect(() => {
+        let active = true;
+
+        const syncUser = async () => {
+            const currentUser = await getCurrentUser();
+
+            if (active) {
+                setUser(currentUser);
+            }
+        };
+
+        syncUser();
+        window.addEventListener(AUTH_CHANGE_EVENT, syncUser);
+
+        return () => {
+            active = false;
+            window.removeEventListener(AUTH_CHANGE_EVENT, syncUser);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (!logoutNotice) return;
+
+        const timer = window.setTimeout(() => {
+            setLogoutNotice(false);
+        }, 2600);
+
+        return () => window.clearTimeout(timer);
+    }, [logoutNotice]);
+
+    useEffect(() => {
+        if (!searchNotice) return;
+
+        const timer = window.setTimeout(() => {
+            setSearchNotice("");
+        }, 2600);
+
+        return () => window.clearTimeout(timer);
+    }, [searchNotice]);
+
+    useEffect(() => {
+        const handleOutsideClick = (event: MouseEvent) => {
+            if (!searchRef.current?.contains(event.target as Node)) {
+                setSearchFocused(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleOutsideClick);
+        return () => document.removeEventListener("mousedown", handleOutsideClick);
+    }, []);
+
+    const confirmLogout = async () => {
+        await logoutUser();
+        setOpen(false);
+        setShowLogoutConfirm(false);
+        setUser(null);
+        setLogoutNotice(true);
+
+        if (pathname === "/profile" || pathname === "/account") {
+            router.push("/");
+            return;
+        }
+
+        router.refresh();
     };
 
-    document.addEventListener("mousedown", closeSearch);
-    return () => document.removeEventListener("mousedown", closeSearch);
-  }, []);
+    const handleSectionNavigation = (sectionId: HomeSectionId) => {
+        setOpen(false);
 
-  useEffect(() => {
-    setMenuOpen(false);
-    setMobileSearchOpen(false);
-  }, [pathname]);
+        if (pathname === "/") {
+            window.history.pushState({}, "", `/#${sectionId}`);
+            announceHomeSection(sectionId);
+            window.setTimeout(() => smoothScrollToId("explore-workspace"), 0);
+            return;
+        }
 
-  const selectScientist = (id: number, available: boolean) => {
-    setSearchFocused(false);
+        router.push(`/#${sectionId}`);
+    };
 
-    if (!available) {
-      setSearchNotice("This scientist profile is coming soon.");
-      window.setTimeout(() => setSearchNotice(""), 2600);
-      return;
+    const handleSearchSelect = (id: number, available: boolean) => {
+        setSearchFocused(false);
+
+        if (!available) {
+            setSearchNotice("This scientist profile is coming soon.");
+            return;
+        }
+
+        setSearchQuery("");
+        router.push(`/scientists/${id}?from=search`);
+    };
+
+    const hideNavigation = pathname === "/login" || pathname === "/signup";
+    const compactNavigation = pathname === "/profile";
+
+    if (hideNavigation) {
+        return null;
     }
 
-    setSearchQuery("");
-    router.push(`/scientists/${id}?from=search`);
-  };
-
-  const confirmLogout = async () => {
-    await logoutUser();
-    setUser(null);
-    setMenuOpen(false);
-    router.push("/");
-    router.refresh();
-  };
-
-  const hideNavigation = pathname === "/login" || pathname === "/signup";
-  if (hideNavigation) return null;
-
-  const searchBox = (mobile = false) => (
-    <div
-      ref={mobile ? mobileSearchRef : desktopSearchRef}
-      className="relative w-full"
-    >
-      <Search
-        size={17}
-        className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
-        aria-hidden="true"
-      />
-      <input
-        type="search"
-        value={searchQuery}
-        onChange={(event) => setSearchQuery(event.target.value)}
-        onFocus={() => setSearchFocused(true)}
-        placeholder="Search scientists"
-        aria-label="Search scientists"
-        className="h-11 w-full rounded-full border border-white/15 bg-white px-11 pr-4 text-sm text-gray-950 outline-none ring-white/20 transition placeholder:text-gray-500 focus:ring-4"
-      />
-      {searchFocused && searchQuery.trim() && (
-        <div className="absolute left-0 right-0 top-[calc(100%+0.55rem)] z-[1300] overflow-hidden rounded-2xl border border-black/10 bg-white py-2 text-black shadow-2xl">
-          {searchResults.length ? (
-            searchResults.map((scientist) => (
-              <button
-                key={scientist.id}
-                type="button"
-                onClick={() =>
-                  selectScientist(scientist.id, scientist.available)
-                }
-                className="flex w-full items-center justify-between gap-4 px-4 py-3 text-left hover:bg-gray-50"
-              >
-                <span>
-                  <span className="block text-sm font-semibold">
-                    {scientist.name}
-                  </span>
-                  <span className="block text-xs text-gray-500">
-                    {scientist.available ? "Open profile" : "Coming soon"}
-                  </span>
-                </span>
-                <ChevronRight size={16} aria-hidden="true" />
-              </button>
-            ))
-          ) : (
-            <p className="px-4 py-3 text-sm text-gray-500">
-              No scientists found.
-            </p>
-          )}
-        </div>
-      )}
-    </div>
-  );
-
-  return (
-    <>
-      <header className="sticky top-0 z-[1200] border-b border-white/10 bg-[#070b14]/95 text-white backdrop-blur-xl">
-        <div className="mx-auto flex h-[68px] max-w-7xl items-center gap-3 px-4 sm:px-6 lg:px-8">
-          <Link href="/" className="flex shrink-0 items-center gap-2.5">
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-white text-black">
-              <FlaskConical size={18} strokeWidth={1.8} aria-hidden="true" />
-            </span>
-            <span className="hidden text-sm font-bold tracking-[0.12em] sm:block">
-              FORGOTTEN SCIENTISTS
-            </span>
-          </Link>
-
-          <nav className="ml-auto hidden items-center gap-1 lg:flex">
-            {archiveSections.map((section) => (
-              <Link
-                key={section.href}
-                href={section.href}
-                className={`rounded-full px-3 py-2 text-sm transition ${
-                  pathname === section.href
-                    ? "bg-white text-black"
-                    : "text-white/70 hover:bg-white/10 hover:text-white"
-                }`}
-              >
-                {section.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="ml-auto hidden w-full max-w-xs md:block lg:ml-3">
-            {searchBox()}
-          </div>
-
-          <button
-            type="button"
-            onClick={() => setMobileSearchOpen((open) => !open)}
-            className="ml-auto grid h-10 w-10 place-items-center rounded-full border border-white/15 md:hidden"
-            aria-label="Search"
-          >
-            <Search size={19} aria-hidden="true" />
-          </button>
-          <button
-            type="button"
-            onClick={() => setMenuOpen((open) => !open)}
-            className="grid h-10 w-10 place-items-center rounded-full border border-white/15"
-            aria-label="Toggle Menu"
-            aria-expanded={menuOpen}
-          >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-
-        {mobileSearchOpen && (
-          <div className="border-t border-white/10 px-4 py-3 md:hidden">
-            {searchBox(true)}
-          </div>
-        )}
-      </header>
-
-      {menuOpen && (
+        return (
         <>
-          <button
-            type="button"
-            className="fixed inset-0 z-[1210] bg-black/45"
-            onClick={() => setMenuOpen(false)}
-            aria-label="Close menu"
-          />
-          <aside className="fixed bottom-3 right-3 top-[80px] z-[1220] flex w-[min(23rem,calc(100vw-1.5rem))] flex-col overflow-y-auto rounded-[1.75rem] bg-white p-4 text-black shadow-2xl">
-            <div className="flex items-center gap-3 rounded-2xl bg-[#f5f2eb] p-4">
-              <span className="grid h-11 w-11 place-items-center rounded-full bg-black text-white">
-                <User size={20} aria-hidden="true" />
-              </span>
-              <div className="min-w-0">
-                <p className="font-semibold">{user?.fullName ?? "Guest visitor"}</p>
-                <p className="truncate text-xs text-gray-500">
-                  {user?.email ?? "Explore the science archive"}
-                </p>
-              </div>
-            </div>
+        <nav className={`border-gray-200 bg-black p-4 left-0 w-full z-[1100] ${compactNavigation ? "relative" : "sticky top-0"}`}>
+            <div className="flex items-center justify-between gap-6 mx-auto lg:p-2">
+                {compactNavigation ? (
+                    <Link href="/" className="text-sm font-semibold tracking-[0.18em] uppercase text-white">
+                        Forgotten Scientists
+                    </Link>
+                ) : (
+                    <form className="flex w-full items-center">
+                        <div ref={searchRef} className="relative w-full">
+                            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                <Search className="w-4 h-4 text-gray-900" aria-hidden="true" />
+                            </div>
+                            <input
+                                type="text"
+                                id="site-search"
+                                value={searchQuery}
+                                onChange={(event) => setSearchQuery(event.target.value)}
+                                onInput={(event) => setSearchQuery(event.currentTarget.value)}
+                                onClick={() => setSearchFocused(true)}
+                                onFocus={() => setSearchFocused(true)}
+                                className="block w-full rounded-full border border-gray-300 bg-gray-50 p-2.5 pe-4 ps-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+                                placeholder="Search scientists"
+                            />
 
-            <nav className="mt-4 grid gap-1">
-              <Link href="/" className="rounded-xl px-4 py-3 font-semibold hover:bg-gray-100">
-                Home
-              </Link>
-              {archiveSections.map((section) => (
-                <Link
-                  key={section.href}
-                  href={section.href}
-                  className="flex items-center justify-between rounded-xl px-4 py-3 font-semibold hover:bg-gray-100"
-                >
-                  {section.label}
-                  <ChevronRight size={17} aria-hidden="true" />
-                </Link>
-              ))}
-              <Link href="/about" className="rounded-xl px-4 py-3 font-semibold hover:bg-gray-100">
-                About us
-              </Link>
-            </nav>
+                            {showSearchDropdown && (
+                                <div className="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-[1200] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl">
+                                    {searchResults.length > 0 ? (
+                                        <div className="py-2">
+                                            {searchResults.map((scientist) => (
+                                                <button
+                                                    key={scientist.id}
+                                                    type="button"
+                                                    onClick={() => handleSearchSelect(scientist.id, scientist.available)}
+                                                    className="flex w-full items-center justify-between gap-4 px-4 py-3 text-left hover:bg-gray-50"
+                                                >
+                                                    <div>
+                                                        <p className="text-sm font-semibold text-gray-900">
+                                                            {scientist.name}
+                                                        </p>
+                                                        <p className="text-xs text-gray-500">
+                                                            {scientist.available ? "Available now" : "Coming soon"}
+                                                        </p>
+                                                    </div>
+                                                    <span
+                                                        className={`rounded-full px-2 py-1 text-[11px] font-medium ${
+                                                            scientist.available
+                                                                ? "bg-black text-white"
+                                                                : "bg-gray-200 text-gray-700"
+                                                        }`}
+                                                    >
+                                                        {scientist.available ? "Open" : "Soon"}
+                                                    </span>
+                                                </button>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <div className="px-4 py-4 text-sm text-gray-500">
+                                            No scientists found for this search.
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+                        </div>
+                    </form>
+                )}
 
-            <div className="mt-auto grid gap-2 pt-5">
-              {user ? (
-                <>
-                  <Link href="/profile" className="rounded-full bg-black px-5 py-3 text-center text-sm font-bold text-white">
-                    My profile
-                  </Link>
-                  <button type="button" onClick={confirmLogout} className="rounded-full border border-black/15 px-5 py-3 text-sm font-bold">
-                    Log out
-                  </button>
-                </>
-              ) : (
-                <>
-                  <Link href="/signup" className="rounded-full bg-black px-5 py-3 text-center text-sm font-bold text-white">
-                    Create account
-                  </Link>
-                  <Link href="/login" className="rounded-full border border-black/15 px-5 py-3 text-center text-sm font-bold">
-                    Log in
-                  </Link>
-                </>
-              )}
+
+                <div className="relative">
+                    <button
+                        className="p-2 text-white"
+                        onClick={() => setOpen(!open)}
+                        aria-label="Toggle Menu"
+                    >
+                        {open ? <X size={24} /> : <Menu size={24} />}
+                    </button>
+
+                    {open && (
+                        <div className="absolute top-12 right-0 w-56 bg-black text-white rounded shadow-lg">
+                            <div className="flex flex-col items-center px-4 py-4 text-center border-b border-gray-700">
+                                <User size={40} />
+                                {user ? (
+                                    <>
+                                        <p className="mt-2 text-sm font-semibold">{user.fullName}</p>
+                                        <p className="text-xs text-gray-400 break-all">{user.email}</p>
+                                    </>
+                                ) : (
+                                    <p className="mt-2 text-sm text-gray-300">Guest</p>
+                                )}
+                            </div>
+
+                            <nav className="flex flex-col">
+                                <Link onClick={() => setOpen(false)} href="/" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">Home</Link>
+                                {user ? (
+                                    <Link onClick={() => setOpen(false)} href="/profile" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">My Profile</Link>
+                                ) : (
+                                    <>
+                                        <Link onClick={() => setOpen(false)} href="/login" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">Log in</Link>
+                                        <Link onClick={() => setOpen(false)} href="/signup" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">Sign Up</Link>
+                                    </>
+                                )}
+                                <Link onClick={() => setOpen(false)} href="/about" className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800">About Us</Link>
+                                <button type="button" onClick={() => handleSectionNavigation("scientists")} className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800 text-left">Scientists</button>
+                                <button type="button" onClick={() => handleSectionNavigation("timeline")} className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800 text-left">Timeline</button>
+                                <button type="button" onClick={() => handleSectionNavigation("map")} className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800 text-left">Map</button>
+                                <button type="button" onClick={() => handleSectionNavigation("quizzes")} className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800 text-left">Quizzes</button>
+                                <button type="button" onClick={() => handleSectionNavigation("news")} className="px-4 py-3 border-b border-gray-700 hover:bg-gray-800 text-left">News</button>
+                                {user && (
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowLogoutConfirm(true)}
+                                        className="px-4 py-3 text-left hover:bg-gray-800"
+                                    >
+                                        Log out
+                                    </button>
+                                )}
+                            </nav>
+                        </div>
+                    )}
+                </div>
             </div>
-          </aside>
+        </nav>
+        {showLogoutConfirm && (
+            <div className="fixed inset-0 z-[1250] flex items-center justify-center bg-black/60 px-4">
+                <div className="w-full max-w-sm rounded-lg bg-white p-6 text-black shadow-2xl">
+                    <h2 className="text-xl font-bold">Log out?</h2>
+                    <p className="mt-3 text-sm leading-7 text-gray-600">
+                        Are you sure you want to log out of your account?
+                    </p>
+
+                    <div className="mt-6 flex justify-end gap-3">
+                        <button
+                            type="button"
+                            onClick={() => setShowLogoutConfirm(false)}
+                            className="rounded-md border border-gray-300 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        >
+                            No
+                        </button>
+                        <button
+                            type="button"
+                            onClick={confirmLogout}
+                            className="rounded-md bg-black px-4 py-2 text-sm text-white hover:bg-gray-800"
+                        >
+                            Yes, log out
+                        </button>
+                    </div>
+                </div>
+            </div>
+        )}
+        {logoutNotice && (
+            <div className="fixed right-4 top-24 z-[1260] rounded-md bg-white px-4 py-3 text-sm text-black shadow-xl ring-1 ring-black/10">
+                You were successfully logged out.
+            </div>
+        )}
+        {searchNotice && (
+            <div className="fixed right-4 top-24 z-[1260] rounded-md bg-white px-4 py-3 text-sm text-black shadow-xl ring-1 ring-black/10">
+                {searchNotice}
+            </div>
+        )}
         </>
-      )}
-
-      {searchNotice && (
-        <div className="fixed right-4 top-20 z-[1400] rounded-xl bg-white px-4 py-3 text-sm text-black shadow-xl ring-1 ring-black/10">
-          {searchNotice}
-        </div>
-      )}
-    </>
-  );
+    )
 }

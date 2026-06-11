@@ -70,10 +70,10 @@ export default function AccountWelcomePage() {
           <div>
             <h2 className="text-2xl font-bold">Continue exploring</h2>
             <div className="mt-4 flex flex-col gap-3">
-              <Link href="/scientists" className="w-fit rounded-md bg-black px-4 py-2 text-sm text-white">
+              <Link href="/#scientists" className="w-fit rounded-md bg-black px-4 py-2 text-sm text-white">
                 Explore Scientists
               </Link>
-              <Link href="/quizzes" className="w-fit rounded-md bg-black px-4 py-2 text-sm text-white">
+              <Link href="/#quizzes" className="w-fit rounded-md bg-black px-4 py-2 text-sm text-white">
                 Take Quizzes
               </Link>
               <Link href="/profile" className="w-fit rounded-md border border-gray-900 px-4 py-2 text-sm hover:bg-gray-100">

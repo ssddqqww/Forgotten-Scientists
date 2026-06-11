@@ -66,7 +66,7 @@ function FeaturedScientistCard({
   scientist: Scientist;
 }) {
   return (
-    <article className="flex h-full flex-col rounded-[1.5rem] border border-black/10 bg-white p-4 shadow-[0_12px_40px_rgba(15,23,42,0.06)] sm:p-6">
+    <article className="flex h-full flex-col rounded-lg border border-gray-900 bg-white p-4 shadow-sm sm:p-5 md:p-6">
       <div className="flex items-start justify-between gap-4">
         <p className="text-xs font-semibold uppercase text-gray-600 sm:text-sm">{eyebrow}</p>
         <span className="shrink-0 border border-gray-900 px-2 py-1 text-[0.65rem] uppercase text-gray-700 sm:text-xs">{scientist.field}</span>
@@ -80,7 +80,7 @@ function FeaturedScientistCard({
             alt={scientist.name}
             width={288}
             height={256}
-            className="h-48 w-full rounded-2xl object-cover sm:h-52 lg:h-full"
+            className="h-40 w-full rounded-md object-cover sm:h-52 lg:h-full"
           />
         ) : (
           <div className="flex h-40 w-full flex-col items-center justify-center rounded-md border border-dashed border-gray-400 bg-[#f7f7f2] px-6 text-center text-gray-600 sm:h-52 lg:h-full">
@@ -102,7 +102,7 @@ function FeaturedScientistCard({
 
           <Link
             href={`/scientists/${scientist.id}?from=featured`}
-            className="mt-4 inline-flex w-fit rounded-full bg-black px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-gray-800 sm:mt-5"
+            className="mt-4 inline-flex w-fit rounded-md bg-black px-4 py-2 text-sm text-white transition hover:bg-gray-800 sm:mt-5 sm:px-5 md:text-base"
           >
             Read more
           </Link>
@@ -116,11 +116,7 @@ export default function ScientistDayWeek() {
   const featuredScientists = useFeaturedScientists();
 
   return (
-    <section id="featured-scientists" className="pb-16 pt-4 sm:pb-24 sm:pt-8">
-      <div className="mb-7">
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500">Featured today</p>
-        <h2 className="mt-2 text-3xl font-bold sm:text-4xl">Two stories worth knowing.</h2>
-      </div>
+    <section id="featured-scientists" className="scroll-mt-24 pb-12 pt-14 sm:pb-20 sm:pt-20">
       <div className="grid items-stretch gap-5 sm:gap-8 md:grid-cols-2">
         {featuredScientists ? (
           <>

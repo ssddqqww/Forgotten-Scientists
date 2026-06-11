@@ -6,10 +6,11 @@ import "leaflet/dist/leaflet.css";
 
 import NavigationBar from "./components/layout/NavigationBar";
 import Footer from "./components/layout/Footer";
+import SmoothScrollHandler from "./components/layout/SmoothScrollHandler";
 
 export const metadata: Metadata = {
   title: "Forgotten Scientists",
-  description: "Discover overlooked scientists, discoveries, and stories from around the world.",
+  description: "",
 };
 
 export default function RootLayout({
@@ -20,8 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className="relative overflow-x-hidden bg-white text-black antialiased"
+        className="relative bg-white text-black antialiased"
       >
+        <SmoothScrollHandler />
         <NavigationBar />
         {children}
         <Footer />

@@ -177,7 +177,7 @@ export default function MapForgottenScientist() {
 
   if (!L)
     return (
-      <section id="map" className="pb-4">
+      <section id="map" className="scroll-mt-24 pb-12 pt-2 sm:pb-16 sm:pt-4">
         <div className="flex h-96 items-center justify-center text-lg font-semibold">
           Loading scientist map...
         </div>
@@ -185,12 +185,11 @@ export default function MapForgottenScientist() {
     );
 
   return (
-    <section id="map" className="pb-4">
+    <section id="map" className="scroll-mt-24 pb-12 pt-2 sm:pb-16 sm:pt-4">
       <div className="max-w-7xl mx-auto px-0 sm:px-4">
         <div className="mb-8 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-blue-700">Global archive</p>
-            <h1 className="text-[2.3rem] font-bold leading-[1.02] sm:text-5xl">Map of Forgotten Scientists</h1>
+            <h1 className="text-[2.15rem] font-bold leading-[1.05] sm:text-4xl sm:leading-none">Map of Forgotten Scientists</h1>
             <p className="mt-2 text-sm leading-6 text-gray-600 sm:text-base sm:leading-7 md:mt-0">
               {filtered.length} of {mappedScientists.length} scientists shown from verified profile locations
             </p>
