@@ -1279,5 +1279,378 @@
       "Photometria (light measurement), Wikipedia. Wikipedia",
       "Journal of the Institute of Actuaries biography (background). cambridge.org"
     ]
+  },
+  {
+    "id": 81,
+    "name": "Mary Adela Blagg",
+    "century": "19th-20th (1858-1944)",
+    "location": "Cheadle, Staffordshire, England",
+    "major": "Astronomy / Lunar Nomenclature",
+    "whatOpened": "Mary Adela Blagg helped turn lunar place-names from a confusing patchwork of competing maps into a standardized system used by modern planetary astronomy.",
+    "short": "Mary Adela Blagg was a British astronomer whose painstaking comparison of lunar maps helped standardize the names of Moon craters and features, laying groundwork for the International Astronomical Union's official lunar nomenclature.",
+    "long": "Mary Adela Blagg was born in 1858 in Cheadle, Staffordshire, England. She did not follow the usual path of a professional observatory astronomer, and much of her scientific development came through private study, local intellectual life, and contact with astronomical societies. She became interested in astronomy as an adult and attended lectures by J. A. Hardcastle, a grandson of John Herschel, which helped direct her attention toward mathematical astronomy and lunar work. In the early 20th century, lunar nomenclature was messy: different observers and mapmakers had used different names for the same lunar features, and the same name could appear in conflicting ways. Blagg took on the demanding task of comparing major lunar maps and catalogues, including the naming systems of Beer and Madler, Schmidt, and Neison. Working with Samuel Arthur Saunder, she helped prepare the Collated List of Lunar Formations, published in 1913. The list identified thousands of lunar features and compared the names used for them across sources. Blagg later served on the lunar nomenclature commission of the International Astronomical Union, and her work contributed to the naming standards that planetary science still depends on. She was elected a Fellow of the Royal Astronomical Society in 1916, among the early women admitted after the society opened fellowship to women. Blagg died in 1944, leaving a legacy built on precision, patience, and the scientific value of making knowledge usable for everyone who comes after.",
+    "sources": [
+      "MacTutor History of Mathematics - Mary Adela Blagg. University of St Andrews",
+      "Mary Adela Blagg, Oxford Dictionary of National Biography. Oxford University Press",
+      "Mary Adela Blagg image file, Wikimedia Commons. Wikimedia Commons"
+    ]
+  },
+  {
+    "id": 82,
+    "name": "Sarah Frances Whiting",
+    "century": "19th-20th (1847-1927)",
+    "location": "Wyoming, New York, United States",
+    "major": "Physics / Astronomy Education",
+    "whatOpened": "Sarah Frances Whiting built one of the first undergraduate physics laboratories for women in the United States and quickly introduced X-ray experimentation after Roentgen's discovery.",
+    "short": "Sarah Frances Whiting was an American physicist and astronomer at Wellesley College who trained generations of women in laboratory physics and helped bring early X-ray and spectroscopy work into women's science education.",
+    "long": "Sarah Frances Whiting was born on August 23, 1847, in Wyoming, New York. She was educated at Ingham University and began teaching before joining Wellesley College soon after its founding. Her career developed in a period when women were often excluded from graduate laboratories and research posts. Instead of accepting that boundary, Whiting built a laboratory environment for women inside a women's college. At Wellesley, Whiting founded the physics department and directed the Whitin Observatory. She emphasized hands-on work with instruments, measurements, and observation rather than memorization alone. Soon after Wilhelm Roentgen announced X-rays in 1895, Whiting reproduced X-ray experiments at Wellesley, reportedly using a Crookes tube and photographic plates. She also taught astronomy and spectroscopy, placing students in contact with active areas of 19th-century physical science. One of her best-known students was Annie Jump Cannon, who later became central to stellar classification at Harvard College Observatory. Whiting's impact was partly scientific and partly institutional. She helped make experimental physics part of women's higher education in the United States, and she trained students who carried that scientific discipline into astronomy and other fields. She published educational astronomical works, including exercises for students, and remained closely associated with Wellesley's scientific identity. Whiting died in 1927, remembered by colleagues as a teacher who opened laboratory practice to students who otherwise might have been kept outside the room where science was made.",
+    "sources": [
+      "Annie Jump Cannon, obituary of Sarah Frances Whiting, Science. JSTOR",
+      "Sarah Frances Whiting biographical materials, Wellesley College and AIP-linked histories",
+      "Sarah Frances Whiting image file, Wikimedia Commons. Wikimedia Commons"
+    ]
+  },
+  {
+    "id": 83,
+    "name": "Antonia Maury",
+    "century": "19th-20th (1866-1952)",
+    "location": "Cold Spring, New York, United States",
+    "major": "Astronomy / Stellar Spectroscopy",
+    "whatOpened": "Antonia Maury created a more physically sensitive classification of stellar spectra, including line-width distinctions that later helped astronomers understand stellar luminosity.",
+    "short": "Antonia Maury was an American astronomer at Harvard College Observatory whose demanding spectral classification work captured stellar features that simpler systems missed and influenced later luminosity classification.",
+    "long": "Antonia Caetana de Paiva Pereira Maury was born on March 21, 1866, in Cold Spring, New York. She came from a family deeply connected with science. Her grandfather John William Draper made one of the earliest photographs of the Moon, and her uncle Henry Draper was a pioneer of astronomical spectroscopy. Maury studied at Vassar College, where she received strong training in astronomy and graduated in 1887. Maury joined Harvard College Observatory and worked on the Henry Draper Memorial program, which classified stellar spectra from photographic plates. Her 1897 catalogue classified hundreds of bright northern stars. Unlike systems that focused mainly on broad temperature classes, Maury introduced additional subdivisions based on the character of spectral lines, including whether lines appeared sharp, hazy, or broad. Edward Pickering preferred a simpler system, and Maury's classification was not adopted in full at Harvard. However, later astronomers, including Ejnar Hertzsprung, recognized that her line-character distinctions related to stellar luminosity and therefore carried important astrophysical information. Maury's career shows how scientific correctness and institutional acceptance are not always the same thing. Her system was considered too complicated for routine catalogue work, but later developments in stellar classification vindicated part of her insight. She continued astronomical work and remained associated with Harvard, but her name is still much less widely known than the classification systems her observations helped improve. Maury died in 1952, leaving a legacy of precision and resistance to oversimplification.",
+    "sources": [
+      "Antonia Maury, Vassar Encyclopedia. Vassar College",
+      "Harvard College Observatory histories of women computers and stellar spectroscopy",
+      "Antonia Maury image file, Wikimedia Commons. Wikimedia Commons"
+    ]
+  },
+  {
+    "id": 84,
+    "name": "Margaret Lindsay Huggins",
+    "century": "19th-20th (1848-1915)",
+    "location": "Dublin, Ireland / London, United Kingdom",
+    "major": "Astronomy / Spectroscopy",
+    "whatOpened": "Margaret Lindsay Huggins applied photography to astronomical spectroscopy, helping capture and compare the spectra of stars, nebulae, and comets.",
+    "short": "Margaret Lindsay Huggins was an Irish-born astronomer whose photographic skill and spectroscopic work with William Huggins helped make celestial spectroscopy a practical tool for studying the physical nature of stars and nebulae.",
+    "long": "Margaret Lindsay Murray was born in Dublin in 1848. She developed an early interest in astronomy and learned photography, a technically demanding skill in the 19th century. In 1875 she married William Huggins, already known for spectroscopic astronomy, and their home observatory at Tulse Hill became the center of their shared research. The Hugginses studied the light of celestial objects to understand their physical and chemical nature. Margaret's contribution was especially important because photography allowed spectra to be captured as evidence rather than merely described by eye. The couple worked on stellar spectra, nebulae, and the spectra of comets, helping establish that astronomical objects could be studied through the same physical principles used in laboratories on Earth. Their publications often appeared under William's name or as joint work, making it difficult to separate individual contributions, but contemporary and later accounts recognize Margaret's photographic and observational expertise. Margaret Huggins helped move astronomy from positional measurement toward astrophysics: the study of what stars and nebulae are made of. She also represents a common pattern in the history of science, where a woman's technical labor is absorbed into a husband's public reputation. She died in 1915. Her work remains important because spectroscopy became one of the central tools of modern astronomy, and photography was essential to making that tool durable, shareable, and scientifically persuasive.",
+    "sources": [
+      "Margaret Lindsay Huggins, Royal Society Picture Library. The Royal Society",
+      "Margaret Huggins fact sheet, American Institute of Physics",
+      "Margaret Lindsay Huggins, Dictionary of Irish Biography"
+    ]
+  },
+  {
+    "id": 85,
+    "name": "Mary Watson Whitney",
+    "century": "19th-20th (1847-1921)",
+    "location": "Waltham, Massachusetts, United States",
+    "major": "Astronomy / Observatory Leadership",
+    "whatOpened": "Mary Watson Whitney expanded Vassar's observatory into a research and training center where women could do serious astronomical work.",
+    "short": "Mary Watson Whitney was an American astronomer who directed the Vassar College Observatory and trained women in observational astronomy at a time when many research institutions excluded them.",
+    "long": "Mary Watson Whitney was born on September 11, 1847, in Waltham, Massachusetts. She studied at Vassar College under Maria Mitchell, one of the most important American women astronomers of the 19th century. After graduating, Whitney continued advanced study in mathematics and astronomy, including work at Harvard and in Zurich. Like many women of her generation, she had to build an academic path through institutions that were not designed to support women researchers. In 1888 Whitney succeeded Maria Mitchell as professor of astronomy and director of the Vassar College Observatory. Under her direction, students carried out observations of comets, double stars, variable stars, and asteroids. She emphasized disciplined observational work and encouraged students to publish and participate in scientific communities. At a time when many major observatories hired women only for low-status computational work, Whitney's program helped women learn the full practice of astronomy: observing, calculating, recording, and interpreting. Whitney trained a generation of women who carried astronomy into teaching, observatory work, and public science. Her leadership preserved Maria Mitchell's model of women's scientific education while adapting it to a more professionalized era. She died in 1921. Her legacy is institutional as much as individual: she helped make it possible for women students to see astronomy as a field they could enter with competence and authority.",
+    "sources": [
+      "Mary Watson Whitney, Vassar Encyclopedia. Vassar College",
+      "Mary Watson Whitney image file, Wikimedia Commons. Wikimedia Commons",
+      "Mary Watson Whitney, Biographical Encyclopedia of Astronomers"
+    ]
+  },
+  {
+    "id": 86,
+    "name": "Caterina Scarpellini",
+    "century": "19th (1808-1873)",
+    "location": "Foligno and Rome, Italy",
+    "major": "Astronomy / Meteorology",
+    "whatOpened": "Caterina Scarpellini built sustained observational records in Rome, connecting astronomy, meteorology, atmospheric electricity, and public scientific reporting.",
+    "short": "Caterina Scarpellini was an Italian astronomer and meteorologist who worked at the Campidoglio Observatory in Rome and published decades of observations on comets, eclipses, meteors, earthquakes, and atmospheric conditions.",
+    "long": "Caterina Scarpellini was an Italian astronomer and meteorologist who worked in Rome during a century when astronomy, atmospheric science, and public scientific reporting were closely connected. She is often remembered for discovering a comet, but her wider importance lies in her long record of observations and publications on the sky, weather, atmospheric electricity, earthquakes, and ozone. Scarpellini was born on October 29, 1808, in Foligno, Italy. Her uncle and godfather, Feliciano Scarpellini, was an astronomer associated with the Roman Campidoglio Observatory. Through that family and institutional connection, Caterina entered scientific work at a time when women rarely held formal scientific posts. She later married Erasmo Fabri, who also worked in the observatory environment. At the Campidoglio Observatory in Rome, Scarpellini made and reported observations of astronomical and meteorological phenomena. She published more than fifty scientific notes and reports over roughly two decades. Her subjects included comets, solar eclipses, meteors, earthquake reports, atmospheric conditions, and ozone measurements. In the 1850s she established a meteorological station in Rome, contributing to the growing practice of organized atmospheric observation. Her work was not limited to a single discipline; it reflected a 19th-century scientific world in which careful observers gathered linked evidence about Earth and sky. Scarpellini received recognition from the Italian government, including a silver medal. Yet she remains little known outside histories of Italian science. Her profile is valuable because it shows science as sustained observation: records kept over time, instruments maintained, reports written, and local data made available to wider scientific networks. She died in 1873, leaving a body of work that connects astronomy with the early development of meteorology.",
+    "sources": [
+      "Scienza a due voci, University of Bologna: Caterina Scarpellini",
+      "Wikimedia Commons category/file pages"
+    ]
+  },
+  {
+    "id": 87,
+    "name": "Anne Sewell Young",
+    "century": "19th-20th (1871-1961)",
+    "location": "Bloomington, Wisconsin, United States",
+    "major": "Astronomy / Variable Stars",
+    "whatOpened": "Anne Sewell Young built Mount Holyoke's astronomy program and strengthened organized variable-star observing in the United States.",
+    "short": "Anne Sewell Young was an American astronomer and long-serving professor at Mount Holyoke College whose work in variable-star observing and student training helped sustain women's participation in astronomy.",
+    "long": "Anne Sewell Young was an American astronomer and professor whose work combined research, teaching, and organized observation. She helped shape astronomy at Mount Holyoke College and contributed to the culture of variable-star observing, a field that depends on patient measurements made over long stretches of time. Young was born on January 2, 1871, in Bloomington, Wisconsin. She came from a family with astronomical connections: several relatives were associated with astronomy and teaching. She graduated from Carleton College in 1892 and later studied at Columbia University, where her thesis work involved Rutherford photographs of the stellar clusters h and chi Persei. Her training placed her in the tradition of photographic and observational astronomy that was expanding in the late 19th and early 20th centuries. Young taught at Whitman College and then joined Mount Holyoke College, where she became a central figure in the astronomy program for 37 years. She directed observatory work, taught students how to observe and calculate, and supported the use of astronomical photography and variable-star observation. She was one of the early members of the American Association of Variable Star Observers. Variable-star work requires repeated observations that may seem modest individually but become powerful when organized across many observers and years. Young's impact is best understood through the students and observing practices she sustained. She helped keep women's colleges connected to serious scientific work, not merely general science education. She belonged to professional astronomical societies, including the Royal Astronomical Society, and remained respected among observers. Young died in 1961. Her career shows how a scientist can influence a field by building habits of measurement, training, and participation that outlast a single publication.",
+    "sources": [
+      "Library of Congress / Commons file page",
+      "Mount Holyoke and AAVSO-linked biographical records"
+    ]
+  },
+  {
+    "id": 88,
+    "name": "Maria Matilda Ogilvie Gordon",
+    "century": "19th-20th (1864-1939)",
+    "location": "Aberdeenshire, Scotland / Dolomites, Italy",
+    "major": "Geology / Paleontology",
+    "whatOpened": "Maria Matilda Ogilvie Gordon reinterpreted the structure of the Dolomites through field geology and fossil evidence, challenging accepted ideas about mountain formation.",
+    "short": "Maria Ogilvie Gordon was a Scottish geologist and paleontologist whose field studies in the Dolomites advanced understanding of Alpine structure and helped establish her as one of Britain's important early women geologists.",
+    "long": "Maria Matilda Ogilvie Gordon, often known as May Ogilvie Gordon, was a Scottish geologist and paleontologist whose fieldwork in the Dolomites challenged accepted ideas about Alpine structure. She combined fossil evidence, stratigraphy, and structural geology, and became one of the most accomplished British women geologists of her generation. Gordon was born on April 30, 1864, in Monymusk, Aberdeenshire, Scotland. She studied in Edinburgh, London, and Munich, pursuing higher scientific training at a time when women faced barriers to university degrees and laboratory access. She completed doctoral work in Munich in 1900, focusing on the geology of the South Tyrol. Her education required persistence across multiple institutions because no single path was straightforward for a woman geologist. Gordon's major scientific work centered on the Dolomites. She studied fossil-bearing strata, mapped relationships among rock layers, and argued that the region's structure reflected complex deformation and crustal movement. Her work helped revise simpler interpretations of mountain formation in the area. She published technical studies in geology and paleontology, including work on the Cassian strata. Her research was respected by geologists, and she received the Geological Society of London's Lyell Medal in 1932. Gordon's later life also included public service and activism for women's rights, but her scientific legacy stands on its own. She was made a Dame Commander of the Order of the British Empire in 1935 and received honorary recognition from the University of Edinburgh. She died in 1939. Her profile belongs in Forgotten Scientists because she was not a footnote to male Alpine geologists; she produced original field science in one of Europe's most important geological regions.",
+    "sources": [
+      "Wikimedia Commons file page",
+      "Oxford Dictionary of National Biography",
+      "Geological Society / Lyell Medal records"
+    ]
+  },
+  {
+    "id": 89,
+    "name": "Elizabeth Gertrude Britton",
+    "century": "19th-20th (1858-1934)",
+    "location": "New York City, United States",
+    "major": "Botany / Bryology",
+    "whatOpened": "Elizabeth Gertrude Britton helped build American bryology and co-founded institutions that made mosses, liverworts, and plant conservation scientifically visible.",
+    "short": "Elizabeth Gertrude Britton was an American botanist and bryologist whose moss research, herbarium work, and conservation activism helped shape the New York Botanical Garden and early American plant science.",
+    "long": "Elizabeth Gertrude Britton was an American botanist and bryologist who helped make mosses and other small plants scientifically visible. Her work joined taxonomy, herbarium building, conservation, and institution building, especially through the development of the New York Botanical Garden. Britton was born Elizabeth Gertrude Knight on January 9, 1858, in New York City. She spent part of her childhood in Cuba and later studied at Normal College, now Hunter College. She became interested in botany early and worked with plant collections in New York. In 1885 she married Nathaniel Lord Britton, another botanist, but her own work in bryology was substantial and independent. Britton specialized in mosses, a field that requires careful microscopic study, precise description, and strong herbarium collections. She studied, identified, and organized bryophyte specimens and published botanical work under the abbreviation E.G.Britton. She was active in the Torrey Botanical Club and helped promote the creation of the New York Botanical Garden. Britton also advocated for wildflower protection and plant conservation at a time when urban growth and collecting threatened local flora. Britton's legacy is both scientific and civic. She helped build the institutions and collections that later botanists depended on, and she treated mosses as worthy of serious study rather than background greenery. Her conservation advocacy helped connect botany with public responsibility for living landscapes. She died in 1934. Because bryology itself is a quiet field, Britton's name often remains quiet too, but her work helped shape American botany in durable ways.",
+    "sources": [
+      "New York Botanical Garden histories",
+      "Biodiversity Heritage Library records",
+      "Wikimedia Commons file page"
+    ]
+  },
+  {
+    "id": 90,
+    "name": "Ethel Sargant",
+    "century": "19th-20th (1863-1918)",
+    "location": "London and Cambridge, United Kingdom",
+    "major": "Botany / Plant Cytology",
+    "whatOpened": "Ethel Sargant used plant embryology and seedling anatomy to investigate how plant structures develop, helping advance botanical morphology.",
+    "short": "Ethel Sargant was a British botanist whose work on plant cytology, embryology, and seedling anatomy earned high respect among botanists even though formal scientific institutions still restricted women's recognition.",
+    "long": "Ethel Sargant was a British botanist whose research in plant cytology, embryology, and morphology was highly respected by contemporaries. She worked in a period when women could contribute to science but were often denied the titles, posts, and institutional standing that made scientific reputations secure. Sargant was born on October 28, 1863, into an educated British family. She attended North London Collegiate School and then Girton College, Cambridge, from 1881 to 1885. Cambridge did not award women degrees on the same terms as men, so her early career already reflected the contradiction of the period: women could be trained to high standards while still being denied full academic recognition. Sargant worked at the Jodrell Laboratory at Kew, where she studied plant reproductive cells and nuclear division. Later, because family responsibilities limited her ability to hold a conventional post, she created a research space at home that colleagues nicknamed \"Jodrell Junior.\" She investigated seedling anatomy, plant morphology, and the development of monocotyledons. She also employed and mentored younger women researchers, including Agnes Arber. Sargant published scientific papers and gave lectures; her botanical work was regarded as accurate, original, and important. In 1904 Sargant became one of the first women elected Fellow of the Linnean Society of London, and she later became the first woman to serve on its council. She was also active in organizations supporting university women. Sargant died in 1918. Her legacy is not built around one famous discovery, but around sustained technical excellence in botany and the creation of space for women researchers when formal institutions offered too little room.",
+    "sources": [
+      "Nature and New Phytologist obituary materials",
+      "Linnean Society history",
+      "Wikimedia Commons / public-domain image record"
+    ]
+  },
+  {
+    "id": 91,
+    "name": "Helen Abbott Michael",
+    "century": "19th-20th (1857-1904)",
+    "location": "Philadelphia and Boston, United States",
+    "major": "Chemistry / Phytochemistry",
+    "whatOpened": "Helen Abbott Michael investigated chemical relationships among plants and argued that chemistry could help classify botanical life.",
+    "short": "Helen Abbott Michael was an American chemist and physician who pioneered phytochemistry, studying plant compounds and proposing that chemical composition could illuminate plant relationships.",
+    "long": "Helen Abbott Michael was an American chemist and physician whose research helped define early phytochemistry: the chemical study of plants. She investigated whether plant chemistry could reveal relationships among species and whether chemical composition could become part of botanical classification. Helen Cecilia De Silver Abbott was born on December 23, 1857, in Philadelphia. She developed scientific interests outside the standard university route available to men, studying chemistry and botany through private study, laboratory work, and contact with scientific institutions. After marrying the chemist Arthur Michael, she continued scientific research and publication under the name Helen Abbott Michael. Michael studied plant compounds and the relationship between chemical composition and plant form. She argued that chemistry could add evidence to plant classification, a forward-looking idea at a time when morphology dominated taxonomy. She published papers in plant and organic chemistry and lectured before scientific organizations including the Franklin Institute and the American Association for the Advancement of Science. She is also identified as the first woman to lecture to students at the Philadelphia College of Pharmacy. Her work connected organic chemistry with botany before phytochemistry became a well-established specialty. Michael later earned a medical degree from Tufts University School of Medicine. In Boston she used part of her home as a free hospital for poor patients, combining scientific training with direct medical service. She died in 1904 after contracting influenza, reportedly from one of the patients she treated. Her collected scientific and literary papers were published after her death with a biographical sketch. Her life is a rare example of one person linking chemistry, plant science, medicine, and public care in a period when women had to assemble scientific careers from fragments of opportunity.",
+    "sources": [
+      "Journal of Chemical Education biographical snapshot",
+      "Studies in plant and organic chemistry, with biographical sketch",
+      "Wikimedia Commons category/file page"
+    ]
+  },
+  {
+    "id": 92,
+    "name": "Ștefania Mărăcineanu",
+    "century": "20th (1882-1944)",
+    "location": "Bucharest, Romania / Paris, France",
+    "major": "Physics / Radioactivity",
+    "whatOpened": "Ștefania Mărăcineanu pursued early research on radioactivity and radioactive half-life in the Curie laboratory, while later priority claims around artificial radioactivity remain historically debated.",
+    "short": "Ștefania Mărăcineanu was a Romanian physicist who worked on radioactivity in Paris and Bucharest, publishing early studies in a field where later recognition and priority became complicated and contested.",
+    "long": "Ștefania Mărăcineanu was a Romanian physicist who worked on radioactivity in the early 20th century. Her story needs careful handling: she is sometimes presented in popular accounts as an overlooked discoverer of artificial radioactivity, but the historical record is more complicated. A scientifically honest profile should emphasize her documented research while avoiding exaggerated priority claims. Mărăcineanu was born in Bucharest in 1882. She studied physical and chemical sciences and became a teacher before continuing advanced research in Paris. She worked at the Radium Institute, the scientific environment associated with Marie Curie, where radioactivity was one of the most active and difficult fields in physics. Her doctoral research examined radioactivity, including the behavior of polonium and questions about radioactive decay and surrounding materials. She received her doctorate in Paris in the 1920s. After returning to Romania, she continued teaching and research. Some later Romanian and popular accounts argue that her experiments anticipated artificial radioactivity, later associated with Irene and Frederic Joliot-Curie. However, historians treat this as a debated question rather than a settled correction of Nobel history. The safer statement is that Mărăcineanu worked on radioactivity and raised questions about induced effects before the field's later, better-known discoveries. Mărăcineanu's importance is partly scientific and partly historical. She represents a researcher from outside the dominant French, British, German, and American centers who entered a highly competitive field but did not receive broad international visibility. She died in 1944. Her profile should be written without mythmaking: not as a simplified \"stolen Nobel\" story, but as the story of a Romanian physicist whose documented radioactivity research deserves more careful attention than it usually receives.",
+    "sources": [
+      "Wikimedia Commons file page",
+      "Romanian Academy / historical accounts",
+      "Published historical discussions of radioactivity priority"
+    ]
+  },
+  {
+    "id": 93,
+    "name": "Rachel Lloyd",
+    "century": "19th (1839-1900)",
+    "location": "Ohio, Pennsylvania, Zurich, and Nebraska",
+    "major": "Chemistry / Agricultural Chemistry",
+    "whatOpened": "Rachel Lloyd used analytical chemistry to support Nebraska's sugar-beet industry and became the first American woman to earn a chemistry doctorate.",
+    "short": "Rachel Lloyd was an American chemist who earned a doctorate at the University of Zurich and used analytical chemistry at the University of Nebraska to support sugar-beet agriculture.",
+    "long": "Rachel Lloyd was an American chemist whose work connected laboratory analysis with agriculture and industry. She is recognized as the first American woman to earn a doctoral degree in chemistry, and her research on sugar beets helped support the development of Nebraska's beet-sugar industry. Rachel Abbie Holloway was born on January 26, 1839, in Ohio, into a Quaker family. Her early life included severe family losses, and she began teaching as a young woman. Through marriage to Franklin Lloyd, a chemist, she gained access to laboratory work and developed her own interest in chemical research. After Franklin Lloyd's death, she continued teaching and studying. She later pursued advanced chemistry in Europe at a time when American institutions offered women few equivalent opportunities. In 1887 Lloyd received a doctorate from the University of Zurich with a dissertation on organic chemistry. That same year she joined the University of Nebraska, where she became a professor and researcher in analytical chemistry. Her most important applied work measured the sucrose content of sugar beets grown in Nebraska. These analyses helped show that sugar beets could be commercially viable in the region, supporting the establishment of a local beet-sugar industry. Lloyd also became an important mentor for women students in chemistry, helping make Nebraska unusually supportive of women chemists for its time. Lloyd retired in the 1890s because of health problems and died in 1900. More than a century later, the American Chemical Society designated her contributions at the University of Nebraska as a National Historic Chemical Landmark. Her career shows how analytical chemistry can change agriculture, economics, and education, even when the scientist behind the measurements remains almost unknown to the public.",
+    "sources": [
+      "American Chemical Society National Historic Chemical Landmark: Rachel Lloyd",
+      "University of Nebraska materials",
+      "Wikimedia Commons file page"
+    ]
+  },
+  {
+    "id": 94,
+    "name": "Alma Levant Hayden",
+    "century": "20th (1927-1967)",
+    "location": "Greenville, South Carolina / Washington, D.C., United States",
+    "major": "Chemistry / Pharmaceutical Analysis",
+    "whatOpened": "Alma Levant Hayden used analytical chemistry to expose the anti-cancer drug Krebiozen as chemically ordinary rather than miraculous.",
+    "short": "Alma Levant Hayden was an American chemist at the National Institutes of Health and Food and Drug Administration whose analytical work helped debunk the fraudulent cancer treatment Krebiozen.",
+    "long": "Alma Levant Hayden was an American chemist whose analytical work helped protect the public from a false cancer treatment. Her best-known contribution came during the federal investigation of Krebiozen, a substance promoted as an anti-cancer drug without reliable evidence. Hayden was born on March 30, 1927, in Greenville, South Carolina. She studied chemistry at South Carolina State College and later earned a master's degree from Howard University. Her training led her into federal scientific work, first at the National Institutes of Health and then at the Food and Drug Administration. As an African American woman chemist in mid-20th-century federal science, her career developed in a field where both race and gender limited opportunity. At the FDA, Hayden specialized in analytical chemistry. She used methods such as chromatography and spectroscopy to identify substances and compare chemical evidence. During the Krebiozen investigation in the 1960s, Hayden and colleagues analyzed samples of the supposed cancer drug. Their work showed that the substance did not support the claims made for it; reports identified it as chemically ordinary material rather than a new therapeutic breakthrough. This analysis became part of the broader case against Krebiozen's promoters. Hayden died in 1967 at only 40 years old, so her career was much shorter than it should have been. Her work is important because it shows science as public protection. Careful chemical analysis can expose fraud, prevent desperate patients from being exploited, and hold medical claims to evidence. Hayden's name is still not widely known, but her role in the Krebiozen case belongs in the history of chemistry, medicine, and consumer safety.",
+    "sources": [
+      "NIH History Office image record",
+      "FDA and NIH histories of Krebiozen investigation",
+      "Wikimedia Commons file page"
+    ]
+  },
+  {
+    "id": 95,
+    "name": "Sara Branham Matthews",
+    "century": "20th (1888-1962)",
+    "location": "Oxford, Georgia / Bethesda, Maryland, United States",
+    "major": "Microbiology / Infectious Disease",
+    "whatOpened": "Sara Branham Matthews advanced understanding of meningococcal bacteria and helped connect laboratory microbiology with public-health treatment of meningitis.",
+    "short": "Sara Branham Matthews was an American microbiologist whose research at the U.S. Hygienic Laboratory and NIH clarified meningococcal disease and supported better diagnosis and treatment.",
+    "long": "Sara Branham Matthews was an American microbiologist and physician whose research clarified meningococcal disease, especially the bacterium Neisseria meningitidis. Her work helped connect laboratory bacteriology with practical diagnosis, treatment, and public-health response. Sara Elizabeth Branham was born on July 25, 1888, in Oxford, Georgia. She studied at Wesleyan College and the University of Colorado, then pursued further scientific and medical training. During World War I and the years around it, many scientists shifted toward infectious disease work because bacterial epidemics remained a serious public-health threat. Branham's career moved from teaching into laboratory research and medicine. Branham joined the Hygienic Laboratory of the United States Public Health Service, which later became part of the National Institutes of Health. She studied meningococcus, the bacterium that causes epidemic meningitis. Her research examined strains of Neisseria meningitidis, their classification, immune reactions, and response to serum and later drug treatments. She helped improve understanding of how the organism varied and how laboratory evidence could guide medical response. Her work was part of the transition from descriptive bacteriology toward more targeted public-health microbiology. Branham published extensively and became a recognized expert on meningococcal disease. She received honors including the Howard Taylor Ricketts Award and remained associated with federal infectious-disease research for decades. She died in 1962. Her name is not widely known outside microbiology, but her work mattered in a field where accurate bacterial identification could mean the difference between outbreak control and deadly confusion.",
+    "sources": [
+      "NIH historical records",
+      "Wikimedia Commons Sara Branham Matthews category",
+      "Biographical Encyclopedia of scientists / public-health references"
+    ]
+  },
+  {
+    "id": 96,
+    "name": "Gertrude Blanch",
+    "century": "20th (1897-1996)",
+    "location": "Kolno, then Russian Empire / United States",
+    "major": "Mathematics / Numerical Analysis",
+    "whatOpened": "Gertrude Blanch led large-scale mathematical table computation and helped build numerical methods that fed directly into early electronic computing.",
+    "short": "Gertrude Blanch was a mathematician and numerical analyst who led the Mathematical Tables Project and helped transform human computation into modern computational mathematics.",
+    "long": "Gertrude Blanch was an American mathematician and numerical analyst who helped bridge the age of human computation and electronic computing. She led mathematical work at the Mathematical Tables Project, where teams produced accurate numerical tables needed by scientists, engineers, and wartime researchers. Blanch was born on February 2, 1897, in Kolno, then in the Russian Empire and now in Poland. Her family immigrated to the United States when she was young. She worked for years before completing higher education, earning degrees from New York University and a Ph.D. from Cornell University. Her path into mathematics was delayed by economic and family responsibilities, which makes her later leadership even more striking. At the Mathematical Tables Project in New York, Blanch became a central mathematical supervisor. The project employed human computers, many of them women, to calculate tables of functions used in physics, astronomy, engineering, and military work. Blanch was responsible for mathematical planning, methods, accuracy, and checking procedures. These were not clerical tasks: numerical tables had to be trustworthy, and errors could spread into technical and scientific calculations. Later she worked in numerical analysis at UCLA and at the Aerospace Research Laboratory, contributing to computation after electronic machines began replacing hand calculation. Blanch published in numerical analysis and special functions and became respected among mathematicians who understood computation as a mathematical discipline. Her career shows that early computing history is not only hardware history. Before machines became famous, people like Blanch built the methods, checks, and numerical standards that made computation reliable. She died in 1996, still much less known than the computing revolution she helped prepare.",
+    "sources": [
+      "Smithsonian National Museum of American History archives",
+      "MacTutor / biographies of women mathematicians",
+      "Wikimedia Commons file page"
+    ]
+  },
+  {
+    "id": 97,
+    "name": "Ida Rhodes",
+    "century": "20th (1900-1986)",
+    "location": "Kamianets-Podilskyi, Ukraine / United States",
+    "major": "Mathematics / Computer Science",
+    "whatOpened": "Ida Rhodes designed early programming methods, contributed to UNIVAC-era computing, and worked on machine translation long before it became a mainstream AI field.",
+    "short": "Ida Rhodes was a Ukrainian-born American mathematician and computer pioneer at the National Bureau of Standards whose work included early programming systems, machine translation, and computational algorithms.",
+    "long": "Ida Rhodes was a Ukrainian-born American mathematician and computer pioneer whose work ranged from mathematical tables to early programming, machine translation, and calendar algorithms. She belongs in computing history because she worked on practical problems before programming had settled into the forms people now recognize. Rhodes was born Hadassah Itzkowitz on May 15, 1900, in Kamianets-Podilskyi, then part of the Russian Empire and now in Ukraine. Her family immigrated to the United States when she was a child. She studied mathematics at Cornell University and later continued graduate study at Columbia University. Her early mathematical career included work connected to large-scale calculation. Rhodes worked for the Mathematical Tables Project and then for the National Bureau of Standards. She contributed to early computer programming, including work associated with the UNIVAC I and the C-10 programming language. She also became involved in machine translation from Russian to English. In that work she recognized that translation required structural analysis of language, including separating roots from prefixes and suffixes, rather than simply matching words one by one. Later she developed an algorithm for computing dates of Jewish holidays, a problem requiring both mathematical care and calendar knowledge. Rhodes worked at the National Bureau of Standards for decades and received the U.S. Department of Commerce Gold Medal in 1976. She retired formally but continued intellectual work afterward. She died in 1986. Her career is a reminder that early computing was built by mathematicians who solved practical, messy problems: language, calendars, codes, tables, and machine instructions. She is still much less famous than the machines she helped make useful.",
+    "sources": [
+      "NIST: Ida Rhodes image and biography records",
+      "Smithsonian Institution Archives",
+      "Wikimedia Commons file page"
+    ]
+  },
+  {
+    "id": 98,
+    "name": "Christine Ladd-Franklin",
+    "century": "19th-20th (1847-1930)",
+    "location": "Connecticut / Baltimore / New York, United States",
+    "major": "Logic / Mathematics / Psychology",
+    "whatOpened": "Christine Ladd-Franklin connected symbolic logic with psychology and proposed an influential theory of color vision while fighting for the degree she had earned decades earlier.",
+    "short": "Christine Ladd-Franklin was an American logician, mathematician, and psychologist whose work ranged from symbolic logic to color vision, though Johns Hopkins delayed awarding her earned doctorate for 44 years.",
+    "long": "Christine Ladd-Franklin was an American logician, mathematician, and psychologist whose career crossed several fields. She published in symbolic logic, developed a theory of color vision, and spent decades challenging the academic rules that denied women full recognition. Christine Ladd was born on December 1, 1847, in Windsor, Connecticut. She studied at Vassar College, graduating in 1869, and later sought advanced work in mathematics at Johns Hopkins University. Because Johns Hopkins did not formally admit women on equal terms, she entered under exceptional conditions. She completed the requirements for a doctorate in the 1880s, but the university refused to award the degree because she was a woman. Ladd-Franklin contributed to symbolic logic and published mathematical work in journals such as The Analyst and the American Journal of Mathematics. She later turned toward psychology and vision science. Her color-vision theory attempted to explain human color perception through an evolutionary sequence, connecting physiology and psychology. She studied in Europe with major psychologists and continued publishing and arguing for her theory. Her work sits at an unusual intersection: mathematical logic, experimental psychology, and sensory science. In 1926, Johns Hopkins finally awarded Ladd-Franklin the doctorate she had earned 44 years earlier. She also campaigned for women's participation in universities and professional societies, objecting publicly when women were excluded from scientific meetings or fellowships. She died in 1930. Her legacy is double: she made real contributions to logic and psychology, and she exposed how institutions could benefit from women's work while withholding the credentials that made such work visible.",
+    "sources": [
+      "Smithsonian Institution Archives",
+      "Feminist Voices profile",
+      "Wikimedia Commons file page"
+    ]
+  },
+  {
+    "id": 99,
+    "name": "Dorothy Wrinch",
+    "century": "20th (1894-1976)",
+    "location": "Rosario, Argentina / United Kingdom / United States",
+    "major": "Mathematics / Theoretical Biochemistry",
+    "whatOpened": "Dorothy Wrinch brought mathematical structure into early protein theory, even though her cyclol model was later rejected, helping sharpen the debate over protein architecture.",
+    "short": "Dorothy Wrinch was a mathematician and theoretical biochemist who applied geometry to protein structure, producing a bold cyclol model that proved wrong but forced clearer thinking about molecular architecture.",
+    "long": "Dorothy Wrinch was a mathematician and theoretical biochemist who tried to bring rigorous geometry into the study of biological molecules. Her best-known model of protein structure, the cyclol hypothesis, was ultimately rejected, but her work helped push scientists to think seriously about proteins as three-dimensional structures. Dorothy Maud Wrinch was born on September 12, 1894, in Rosario, Argentina, to British parents. She studied mathematics at Cambridge and became connected with mathematical logic and the intellectual world around Bertrand Russell. Her early work was mathematical, but she gradually moved toward applying mathematics to biological and chemical problems. In the 1930s Wrinch proposed the cyclol model of protein structure. At the time, the exact architecture of proteins was unknown, and scientists were debating how long chains of amino acids could fold into stable forms. Wrinch used geometrical reasoning to propose a regular structure for proteins. Experimental evidence later showed that the cyclol model was not correct, and Linus Pauling and others strongly criticized it. Still, the controversy mattered: it forced clearer standards for structural models and highlighted the need to combine chemistry, mathematics, and evidence from X-ray crystallography. Wrinch moved to the United States and continued academic work, though her reputation was deeply affected by the cyclol dispute. Her profile should not pretend that her most famous theory was right. Instead, it should show how science advances through bold proposals, criticism, and correction. She died in 1976. Her legacy is a complicated but valuable one: she was wrong in an important way, and that error helped sharpen the field's understanding of what a protein-structure theory needed to prove.",
+    "sources": [
+      "Smithsonian Institution Archives",
+      "Biographical works on Dorothy Wrinch and protein-structure history",
+      "Wikimedia Commons file page"
+    ]
+  },
+  {
+    "id": 100,
+    "name": "Mary Agnes Chase",
+    "century": "19th-20th (1869-1963)",
+    "location": "Illinois / Washington, D.C. / Brazil field sites",
+    "major": "Botany / Agrostology",
+    "whatOpened": "Mary Agnes Chase turned grasses into a rigorous field of study through taxonomy, illustration, field collecting, and accessible books.",
+    "short": "Mary Agnes Chase was an American botanist and agrostologist whose work at the USDA and Smithsonian made her one of the world's leading experts on grasses.",
+    "long": "Mary Agnes Chase was an American botanist, illustrator, collector, and agrostologist, a specialist in grasses. She became one of the world's leading authorities on grasses despite having little formal education beyond elementary school. Chase was born Mary Agnes Meara on April 29, 1869, in Iroquois County, Illinois. Her early life was marked by poverty and family hardship, and she began working young. She later worked as a proofreader and became interested in botany through classes, self-study, and contact with botanists. Her skills as an illustrator helped her enter scientific work, because accurate drawings were essential to plant description. Chase worked with Albert Spear Hitchcock and became associated with the U.S. Department of Agriculture and the Smithsonian Institution. She specialized in grasses, one of the most ecologically and economically important plant families. Grass taxonomy is difficult because many species require close attention to tiny structures, and Chase became known for her precision. She collected plants in the United States and Latin America, including Brazil, Venezuela, and Puerto Rico. She wrote First Book of Grasses, designed to make grass study accessible, and contributed to major technical works and indices used by botanists. Chase was also active in the women's suffrage movement and was arrested during protests; her activism sometimes affected her professional travel opportunities. Nevertheless, she became a senior botanist and a respected authority in agrostology. She died in 1963 at age 94. Her legacy combines science and civic courage: she made a difficult plant group understandable while insisting that women deserved both scientific and political voice.",
+    "sources": [
+      "National Women's History Museum biography",
+      "Science History Institute biography",
+      "Smithsonian Institution Archives / Commons category"
+    ]
+  },
+  {
+    "id": 101,
+    "name": "Mary Treat",
+    "century": "19th-20th (1830-1923)",
+    "location": "New York / New Jersey / Florida, United States",
+    "major": "Natural History / Botany / Entomology",
+    "whatOpened": "Mary Treat made careful observations of carnivorous plants, insects, and plant-insect interactions, corresponding with Charles Darwin and other naturalists.",
+    "short": "Mary Treat was an American naturalist whose field observations of insects and carnivorous plants contributed to 19th-century botany and entomology, even though she worked outside formal institutions.",
+    "long": "Mary Treat was an American naturalist whose work joined botany, entomology, and careful field experimentation. She studied insects, spiders, and carnivorous plants, and she corresponded with major scientists including Charles Darwin and Asa Gray. Mary Lua Adelia Davis was born on September 7, 1830, in New York. After marrying Joseph Burrell Treat, she eventually lived in Vineland, New Jersey, a community that became important to her work as a naturalist. She did not hold a university post and did not build her career through formal academic credentials. Instead, she worked through observation, correspondence, publication, and experiment. Treat studied plant-insect relationships, insect behavior, spiders, and carnivorous plants. She made close observations of how plants captured insects and how insects behaved in controlled situations. Darwin corresponded with her and cited some of her observations in later work on insectivorous plants. Treat also wrote for periodicals and published books, including works intended for general readers and younger audiences. Her writing helped translate detailed natural history into public understanding without sacrificing observation. Treat's work shows that 19th-century science depended on networks beyond universities. Careful observers outside formal institutions supplied data, specimens, and experimental results to better-known scientists. Because Treat was a woman and worked outside academic structures, her name did not remain as visible as the men who cited her. She died in 1923. A profile of Treat can show how scientific authority can be earned through disciplined attention to the living world, even when institutions fail to provide a title.",
+    "sources": [
+      "Darwin Correspondence Project learning resource",
+      "Biodiversity Heritage Library",
+      "Public-domain image record via Commons/PICRYL"
+    ]
+  },
+  {
+    "id": 102,
+    "name": "Kono Yasui",
+    "century": "19th-20th (1880-1971)",
+    "location": "Kagawa / Tokyo, Japan",
+    "major": "Botany / Cytology",
+    "whatOpened": "Kono Yasui became one of Japan's first women in modern academic science and investigated plant cytology, coal formation, and botanical development.",
+    "short": "Kono Yasui was a Japanese botanist and cytologist who became one of Japan's earliest women university science students and built a research career in plant cells and coal-forming plant material.",
+    "long": "Kono Yasui was a Japanese botanist and cytologist who became one of the first women to enter university-level scientific study in Japan. Her research focused on plant cells, plant development, and the transformation of plant material over geological time. Yasui was born on February 16, 1880, in Kagawa Prefecture, Japan. She studied at Tokyo Women's Higher Normal School, one of the few routes available to women seeking advanced education. In 1913 she became one of the first women admitted to Tohoku Imperial University, a landmark moment because Japanese imperial universities had previously excluded women as students. Yasui worked in botany, especially cytology, the microscopic study of cells. She researched plant tissues, aquatic ferns, and the cellular processes involved in plant development. She also studied the transformation of plant matter into coal, connecting botany with geological processes. Her research was published in scientific journals, and she became the first Japanese woman to receive a doctorate in science. In addition to research, she taught at Tokyo Women's Higher Normal School and helped train women in scientific thinking and laboratory methods. Yasui's legacy is both scientific and institutional. She showed that women could conduct advanced botanical research within a university system that had barely begun to admit them. Her career helped prepare the ground for later women scientists in Japan. She died in 1971. Her profile should present her not only as a symbolic \"first,\" but as a working botanist whose cell-level research connected plant structure, development, and deep time.",
+    "sources": [
+      "University of Tokyo: early women in STEM",
+      "Ochanomizu / Japanese science history materials",
+      "Wikimedia Commons file page"
+    ]
+  },
+  {
+    "id": 103,
+    "name": "Chika Kuroda",
+    "century": "20th (1884-1968)",
+    "location": "Saga / Sendai / Tokyo, Japan",
+    "major": "Chemistry / Natural Pigments",
+    "whatOpened": "Chika Kuroda studied the chemistry of natural pigments such as shikonin and carthamin, becoming one of Japan's first women chemists.",
+    "short": "Chika Kuroda was a Japanese chemist whose research on natural pigments made her a pioneer for women in Japanese chemistry and helped connect organic chemistry with dyes and plant compounds.",
+    "long": "Chika Kuroda was a Japanese chemist whose research focused on natural pigments. She was one of the first women admitted to university-level science study in Japan and became a pioneer for women in Japanese chemistry. Kuroda was born on March 24, 1884, in Saga Prefecture, Japan. She studied at Tokyo Women's Higher Normal School and became part of the small group of women admitted to Tohoku Imperial University in 1913. This was a major institutional break, because women had previously been excluded from Japan's imperial universities. Kuroda chose chemistry, a field with demanding laboratory requirements and few women role models in Japan at the time. Kuroda investigated the chemistry of natural pigments, especially plant-derived dyes. Her research included work on shikonin, the purple pigment from gromwell, and carthamin, a red pigment from safflower. These studies required organic chemical analysis and connected traditional dye materials with modern chemical structure. She later worked at institutions including RIKEN and Tokyo Women's Higher Normal School, combining research with teaching. Her work contributed to the scientific understanding of natural colorants and plant compounds. Kuroda received national recognition in Japan, including the Medal with Purple Ribbon and the Order of the Precious Crown. She died in 1968. Her profile is valuable because it is not only about being first. It is about a scientist who entered chemistry when women were barely admitted to the university system, then built a research career around the molecular basis of color in plants. Outside Japan, her name remains far less familiar than her pioneering status deserves.",
+    "sources": [
+      "University of Tokyo / early women in STEM context",
+      "Biographical articles on Kuroda Chika",
+      "Wikimedia Commons category/file page"
+    ]
+  },
+  {
+    "id": 104,
+    "name": "Myrtle Bachelder",
+    "century": "20th (1908-1997)",
+    "location": "Massachusetts / Manhattan Project sites, United States",
+    "major": "Chemistry / Nuclear Materials",
+    "whatOpened": "Myrtle Bachelder developed analytical chemistry methods for rare-earth elements and nuclear materials during and after the Manhattan Project.",
+    "short": "Myrtle Bachelder was an American chemist and Women's Army Corps officer whose Manhattan Project work involved difficult analytical chemistry for uranium and rare-earth materials.",
+    "long": "Myrtle Bachelder was an American chemist and Women's Army Corps officer whose wartime work supported the Manhattan Project. Her expertise was analytical chemistry: identifying, separating, and measuring substances accurately enough for nuclear research. Myrtle Claire Bachelder was born on March 13, 1908, in Massachusetts. She studied chemistry at Middlebury College and later earned a master's degree in education from Boston University. Before World War II, she taught science. When the United States entered the war, she joined the Women's Army Corps, which opened a route for trained women to contribute to military and scientific projects. Bachelder was assigned to the Manhattan Project. Her work involved analytical chemistry connected with uranium and rare-earth elements. These tasks were technically demanding because nuclear research depended on pure materials and reliable measurements. Analytical chemists had to detect impurities, separate chemically similar elements, and provide evidence that materials met the standards required for experimental and production work. Such work rarely received the public attention given to physicists or military leaders, but it was essential to the project. After the war, Bachelder continued in chemistry, education, and public service. Her story helps correct an overly narrow picture of the Manhattan Project. The project was not only theoretical physics; it required chemistry, metallurgy, engineering, administration, and measurement. Bachelder died in 1997. Her profile should emphasize that scientific megaprojects depend on people who make materials knowable and controllable, even when their names are not attached to famous equations or public announcements.",
+    "sources": [
+      "Wikimedia Commons file page",
+      "Manhattan Project historical summaries",
+      "Biographical records for Myrtle Bachelder"
+    ]
+  },
+  {
+    "id": 105,
+    "name": "Clémence Royer",
+    "century": "19th-20th (1830-1902)",
+    "location": "Nantes / Lausanne / Paris, France",
+    "major": "Evolutionary Science / Anthropology / Science Translation",
+    "whatOpened": "Clémence Royer brought Darwin's evolutionary theory into French through translation and commentary, shaping how French readers first encountered Origin of Species.",
+    "short": "Clémence Royer was a French scholar, translator, and anthropological thinker whose 1862 French translation of Darwin's Origin of Species helped introduce evolutionary theory to French readers.",
+    "long": "Clémence Royer was a French scholar, translator, and public intellectual who shaped how French readers first encountered Darwin's theory of evolution. She was not a laboratory scientist in the narrow sense, but she was an important scientific mediator whose translation and commentary influenced the public life of evolutionary ideas. Royer was born on April 21, 1830, in Nantes, France. She was largely self-educated and developed interests across philosophy, economics, anthropology, and science. She lived and worked in France and Switzerland, lecturing and writing in intellectual circles that valued freethought and social reform. Her education did not follow a standard university path, especially because French academic science offered women few formal roles. In 1862 Royer published the first French translation of Charles Darwin's On the Origin of Species. This was a major event in the reception of evolutionary theory in France. Her translation made Darwin's ideas accessible to French readers, but it was also controversial. Royer added a long preface and notes expressing her own views on progress, society, religion, and human inequality. Some of those interpretations went beyond Darwin and, in places, conflicted with what he wanted emphasized. Later French editions of Darwin's work moved away from Royer's framing, but her translation remains historically important because it shaped the first wave of French debate. Royer later wrote on anthropology, philosophy, women, and science, and she was connected with feminist and freethinking movements. In 1900 she received the Legion of Honour. She died in 1902. Her profile should be careful: she should not be made into a simple hero or a laboratory discoverer. Her real importance is more complicated and more interesting: she shows how translation can transform science, spreading ideas while also changing how they are understood.",
+    "sources": [
+      "Wikimedia Commons category",
+      "Historical accounts of Darwin's French reception",
+      "Biographical records for Clémence Royer"
+    ]
   }
 ]

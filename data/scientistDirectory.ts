@@ -6,7 +6,7 @@ export type ScientistDirectoryEntry = {
   available: boolean;
 };
 
-const AVAILABLE_COUNT = 80;
+const AVAILABLE_COUNT = 105;
 
 export const scientistDirectory: ScientistDirectoryEntry[] = (
   scientistDirectoryRaw as Array<{ id: number; name: string }>
