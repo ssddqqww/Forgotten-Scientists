@@ -14,18 +14,26 @@ export default function ExploreScientist() {
     const [centuryFilter, setCenturyFilter] = useState("");
     const [openMenu, setOpenMenu] = useState<"field" | "country" | "century" | null>(null);
 
+    const orderedScientists = useMemo(
+        () => [
+            ...scientists.filter((scientist) => scientist.image),
+            ...scientists.filter((scientist) => !scientist.image),
+        ],
+        []
+    );
+
     const fields = useMemo(() => Array.from(new Set(scientists.map((item) => item.field))), []);
     const countries = useMemo(() => Array.from(new Set(scientists.map((item) => item.country))), []);
     const centuries = useMemo(() => Array.from(new Set(scientists.map((item) => item.century))), []);
 
     const filteredScientists = useMemo(() => {
-        return scientists.filter((item) => {
+        return orderedScientists.filter((item) => {
             if (fieldFilter && item.field !== fieldFilter) return false;
             if (countryFilter && item.country !== countryFilter) return false;
             if (centuryFilter && item.century !== centuryFilter) return false;
             return true;
         });
-    }, [fieldFilter, countryFilter, centuryFilter]);
+    }, [orderedScientists, fieldFilter, countryFilter, centuryFilter]);
 
     const visibleScientists = filteredScientists.slice(0, visibleCount);
     const hasMore = visibleCount < filteredScientists.length;
