@@ -80,18 +80,20 @@ export default function ScientistPortraitFallback({
         style={{ backgroundColor: palette.accent }}
       />
 
-      <div
-        className="absolute left-6 top-7 text-6xl font-semibold tracking-[-0.06em] sm:text-7xl"
-        style={{ color: palette.accent }}
-      >
-        {getInitials(name)}
-      </div>
-
-      <div
-        className="absolute right-5 top-6 rounded-full border px-3 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.14em]"
-        style={{ borderColor: palette.accent, color: palette.text }}
-      >
-        {field}
+      <div className="absolute left-6 top-7 flex items-start sm:left-7 sm:top-8">
+        {getInitials(name).split("").map((initial, index) => (
+          <span
+            key={`${initial}-${index}`}
+            className={`text-[3.25rem] font-normal leading-none sm:text-[3.75rem] ${index === 1 ? "-ml-1.5 mt-2 opacity-75" : ""}`}
+            style={{
+              color: palette.accent,
+              fontFamily: "Georgia, 'Times New Roman', serif",
+              fontStyle: "italic",
+            }}
+          >
+            {initial}
+          </span>
+        ))}
       </div>
 
       <div className="absolute bottom-5 left-6 right-6 border-t border-current/20 pt-3">
