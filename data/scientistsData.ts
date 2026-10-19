@@ -124,7 +124,7 @@ const imagePositionById: Partial<Record<number, string>> = {
   29: "center 24%",
   30: "center 38%",
   31: "center 35%",
-  36: "center 18%",
+  36: "center 10%",
   37: "center 20%",
   38: "center top",
   39: "center 16%",
@@ -141,13 +141,15 @@ const imagePositionById: Partial<Record<number, string>> = {
   79: "center 26%",
   80: "center 38%",
   81: "center 32%",
-  82: "center 16%",
+  82: "center 10%",
   83: "center 30%",
   84: "center 30%",
   85: "center 38%",
+  87: "center 38%",
   88: "center 10%",
   92: "center 6%",
   99: "center 18%",
+  101: "center 40%",
   102: "center 6%",
   103: "center 6%",
   104: "center 14%",
@@ -157,6 +159,7 @@ const imageFitById: Partial<Record<number, "cover" | "contain">> = {
 };
 
 const imageScaleById: Partial<Record<number, number>> = {
+  82: 1.08,
 };
 
 const fieldById: Record<number, string> = {
