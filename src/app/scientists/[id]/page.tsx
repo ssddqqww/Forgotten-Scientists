@@ -2,6 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getScientistById, scientists } from "../../../../data/scientistsData";
 import BackLink from "./BackLink";
+import ScientistPortraitFallback from "../../components/ScientistPortraitFallback";
 
 type ScientistPageProps = {
   params: Promise<{ id: string }>;
@@ -57,9 +58,10 @@ export default async function ScientistPage({ params, searchParams }: ScientistP
               }}
             />
           ) : (
-            <div className="flex h-[28rem] w-full items-center justify-center rounded-lg border border-dashed border-gray-400 bg-gray-50 text-sm text-gray-500">
-              Photo placeholder
-            </div>
+            <ScientistPortraitFallback
+              name={scientist.name}
+              className="h-[28rem] w-full rounded-lg"
+            />
           )}
         </div>
 

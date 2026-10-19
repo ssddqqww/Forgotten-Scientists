@@ -5,6 +5,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { getFeaturedScientists, type FeaturedScientists } from "../../../../data/featuredScientists";
 import { type Scientist } from "../../../../data/scientistsData";
+import ScientistPortraitFallback from "../ScientistPortraitFallback";
 
 function getNextLocalMidnightDelay() {
   const now = new Date();
@@ -48,16 +49,6 @@ function makePreview(text: string, maxWords = 34) {
   return `${words.slice(0, maxWords).join(" ")}...`;
 }
 
-function getInitials(name: string) {
-  return name
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0])
-    .join("")
-    .toUpperCase();
-}
-
 function FeaturedScientistCard({
   eyebrow,
   scientist,
@@ -83,10 +74,10 @@ function FeaturedScientistCard({
             className="h-40 w-full rounded-md object-cover sm:h-52 lg:h-full"
           />
         ) : (
-          <div className="flex h-40 w-full flex-col items-center justify-center rounded-md border border-dashed border-gray-400 bg-[#f7f7f2] px-6 text-center text-gray-600 sm:h-52 lg:h-full">
-            <span className="text-3xl font-bold text-gray-700 sm:text-4xl">{getInitials(scientist.name)}</span>
-            <span className="mt-2 text-sm">Portrait pending</span>
-          </div>
+          <ScientistPortraitFallback
+            name={scientist.name}
+            className="h-40 w-full sm:h-52 lg:h-full"
+          />
         )}
 
         <div className="flex min-h-full flex-col">

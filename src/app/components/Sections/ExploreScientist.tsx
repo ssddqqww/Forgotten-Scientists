@@ -5,6 +5,7 @@ import Link from "next/link";
 import React, { useMemo, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { scientists } from "../../../../data/scientistsData";
+import ScientistPortraitFallback from "../ScientistPortraitFallback";
 
 export default function ExploreScientist() {
     const [visibleCount, setVisibleCount] = useState(8);
@@ -207,9 +208,10 @@ export default function ExploreScientist() {
                                 />
                             </div>
                         ) : (
-                            <div className="mb-4 flex h-50 w-full items-center justify-center rounded-md border border-dashed border-gray-400 bg-gray-50 text-sm text-gray-500">
-                                Photo placeholder
-                            </div>
+                            <ScientistPortraitFallback
+                                name={card.name}
+                                className="mb-4 h-50 w-full"
+                            />
                         )}
                         <p className="text-md text-gray-900 mt-2">
                             {card.shortBio}
