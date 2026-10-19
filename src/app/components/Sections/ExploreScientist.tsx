@@ -210,6 +210,7 @@ export default function ExploreScientist() {
                         ) : (
                             <ScientistPortraitFallback
                                 name={card.name}
+                                field={card.field}
                                 className="mb-4 h-50 w-full"
                             />
                         )}

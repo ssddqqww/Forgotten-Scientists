@@ -60,6 +60,7 @@ export default async function ScientistPage({ params, searchParams }: ScientistP
           ) : (
             <ScientistPortraitFallback
               name={scientist.name}
+              field={scientist.field}
               className="h-[28rem] w-full rounded-lg"
             />
           )}

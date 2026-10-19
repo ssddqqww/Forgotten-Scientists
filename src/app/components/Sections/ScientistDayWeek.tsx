@@ -76,6 +76,7 @@ function FeaturedScientistCard({
         ) : (
           <ScientistPortraitFallback
             name={scientist.name}
+            field={scientist.field}
             className="h-40 w-full sm:h-52 lg:h-full"
           />
         )}

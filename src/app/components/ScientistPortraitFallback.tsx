@@ -1,7 +1,46 @@
 type ScientistPortraitFallbackProps = {
   name: string;
+  field: string;
   className?: string;
 };
+
+type PortraitPalette = {
+  background: string;
+  accent: string;
+  softAccent: string;
+  text: string;
+};
+
+const palettes: Record<string, PortraitPalette> = {
+  astronomy: { background: "#e9edf8", accent: "#596da9", softAccent: "#cdd6ee", text: "#26345f" },
+  physics: { background: "#e7f0f1", accent: "#39747a", softAccent: "#c9dfe1", text: "#214c51" },
+  chemistry: { background: "#f2e9f2", accent: "#8a5e88", softAccent: "#dfcce0", text: "#593b58" },
+  biology: { background: "#e8f0e5", accent: "#5f8057", softAccent: "#cfdfca", text: "#3d5a37" },
+  medicine: { background: "#f5e8e6", accent: "#a65f59", softAccent: "#e8cbc7", text: "#6b3d39" },
+  mathematics: { background: "#eee8f5", accent: "#705c96", softAccent: "#d8cdea", text: "#493c65" },
+  engineering: { background: "#f3ece2", accent: "#9a7040", softAccent: "#e5d3bc", text: "#654a2b" },
+  computer: { background: "#e5eef4", accent: "#4c7895", softAccent: "#c7dbe8", text: "#315166" },
+  earth: { background: "#eeeade", accent: "#857649", softAccent: "#ddd5ba", text: "#574d30" },
+  social: { background: "#f1e9e3", accent: "#936b54", softAccent: "#dfcdbf", text: "#604737" },
+  default: { background: "#f0ede6", accent: "#7c725f", softAccent: "#ddd7ca", text: "#514a3e" },
+};
+
+function getPalette(field: string) {
+  const normalizedField = field.toLowerCase();
+
+  if (normalizedField.includes("astro")) return palettes.astronomy;
+  if (normalizedField.includes("phys")) return palettes.physics;
+  if (normalizedField.includes("chem") || normalizedField.includes("biochem")) return palettes.chemistry;
+  if (normalizedField.includes("bio") || normalizedField.includes("botan") || normalizedField.includes("genetic") || normalizedField.includes("natural")) return palettes.biology;
+  if (normalizedField.includes("medicine") || normalizedField.includes("microbio")) return palettes.medicine;
+  if (normalizedField.includes("math")) return palettes.mathematics;
+  if (normalizedField.includes("engineer") || normalizedField.includes("invent")) return palettes.engineering;
+  if (normalizedField.includes("computer")) return palettes.computer;
+  if (normalizedField.includes("geo") || normalizedField.includes("climate") || normalizedField.includes("ocean")) return palettes.earth;
+  if (normalizedField.includes("political") || normalizedField.includes("psych")) return palettes.social;
+
+  return palettes.default;
+}
 
 function getInitials(name: string) {
   return name
@@ -16,24 +55,47 @@ function getInitials(name: string) {
 
 export default function ScientistPortraitFallback({
   name,
+  field,
   className = "",
 }: ScientistPortraitFallbackProps) {
+  const palette = getPalette(field);
+
   return (
     <div
       role="img"
       aria-label={`Portrait unavailable for ${name}`}
-      className={`relative overflow-hidden rounded-md border border-black/15 bg-[#f3f0e7] ${className}`}
+      className={`relative overflow-hidden rounded-md border border-black/10 ${className}`}
+      style={{ backgroundColor: palette.background, color: palette.text }}
     >
-      <div className="absolute -right-10 -top-12 h-40 w-40 rounded-full border border-black/10" />
-      <div className="absolute -bottom-16 -left-10 h-44 w-44 rounded-full bg-[#ded8c7]" />
-      <div className="absolute inset-x-0 top-0 h-1 bg-black" />
+      <div
+        className="absolute -right-12 -top-14 h-44 w-44 rounded-full border-[1.5rem] opacity-35"
+        style={{ borderColor: palette.softAccent }}
+      />
+      <div
+        className="absolute -bottom-20 -left-12 h-52 w-52 rounded-full opacity-70"
+        style={{ backgroundColor: palette.softAccent }}
+      />
+      <div
+        className="absolute left-0 top-0 h-1.5 w-full opacity-80"
+        style={{ backgroundColor: palette.accent }}
+      />
 
-      <div className="absolute left-5 top-5 flex h-16 w-16 items-center justify-center rounded-sm bg-black text-2xl font-bold tracking-[0.08em] text-white shadow-sm sm:h-18 sm:w-18 sm:text-3xl">
+      <div
+        className="absolute left-6 top-7 text-6xl font-semibold tracking-[-0.06em] sm:text-7xl"
+        style={{ color: palette.accent }}
+      >
         {getInitials(name)}
       </div>
 
-      <div className="absolute bottom-5 left-5 right-5 border-t border-black/20 pt-3">
-        <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-black/55">
+      <div
+        className="absolute right-5 top-6 rounded-full border px-3 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.14em]"
+        style={{ borderColor: palette.accent, color: palette.text }}
+      >
+        {field}
+      </div>
+
+      <div className="absolute bottom-5 left-6 right-6 border-t border-current/20 pt-3">
+        <p className="text-[0.6rem] font-semibold uppercase tracking-[0.2em] opacity-55">
           Forgotten Scientists Archive
         </p>
       </div>
